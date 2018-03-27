@@ -8,8 +8,6 @@ package ro_gruppoe_project;
 import java.io.File;
 import javax.swing.JFileChooser;
 
-import static java.lang.Math.*;
-
 /**
  *
  * @author Dennis, Claudia
@@ -24,7 +22,7 @@ public class RO_gruppoE_project {
         selectFile();
     }
     
-    static public void selectFile(){
+    static private void selectFile(){
         JFileChooser chooser = new JFileChooser();
         
         int returnVal = chooser.showOpenDialog(null);
@@ -35,7 +33,7 @@ public class RO_gruppoE_project {
 
     public double distance(Customer c1, Customer c2){
         double d;
-        d = hypot(c1.getX()-c2.getX(), c1.getY()-c2.getY());
+        d = Math.hypot(c1.getX()-c2.getX(), c1.getY()-c2.getY());
         return d;
     }
     
