@@ -27,6 +27,8 @@ public class RO_gruppoE_project {
     Customer[] customers;
     ArrayList<Integer> deliveries = new ArrayList<Integer>();
     ArrayList<Integer> pickups = new ArrayList<Integer>();
+    double [][] tableDistances;
+    double [][] tableSavings;
 
     // main
     public static void main(String[] args) {
@@ -133,6 +135,51 @@ public class RO_gruppoE_project {
         double d;
         d = Math.hypot(c1.getX() - c2.getX(), c1.getY() - c2.getY());
         return d;
+    }
+
+    public double calculateDistance(Depot c1, Customer c2) {
+        double d;
+        d = Math.hypot(c1.getX() - c2.getX(), c1.getY() - c2.getY());
+        return d;
+    }
+
+    public void createTableDistance(){
+        tableDistances=new double[customers.length+1][customers.length+1];
+
+        double d;
+
+        for (int i=0; i<customers.length+1; i++){
+            for (int j=i+1; j<customers.length+1; j++){
+                if (i==0){
+                    d=calculateDistance(depot, customers[j-1]);
+                }else{
+                    d=calculateDistance(customers[i-1], customers[j-1]);
+                }
+
+                tableDistances[i][j]=d;
+                tableDistances[j][i]=d;
+            }
+        }
+    }
+
+    public double calculateSaving(int i, int j) {
+        double s;
+        s=tableDistances[i][0] + tableDistances[0][j] - tableDistances[i][j];
+        return s;
+    }
+
+    public void createTableSavings(){
+        tableSavings=new double[customers.length][customers.length];
+
+        double d;
+
+        for (int i=1; i<customers.length; i++){
+            for (int j=i+1; j<customers.length; j++){
+                d=calculateSaving(i,j);
+                tableSavings[i][j]=d;
+                tableSavings[j][i]=d;
+            }
+        }
     }
 
 }
