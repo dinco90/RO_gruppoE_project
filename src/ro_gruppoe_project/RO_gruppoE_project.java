@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,20 +21,22 @@ import java.util.logging.Logger;
  * @author Dennis, Claudia
  */
 public class RO_gruppoE_project {
-    
+
     // class members
     Depot depot;
-    Customer [] customers;
+    Customer[] customers;
+    ArrayList<Integer> deliveries = new ArrayList<Integer>();
+    ArrayList<Integer> pickups = new ArrayList<Integer>();
 
     // main
     public static void main(String[] args) {
 
-        RO_gruppoE_project.readFile(RO_gruppoE_project.selectFile());
+        RO_gruppoE_project roProjectE = new RO_gruppoE_project();
+        roProjectE.readFile(roProjectE.selectFile());
     }
 
     // methods
-    
-    static private String selectFile() {
+    private String selectFile() {
         JFileChooser chooser = new JFileChooser();
 
         int returnVal = chooser.showOpenDialog(null);
@@ -43,15 +46,17 @@ public class RO_gruppoE_project {
         return chooser.getSelectedFile().getAbsolutePath();
     }
 
-    static private void readFile(String fileString) {
+    private void readFile(String fileString) {
 
         BufferedReader br = null;
         FileReader fr = null;
         int lineCounter = 0;
 
+        int numeroVeicoli;
+
         try {
             fr = new FileReader(fileString);
-            
+
             br = new BufferedReader(fr);
 
             String sCurrentLine;
@@ -59,16 +64,52 @@ public class RO_gruppoE_project {
             while ((sCurrentLine = br.readLine()) != null) {
                 lineCounter++;
                 // switch
-                switch(lineCounter){
-                    case 1:
+                switch (lineCounter) {
+                    case 1: // numero customer
+                        customers = new Customer[Integer.parseInt(sCurrentLine)];
                         System.out.println(sCurrentLine);
                         break;
-                    case 2:
+                    case 2: // ???
                         System.out.println(sCurrentLine);
+                        break;
+                    case 3: // numero furgoni
+                        numeroVeicoli = Integer.parseInt(sCurrentLine);
+                        System.out.println(sCurrentLine);
+                        break;
+                    case 4: // deposito
+                        // estraggo i dati dalla linea
+                        String[] partsD = sCurrentLine.split("   ");
+                        int xD = Integer.parseInt(partsD[0]);
+                        int yD = Integer.parseInt(partsD[1]);
+                        int capacity = Integer.parseInt(partsD[2]);
+                        int n = Integer.parseInt(partsD[3]);
+
+                        // crea il deposito con i valori
+                        depot = new Depot(xD, yD, capacity, n);
+                        break;
+                    default: // customers
+                        // estraggo i dati dalla linea
+                        String[] partsC = sCurrentLine.split("   ");
+                        int xC = Integer.parseInt(partsC[0]);
+                        int yC = Integer.parseInt(partsC[1]);
+                        int delivery  = Integer.parseInt(partsC[2]);
+                        int pickup = Integer.parseInt(partsC[3]);
+                        // l'ultimo elemento della riga non viene usato
+                        
+                        // aggiunge l'indice del customer nella relativa lista
+                        if (delivery != 0){
+                            deliveries.add(lineCounter-5);
+                        }
+                        if (pickup != 0){
+                            pickups.add(lineCounter-5);
+                        }
+                        
+                        // aggiunge il customer all'array
+                        customers[lineCounter-5] = new Customer(xC, yC, delivery, pickup);
                         break;
                 }
                 //System.out.println(sCurrentLine);
-                
+
             }
         } catch (IOException e) {
             e.printStackTrace();
