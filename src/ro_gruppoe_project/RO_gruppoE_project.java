@@ -65,7 +65,7 @@ public class RO_gruppoE_project {
         }
     }
 
-    public double distance(Customer c1, Customer c2) {
+    public double calculateDistance(Customer c1, Customer c2){
         double d;
         d = Math.hypot(c1.getX() - c2.getX(), c1.getY() - c2.getY());
         return d;
