@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  * @author Dennis, Claudia
  */
 public class RO_gruppoE_project {
+    Depot depot;
+    Customer [] customers;
 
     /**
      * @param args the command line arguments
