@@ -20,17 +20,19 @@ import java.util.logging.Logger;
  * @author Dennis, Claudia
  */
 public class RO_gruppoE_project {
+    
+    // class members
     Depot depot;
     Customer [] customers;
 
-    /**
-     * @param args the command line arguments
-     */
+    // main
     public static void main(String[] args) {
 
         RO_gruppoE_project.readFile(RO_gruppoE_project.selectFile());
     }
 
+    // methods
+    
     static private String selectFile() {
         JFileChooser chooser = new JFileChooser();
 
