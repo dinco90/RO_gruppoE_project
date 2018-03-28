@@ -23,21 +23,29 @@ import java.util.logging.Logger;
 public class RO_gruppoE_project {
 
     // class members
-    Depot depot;
-    Customer[] customers;
-    ArrayList<Integer> deliveries = new ArrayList<Integer>();
-    ArrayList<Integer> pickups = new ArrayList<Integer>();
-    double [][] tableDistances;
-    double [][] tableSavings;
+    Depot depot;    //deposito
+    Customer[] customers;   //vettore di customers
+    ArrayList<Integer> deliveries = new ArrayList<Integer>();   //lista di indici dei customer linehaul
+    ArrayList<Integer> pickups = new ArrayList<Integer>();  //lista di indici dei customer backhaul
+    double [][] tableDistancesLinehaul; //tabella delle distanze dei Linehaul
+    double [][] tableSavings;   //tabella dei savings
 
     // main
     public static void main(String[] args) {
 
         RO_gruppoE_project roProjectE = new RO_gruppoE_project();
         roProjectE.readFile(roProjectE.selectFile());
+
+        roProjectE.createTableDistanceLinehaul();
+        roProjectE.createTableSavings();
     }
 
     // methods
+
+    /**
+     * Selezione del file in input
+     * @return Il path del file
+     */
     private String selectFile() {
         JFileChooser chooser = new JFileChooser();
 
@@ -48,13 +56,17 @@ public class RO_gruppoE_project {
         return chooser.getSelectedFile().getAbsolutePath();
     }
 
+    /**
+     * Legge il file in input per estrarre i dati del problema
+     * @param fileString Path del file scelto dall'utente
+     */
     private void readFile(String fileString) {
 
         BufferedReader br = null;
         FileReader fr = null;
         int lineCounter = 0;
 
-        int numeroVeicoli;
+        int numeroVeicoli=0;
 
         try {
             fr = new FileReader(fileString);
@@ -83,11 +95,10 @@ public class RO_gruppoE_project {
                         String[] partsD = sCurrentLine.split("   ");
                         int xD = Integer.parseInt(partsD[0]);
                         int yD = Integer.parseInt(partsD[1]);
-                        int capacity = Integer.parseInt(partsD[2]);
-                        int n = Integer.parseInt(partsD[3]);
+                        int capacity = Integer.parseInt(partsD[3]);
 
                         // crea il deposito con i valori
-                        depot = new Depot(xD, yD, capacity, n);
+                        depot = new Depot(xD, yD, capacity, numeroVeicoli);
                         break;
                     default: // customers
                         // estraggo i dati dalla linea
@@ -131,53 +142,78 @@ public class RO_gruppoE_project {
         System.out.println(lineCounter);
     }
 
+    /**
+     * Calcola la distanza tra due customers
+     * @param c1 Primo customer
+     * @param c2 Secondo customer
+     * @return La distanza tra i customers
+     */
     public double calculateDistance(Customer c1, Customer c2) {
         double d;
         d = Math.hypot(c1.getX() - c2.getX(), c1.getY() - c2.getY());
         return d;
     }
 
+    /**
+     * Calcola la distanza tra il deposito e il customer
+     * @param c1 Deposito
+     * @param c2 Secondo customer
+     * @return La distanza tra deposito e customer
+     */
     public double calculateDistance(Depot c1, Customer c2) {
         double d;
         d = Math.hypot(c1.getX() - c2.getX(), c1.getY() - c2.getY());
         return d;
     }
 
-    public void createTableDistance(){
-        tableDistances=new double[customers.length+1][customers.length+1];
+    /**
+     * Crea la tabella delle distanze tra i customer che richiedono un delivery
+     */
+    public void createTableDistanceLinehaul(){
+        tableDistancesLinehaul=new double[customers.length+1][customers.length+1];
 
         double d;
 
-        for (int i=0; i<customers.length+1; i++){
-            for (int j=i+1; j<customers.length+1; j++){
+        for (int i=0; i<deliveries.size()+1; i++){
+            for (int j=i+1; j<deliveries.size()+1; j++){
                 if (i==0){
                     d=calculateDistance(depot, customers[j-1]);
                 }else{
                     d=calculateDistance(customers[i-1], customers[j-1]);
                 }
 
-                tableDistances[i][j]=d;
-                tableDistances[j][i]=d;
+                tableDistancesLinehaul[i][j]=d;
+                tableDistancesLinehaul[j][i]=d;
             }
         }
     }
 
-    public double calculateSaving(int i, int j) {
+    /**
+     * Calcola il singolo saving della coordinata [i,j]
+     * @param i Indice della riga
+     * @param j Indice della colonna
+     * @param table Tabella delle distanze
+     * @return Il saving calcolato in base alla regola
+     */
+    public double calculateSaving(int i, int j, double [][] table) {
         double s;
-        s=tableDistances[i][0] + tableDistances[0][j] - tableDistances[i][j];
+        s=table[i][0] + table[0][j] - table[i][j];
         return s;
     }
 
+    /**
+     * Crea la tabella dei savings
+     */
     public void createTableSavings(){
         tableSavings=new double[customers.length][customers.length];
 
-        double d;
+        double s;
 
         for (int i=1; i<customers.length; i++){
             for (int j=i+1; j<customers.length; j++){
-                d=calculateSaving(i,j);
-                tableSavings[i][j]=d;
-                tableSavings[j][i]=d;
+                s=calculateSaving(i, j, tableDistancesLinehaul);
+                tableSavings[i][j]=s;
+                tableSavings[j][i]=s;
             }
         }
     }
