@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,11 @@ public class RO_gruppoE_project {
     ArrayList<Integer> deliveries = new ArrayList<Integer>();   //lista di indici dei customer linehaul
     ArrayList<Integer> pickups = new ArrayList<Integer>();  //lista di indici dei customer backhaul
     double [][] tableDistancesLinehaul; //tabella delle distanze dei Linehaul
-    double [][] tableSavings;   //tabella dei savings
+    double [][] tableDistancesBackhaul; //tabella delle distanze dei Backhaul
+    double [][] tableSavingsLinehaul;   //tabella dei savings dei Linehaul
+    double [][] tableSavingsBackhaul;   //tabella dei savings dei Backhaul
+    ArrayList<SavingOccurrence> sortedSavingsLinehaul;  //savings linehaul ordinati
+    ArrayList<SavingOccurrence> sortedSavingsBackhaul;  //savings backhaul ordinati
 
     // main
     public static void main(String[] args) {
@@ -37,7 +42,7 @@ public class RO_gruppoE_project {
         roProjectE.readFile(roProjectE.selectFile());
 
         roProjectE.createTableDistanceLinehaul();
-        roProjectE.createTableSavings();
+        roProjectE.createTableSavingsLinehaul();
     }
 
     // methods
@@ -177,8 +182,10 @@ public class RO_gruppoE_project {
         for (int i=0; i<deliveries.size()+1; i++){
             for (int j=i+1; j<deliveries.size()+1; j++){
                 if (i==0){
+                    //distanza tra deposito e customer
                     d=calculateDistance(depot, customers[j-1]);
                 }else{
+                    //distanza tra due customers
                     d=calculateDistance(customers[i-1], customers[j-1]);
                 }
 
@@ -202,20 +209,58 @@ public class RO_gruppoE_project {
     }
 
     /**
-     * Crea la tabella dei savings
+     * Crea la tabella dei savings per i linehaul
      */
-    public void createTableSavings(){
-        tableSavings=new double[customers.length][customers.length];
+    public void createTableSavingsLinehaul(){
+        tableSavingsLinehaul=new double[deliveries.size()][deliveries.size()];
 
         double s;
 
-        for (int i=1; i<customers.length; i++){
-            for (int j=i+1; j<customers.length; j++){
+        for (int i=1; i<deliveries.size(); i++){
+            for (int j=i+1; j<deliveries.size(); j++){
                 s=calculateSaving(i, j, tableDistancesLinehaul);
-                tableSavings[i][j]=s;
-                tableSavings[j][i]=s;
+                tableSavingsLinehaul[i][j]=s;
+                tableSavingsLinehaul[j][i]=s;
             }
         }
+    }
+
+    /**
+     * Crea la tabella dei savings per i backhaul
+     */
+    public void createTableSavingsBackhaul(){
+        ArrayList<Integer> backhaul=new ArrayList<>(deliveries);
+
+        //
+        //Bisogna aggiungere i last delle routes linehaul in "backhaul"
+        //
+
+        tableSavingsBackhaul=new double[backhaul.size()][backhaul.size()];
+
+        double s;
+
+        for (int i=1; i<backhaul.size(); i++){
+            for (int j=i+1; j<backhaul.size(); j++){
+                s=calculateSaving(i, j, tableDistancesBackhaul);
+                tableSavingsBackhaul[i][j]=s;
+                tableSavingsBackhaul[j][i]=s;
+            }
+        }
+    }
+
+    /**
+     * Riordina i savings in ordine decrescente
+     * @param table Tabella dei savings
+     * @param occurrences Occorrenze dei savings con relativo valore e posizionamento all'interno della tabella
+     */
+    public void setSortedSavings(double [][] table, ArrayList<SavingOccurrence> occurrences){
+        for (int i=1; i<table.length; i++){
+            for (int j=i+1; j<table.length; j++){
+                occurrences.add(new SavingOccurrence(i,j,table[i][j]));
+            }
+        }
+
+        Collections.sort(occurrences, (so1, so2)-> Double.compare(so1.s, so2.s));
     }
 
 }

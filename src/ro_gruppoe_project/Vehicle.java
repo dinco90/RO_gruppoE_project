@@ -1,5 +1,8 @@
 package ro_gruppoe_project;
 
+/**
+ * Veicolo
+ */
 public class Vehicle {
     private int maxCapacity;    //Massima capacità del veicolo
     private int used;   //spazio utilizzato nel veicolo

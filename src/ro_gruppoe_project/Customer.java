@@ -1,5 +1,8 @@
 package ro_gruppoe_project;
 
+/**
+ * Clienti
+ */
 public class Customer {
     private int x;  //coordinata x
     private int y;  //coordinata y

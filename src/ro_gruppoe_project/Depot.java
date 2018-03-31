@@ -1,5 +1,8 @@
 package ro_gruppoe_project;
 
+/**
+ * Deposito
+ */
 public class Depot {
     private int x;  //coordinata x
     private int y;  //coordinata y
