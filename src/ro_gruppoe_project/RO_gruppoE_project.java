@@ -35,6 +35,10 @@ public class RO_gruppoE_project {
     ArrayList<SavingOccurrence> sortedSavingsLinehaul;  //savings linehaul ordinati
     ArrayList<SavingOccurrence> sortedSavingsBackhaul;  //savings backhaul ordinati
 
+    ArrayList<ArrayList<Integer>> routes=new ArrayList<ArrayList<Integer>>();   //insieme delle routes
+    ArrayList<Integer> backhaul;    //pickups + last linehaul
+
+
     // main
     public static void main(String[] args) {
 
@@ -42,7 +46,9 @@ public class RO_gruppoE_project {
         roProjectE.readFile(roProjectE.selectFile());
 
         roProjectE.createTableDistanceLinehaul();
-        roProjectE.createTableSavingsLinehaul();
+        //bisogna risolvere il problema del static main
+        //roProjectE.createTableSavings(tableSavingsLinehaul, tableDistancesLinehaul, deliveries);
+
     }
 
     // methods
@@ -209,41 +215,23 @@ public class RO_gruppoE_project {
     }
 
     /**
-     * Crea la tabella dei savings per i linehaul
+     * Crea la tabella dei savings
+     * @param tableSavings Tabella dei savings
+     * @param tableDistances Tabella delle distanze
+     * @param listCustomers Lista dei customers
      */
-    public void createTableSavingsLinehaul(){
-        tableSavingsLinehaul=new double[deliveries.size()][deliveries.size()];
+    public void createTableSavings(double [][] tableSavings, double [][] tableDistances, ArrayList<Integer> listCustomers){
+        //creazione della tabella dei savings
+        tableSavings=new double[listCustomers.size()][listCustomers.size()];
 
         double s;
 
-        for (int i=1; i<deliveries.size(); i++){
-            for (int j=i+1; j<deliveries.size(); j++){
-                s=calculateSaving(i, j, tableDistancesLinehaul);
-                tableSavingsLinehaul[i][j]=s;
-                tableSavingsLinehaul[j][i]=s;
-            }
-        }
-    }
-
-    /**
-     * Crea la tabella dei savings per i backhaul
-     */
-    public void createTableSavingsBackhaul(){
-        ArrayList<Integer> backhaul=new ArrayList<>(deliveries);
-
-        //
-        //Bisogna aggiungere i last delle routes linehaul in "backhaul"
-        //
-
-        tableSavingsBackhaul=new double[backhaul.size()][backhaul.size()];
-
-        double s;
-
-        for (int i=1; i<backhaul.size(); i++){
-            for (int j=i+1; j<backhaul.size(); j++){
-                s=calculateSaving(i, j, tableDistancesBackhaul);
-                tableSavingsBackhaul[i][j]=s;
-                tableSavingsBackhaul[j][i]=s;
+        //si popola la tabella dei saving
+        for (int i=1; i<listCustomers.size(); i++){
+            for (int j=i+1; j<listCustomers.size(); j++){
+                s=calculateSaving(i, j, tableDistances);
+                tableSavings[i][j]=s;
+                tableSavings[j][i]=s;
             }
         }
     }
@@ -254,13 +242,28 @@ public class RO_gruppoE_project {
      * @param occurrences Occorrenze dei savings con relativo valore e posizionamento all'interno della tabella
      */
     public void setSortedSavings(double [][] table, ArrayList<SavingOccurrence> occurrences){
+        //estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
         for (int i=1; i<table.length; i++){
             for (int j=i+1; j<table.length; j++){
                 occurrences.add(new SavingOccurrence(i,j,table[i][j]));
             }
         }
 
+        //riorndina i savings in ordine decrescente
         Collections.sort(occurrences, (so1, so2)-> Double.compare(so1.s, so2.s));
+    }
+
+    /**
+     * Inizializzazione della lista dei backhaul
+     */
+    public void inizializationBackhaul(){
+        //inizializza i backhaul con la lista dei cusotmers che richiedono il pickup
+        backhaul=new ArrayList<>(pickups);
+
+        //si aggiungono ai backhaul i customer finali delle route dei linehaul
+        for (ArrayList<Integer> route : routes){
+            backhaul.add(route.get(route.size()-1));
+        }
     }
 
 }
