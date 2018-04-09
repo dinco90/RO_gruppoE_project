@@ -70,14 +70,14 @@ public class Manager {
                 switch (lineCounter) {
                     case 1: // numero customer
                         customers = new Customer[Integer.parseInt(sCurrentLine)];
-                        System.out.println(sCurrentLine);
+                        System.out.println("numero customer: " + sCurrentLine);
                         break;
                     case 2: // ???
-                        System.out.println(sCurrentLine);
+                        System.out.println("default: " + sCurrentLine);
                         break;
                     case 3: // numero furgoni
                         numeroVeicoli = Integer.parseInt(sCurrentLine);
-                        System.out.println(sCurrentLine);
+                        System.out.println("numero furgoni: " + sCurrentLine);
                         break;
                     case 4: // deposito
                         // estraggo i dati dalla linea
@@ -128,7 +128,7 @@ public class Manager {
             }
 
         }
-        System.out.println(lineCounter);
+        System.out.println("numero righe: " + lineCounter);
     }
 
 

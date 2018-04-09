@@ -18,6 +18,11 @@ public class RO_gruppoE_project {
         RO_gruppoE_project roProjectE = new RO_gruppoE_project();
         Manager manager=new Manager(roProjectE.selectFile());
 
+        //// si crea un manager (new Manager) e tutti i metodi (tutto l'algoritmo) viene svolto da tale classe
+        //// i metodi 'createTableDistanceLinehaul()' e 'createTableSavings()' sono di Manager, quindi:
+        //// manager.createTableDistanceLinehaul();
+        //// manager.createTableSavings(tableSavingsLinehaul, tableDistancesLinehaul, deliveries);
+        
         //roProjectE.createTableDistanceLinehaul();
         //bisogna risolvere il problema del static main
         //roProjectE.createTableSavings(tableSavingsLinehaul, tableDistancesLinehaul, deliveries);
