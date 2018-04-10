@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Manager {
-    private  String nameFile;
+    private String nameFile;
     private Depot depot;    //deposito
     private Customer[] customers;   //vettore di customers
     private ArrayList<Integer> deliveries = new ArrayList<Integer>();   //lista di indici dei customer linehaul
@@ -348,4 +348,18 @@ public class Manager {
             routes.add(new Route(delivery, getDistance(delivery)));
         }
     }
+    
+    /*
+    public void algoritmoClarkeWrightSequenziale(){
+        boolean flag = false;
+        for (SavingOccurrence occurrence : sortedSavingsLinehaul){
+            for (Route route : routes){
+                flag = route.containNodes(occurrence.i, occurrence.j);
+            }
+            if( (flag) && () && () ){
+                
+            }
+        }
+    }
+    */
 }
