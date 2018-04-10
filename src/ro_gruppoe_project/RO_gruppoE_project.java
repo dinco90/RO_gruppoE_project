@@ -24,9 +24,12 @@ public class RO_gruppoE_project {
 
         //
         //calcolo delle routes linehaul
+
+        manager.initializeRoutes();
+
         //
 
-        manager.inizializationBackhaul();
+        manager.initializeBackhaul();
         manager.createTableDistanceBackhaul();
         manager.createTableSavingsBackhaul();
         manager.setSortedSavingsBackhaul();

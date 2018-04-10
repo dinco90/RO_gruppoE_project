@@ -20,7 +20,7 @@ public class Manager {
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul=new ArrayList<SavingOccurrence>();  //savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul=new ArrayList<SavingOccurrence>();  //savings backhaul ordinati
     private ArrayList<Integer> backhaul;    //pickups + last linehaul
-    //private ArrayList<ArrayList<Integer>> routes=new ArrayList<ArrayList<Integer>>();   //insieme delle routes
+    private ArrayList<Route> routes=new ArrayList<Route>();   //insieme delle routes
 
     /**
      * Selezione del file in input
@@ -283,17 +283,69 @@ public class Manager {
     /**
      * Inizializzazione della lista dei backhaul
      */
-    public void inizializationBackhaul(){
+    public void initializeBackhaul(){
         //inizializza i backhaul con la lista dei cusotmers che richiedono il pickup
         backhaul=new ArrayList<>(pickups);
 
         //si aggiungono ai backhaul i customer finali delle route dei linehaul
-        for (ArrayList<Integer> route : routes){
-            backhaul.add(route.get(route.size()-1));
+        for (Route route : routes){
+            backhaul.add(route.getLast());
         }
     }
-    
+
+    /**
+     * Restituisce la distanza tra due customer
+     * @param first Primo customer
+     * @param second Secondo customer
+     * @return Distanza
+     */
     public double getDistance(Integer first, Integer second) {
-        
+        boolean l=true;
+        double d=0;
+
+        if(pickups.contains(first) && pickups.contains(second)){
+            l=false;
+        }
+
+        if(l){
+            d=tableDistancesLinehaul[deliveries.indexOf(first)+1][deliveries.indexOf(second)+1];
+        }
+        else{
+            d=tableDistancesBackhaul[pickups.indexOf(first)+1][pickups.indexOf(second)+1];
+        }
+
+        return d;
+    }
+
+    /**
+     * Restituisce la distanza tra il deposito e un customer
+     * @param customer Customer
+     * @return Distanza
+     */
+    public double getDistance(Integer customer) {
+        boolean l=true;
+        double d=0;
+
+        if(pickups.contains(customer) ){
+            l=false;
+        }
+
+        if(l){
+            d=tableDistancesLinehaul[0][(deliveries.indexOf(customer))+1];
+        }
+        else{
+            d=tableDistancesBackhaul[0][pickups.indexOf(customer)+1];
+        }
+
+        return d;
+    }
+
+    /**
+     * Inizializza le routes linehaul iniziali
+     */
+    public void initializeRoutes(){
+        for (Integer delivery : deliveries){
+            routes.add(new Route(delivery, getDistance(delivery)));
+        }
     }
 }
