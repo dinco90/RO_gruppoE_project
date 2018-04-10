@@ -24,4 +24,8 @@ public class Route {
     public Integer getLast(){
         return routes.get(routes.size()-2);
     }
+    
+    public boolean containNodes(Integer node1, Integer node2){
+        return routes.contains(node1) && routes.contains(node2);
+    }
 }
