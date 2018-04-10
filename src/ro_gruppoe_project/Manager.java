@@ -1,5 +1,6 @@
 package ro_gruppoe_project;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Manager {
+    private  String nameFile;
     private Depot depot;    //deposito
     private Customer[] customers;   //vettore di customers
     private ArrayList<Integer> deliveries = new ArrayList<Integer>();   //lista di indici dei customer linehaul
@@ -20,36 +22,30 @@ public class Manager {
     private ArrayList<Integer> backhaul;    //pickups + last linehaul
     private ArrayList<ArrayList<Integer>> routes=new ArrayList<ArrayList<Integer>>();   //insieme delle routes
 
-    public Manager(String nameFile){
-        readFile(nameFile);
+    public Manager(){
 
-        createTableDistanceLinehaul();
-        createTableSavingsLinehaul();
-        setSortedSavingsLinehaul();
-
-        //
-        //calcolo delle routes linehaul
-        //
-
-        inizializationBackhaul();
-        createTableDistanceBackhaul();
-        createTableSavingsBackhaul();
-        setSortedSavingsBackhaul();
-
-        //
-        //calcolo delle routes backhaul
-        //
-
-        //
-        //salvataggio risultati su file
-        //
     }
 
+
     /**
-     * Legge il file in input per estrarre i dati del problema
-     * @param fileString Path del file scelto dall'utente
+     * Selezione del file in input
+     * @return Il path del file
      */
-    private void readFile(String fileString) {
+    public void selectFile() {
+        JFileChooser chooser = new JFileChooser();
+
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+        }
+        nameFile=chooser.getSelectedFile().getAbsolutePath();
+    }
+
+
+    /**
+     * Legge il file selezionato in precendenza per estrarre i dati del problema
+     */
+    public void readFile() {
 
         BufferedReader br = null;
         FileReader fr = null;
@@ -58,7 +54,7 @@ public class Manager {
         int numeroVeicoli=0;
 
         try {
-            fr = new FileReader(fileString);
+            fr = new FileReader(nameFile);
 
             br = new BufferedReader(fr);
 
@@ -244,7 +240,7 @@ public class Manager {
      */
     public void createTableSavingsBackhaul(){
         //creazione della tabella dei savings backhaul
-        tableSavingsLinehaul=new double[backhaul.size()][backhaul.size()];
+        tableSavingsBackhaul=new double[backhaul.size()][backhaul.size()];
 
         double s;
 

@@ -5,8 +5,6 @@
  */
 package ro_gruppoe_project;
 
-import javax.swing.JFileChooser;
-
 /**
  *
  * @author Dennis, Claudia
@@ -15,8 +13,7 @@ public class RO_gruppoE_project {
 
     public static void main(String[] args) {
 
-        RO_gruppoE_project roProjectE = new RO_gruppoE_project();
-        Manager manager=new Manager(roProjectE.selectFile());
+        Manager manager=new Manager();
 
         //// si crea un manager (new Manager) e tutti i metodi (tutto l'algoritmo) viene svolto da tale classe
         //// i metodi 'createTableDistanceLinehaul()' e 'createTableSavings()' sono di Manager, quindi:
@@ -27,21 +24,34 @@ public class RO_gruppoE_project {
         //bisogna risolvere il problema del static main
         //roProjectE.createTableSavings(tableSavingsLinehaul, tableDistancesLinehaul, deliveries);
 
+
+        manager.selectFile();
+        manager.readFile();
+
+        manager.createTableDistanceLinehaul();
+        manager.createTableSavingsLinehaul();
+        manager.setSortedSavingsLinehaul();
+
+        //
+        //calcolo delle routes linehaul
+        //
+
+        manager.inizializationBackhaul();
+        manager.createTableDistanceBackhaul();
+        manager.createTableSavingsBackhaul();
+        manager.setSortedSavingsBackhaul();
+
+        //
+        //calcolo delle routes backhaul
+        //
+
+        //
+        //salvataggio risultati su file
+        //
+
     }
 
-    /**
-     * Selezione del file in input
-     * @return Il path del file
-     */
-    private String selectFile() {
-        JFileChooser chooser = new JFileChooser();
 
-        int returnVal = chooser.showOpenDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
-        }
-        return chooser.getSelectedFile().getAbsolutePath();
-    }
 
 
 
