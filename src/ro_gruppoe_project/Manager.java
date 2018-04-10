@@ -20,16 +20,10 @@ public class Manager {
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul=new ArrayList<SavingOccurrence>();  //savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul=new ArrayList<SavingOccurrence>();  //savings backhaul ordinati
     private ArrayList<Integer> backhaul;    //pickups + last linehaul
-    private ArrayList<ArrayList<Integer>> routes=new ArrayList<ArrayList<Integer>>();   //insieme delle routes
-
-    public Manager(){
-
-    }
-
+    //private ArrayList<ArrayList<Integer>> routes=new ArrayList<ArrayList<Integer>>();   //insieme delle routes
 
     /**
      * Selezione del file in input
-     * @return Il path del file
      */
     public void selectFile() {
         JFileChooser chooser = new JFileChooser();
@@ -297,5 +291,9 @@ public class Manager {
         for (ArrayList<Integer> route : routes){
             backhaul.add(route.get(route.size()-1));
         }
+    }
+    
+    public double getDistance(Integer first, Integer second) {
+        
     }
 }
