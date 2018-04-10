@@ -27,6 +27,8 @@ public class RO_gruppoE_project {
 
         manager.initializeRoutes();
 
+
+
         //
 
         manager.initializeBackhaul();

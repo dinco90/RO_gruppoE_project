@@ -295,8 +295,8 @@ public class Manager {
 
     /**
      * Restituisce la distanza tra due customer
-     * @param first Primo customer
-     * @param second Secondo customer
+     * @param first Indice del primo customer nell'arraylist "customers"
+     * @param second Indice del secondo customer nell'arraylist "customers"
      * @return Distanza
      */
     public double getDistance(Integer first, Integer second) {
@@ -319,7 +319,7 @@ public class Manager {
 
     /**
      * Restituisce la distanza tra il deposito e un customer
-     * @param customer Customer
+     * @param customer Indice del customer nell'arraylist "customers"
      * @return Distanza
      */
     public double getDistance(Integer customer) {
