@@ -3,23 +3,24 @@ package ro_gruppoe_project;
 /**
  * Occorrenza dei savings
  */
-public class SavingOccurrence implements Comparable<SavingOccurrence>{
+public class SavingOccurrence implements Comparable<SavingOccurrence> {
+
     int i;  //riga
     int j;  //colonna
     double s;   //saving
 
     /**
      * Costruttore
+     *
      * @param i Riga
      * @param j Colonna
      * @param s Saving
      */
-    public SavingOccurrence(int i, int j, double s){
-        this.i=i;
-        this.j=j;
-        this.s=s;
+    public SavingOccurrence(int i, int j, double s) {
+        this.i = i;
+        this.j = j;
+        this.s = s;
     }
-
 
     @Override
     /**
@@ -27,13 +28,13 @@ public class SavingOccurrence implements Comparable<SavingOccurrence>{
      */
     public int compareTo(SavingOccurrence so) {
         //descending order
-        double ris=so.s-this.s;
+        double ris = so.s - this.s;
 
-        if (ris>0){
+        if (ris > 0) {
             return 1;
-        } else if (ris<0){
+        } else if (ris < 0) {
             return -1;
-        }else {
+        } else {
             return 0;
         }
     }

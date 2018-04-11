@@ -4,6 +4,7 @@ package ro_gruppoe_project;
  * Clienti
  */
 public class Customer {
+
     private int x;  //coordinata x
     private int y;  //coordinata y
     private int demand; //domanda - delivery
@@ -11,20 +12,22 @@ public class Customer {
 
     /**
      * Costruttore
+     *
      * @param x Coordinata x
      * @param y Coordinata y
      * @param demand Domanda - delivery
      * @param supply Offerta - pickup
      */
-    public Customer(int x, int y, int demand, int supply){
-        this.x=x;
-        this.y=y;
-        this.demand=demand;
-        this.supply=supply;
+    public Customer(int x, int y, int demand, int supply) {
+        this.x = x;
+        this.y = y;
+        this.demand = demand;
+        this.supply = supply;
     }
 
     /**
      * Set coordinata x
+     *
      * @param x Valore di x
      */
     public void setX(int x) {
@@ -33,6 +36,7 @@ public class Customer {
 
     /**
      * Get coordinata x
+     *
      * @return Coordinata x
      */
     public int getX() {
@@ -41,6 +45,7 @@ public class Customer {
 
     /**
      * Set coordinata y
+     *
      * @param y Valore di y
      */
     public void setY(int y) {
@@ -49,6 +54,7 @@ public class Customer {
 
     /**
      * Get coordinata y
+     *
      * @return Coordinata y
      */
     public int getY() {
@@ -57,6 +63,7 @@ public class Customer {
 
     /**
      * Set Domanda
+     *
      * @param demand Domanda
      */
     public void setDemand(int demand) {
@@ -65,6 +72,7 @@ public class Customer {
 
     /**
      * Get domanda
+     *
      * @return Domanda
      */
     public int getDemand() {
@@ -73,6 +81,7 @@ public class Customer {
 
     /**
      * Set offerta
+     *
      * @param supply Offerta
      */
     public void setSupply(int supply) {
@@ -81,11 +90,10 @@ public class Customer {
 
     /**
      * Get offerta
+     *
      * @return Offerta
      */
     public int getSupply() {
         return supply;
     }
 }
-
-
