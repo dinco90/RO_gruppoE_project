@@ -7,7 +7,8 @@ public class Depot {
 
     private int x;  //coordinata x
     private int y;  //coordinata y
-    private Vehicle[] vehicles; //vettore dei veicoli
+    private int vehicles; //numero dei veicoli
+    private int maxCapacity;
 
     /**
      * Costruttore
@@ -20,10 +21,8 @@ public class Depot {
     public Depot(int x, int y, int capacity, int n) {
         this.x = x;
         this.y = y;
-        vehicles = new Vehicle[n];
-        for (int i = 0; i < n; i++) {
-            vehicles[i] = new Vehicle(capacity);
-        }
+        this.vehicles = n;
+        this.maxCapacity = capacity;
     }
 
     /**
@@ -63,30 +62,20 @@ public class Depot {
     }
 
     /**
-     * Restituisce il vettore dei veicoli
-     *
-     * @return Vettore dei veicoli
-     */
-    public Vehicle[] getVehicles() {
-        return vehicles;
-    }
-
-    /**
-     * Reistituisce il veicolo all'i-esima posizione
-     *
-     * @param i Posizione
-     * @return Veicolo
-     */
-    public Vehicle getVehicleAt(int i) {
-        return vehicles[i];
-    }
-
-    /**
      * Restituisce il numero dei veicoli
      *
      * @return Numero veicoli
      */
     public int numberOfVehicles() {
-        return vehicles.length;
+        return vehicles;
+    }
+    
+    /**
+     * Restituisce la capacità massima del veicolo
+     *
+     * @return Capacità massima del veicolo
+     */
+    public int getMaxCapacity() {
+        return maxCapacity;
     }
 }

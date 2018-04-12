@@ -3,30 +3,76 @@ package ro_gruppoe_project;
 import java.util.ArrayList;
 
 /**
- *
+ * Route
  */
 public class Route {
 
-    private ArrayList<Integer> routes = new ArrayList<Integer>();   // route
-    private double costo;
+    private int maxCapacity;    //Massima capacità del veicolo
+    private int usedCapacity;   //spazio utilizzato nel veicolo
+    
+    private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
+    private double costo; // costo del tragitto
 
-    Route(Integer delivery, double costo) {
-        routes.add(0);
-        routes.add(delivery);
-        routes.add(0);
-
-        this.costo = costo * 2;
+    /**
+     * Costruttore
+     *
+     */
+    public Route() {
+        this.usedCapacity = 0;    //vuoto all'inizio
+        this.costo = 0;     // vuoto all'inizio
     }
 
+    
+
+    /**
+     * Set dello spazio utilizzato del veicolo
+     *
+     * @param used Spazio da occupare
+     */
+    public void setUsed(int used) {
+        this.usedCapacity = used;
+    }
+
+    /**
+     * Get dello spazio utilizzato attualmente
+     *
+     * @return Spazio utilizzato
+     */
+    public int getUsed() {
+        return usedCapacity;
+    }
+
+    /**
+     * Aggiunge merce al veicolo
+     *
+     * @param p Quantità di merce aggiunta
+     */
+    public void addProducts(int p) {
+        this.usedCapacity = this.usedCapacity + p;
+    }
+    
     public void setCosto(double costo) {
         this.costo = costo;
     }
-
-    public Integer getLast() {
-        return routes.get(routes.size() - 2);
+    
+    public double getCosto(){
+        return this.costo;
     }
 
-    public boolean containNodes(Integer node1, Integer node2) {
-        return routes.contains(node1) && routes.contains(node2);
+    public Integer getLast() {
+        return route.get(route.size() - 2);
+    }
+
+    public boolean visitCustomers(Integer customer1, Integer customer2) {
+        return route.contains(customer1) && route.contains(customer2);
+    }
+    
+    public boolean findCustomer(Integer customerToFind){
+        for(Integer customer : route) {
+            if(customerToFind == customer){
+                return true;
+            }
+        }
+        return false;
     }
 }

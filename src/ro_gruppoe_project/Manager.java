@@ -350,23 +350,73 @@ public class Manager {
     /**
      * Inizializza le routes linehaul iniziali
      */
+    /*
     public void initializeRoutes() {
         for (Integer delivery : deliveries) {
             routes.add(new Route(delivery, getDistance(delivery)));
         }
     }
+     */
+    
+    /**
+     * Esegue l'algoritmo Clarke & Wright in modo sequenziale
+     */
+    public void algoritmoClarkeWrightSequenziale() {
 
-    /*
-    public void algoritmoClarkeWrightSequenziale(){
-        boolean flag = false;
-        for (SavingOccurrence occurrence : sortedSavingsLinehaul){
-            for (Route route : routes){
-                flag = route.containNodes(occurrence.i, occurrence.j);
-            }
-            if( (flag) && () && () ){
-                
+        // scorre la tabella dei savings
+        for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
+
+            if ((twoCustomersInRoute(occurrence.i, occurrence.j)) && 
+                    (verifyCapacity(occurrence.i, occurrence.j)) && 
+                    (false)) {
+                ;
             }
         }
+
     }
+
+    /**
+     * Verifica se due customers si trovano nella route
+     * @param i Primo indice del customer
+     * @param j Secondo indice del customer
+     * @return True o false a seconda del fatto che facciano parte della stessa route
      */
+    public boolean twoCustomersInRoute(int i, int j) {
+        boolean flag = false;
+        int k = 0;
+        while (!flag && k < routes.size()) {
+            flag = routes.get(k).visitCustomers(i, j);
+            k++;
+        }
+        return flag;
+    }
+    
+    /**
+     * Trova la route di cui fa parte il customer
+     * @param customerToFind Il customer di cui cercare la route
+     * @return L'indice della route di cui fa parte il customer
+     */
+    public int findRoute(int customerToFind) {
+        for (Route route : routes) {
+            if(route.findCustomer(customerToFind)){
+                return routes.indexOf(route);
+            }
+        }
+        return -1;
+    }
+    
+    /**
+     * Verifica se lo spazio è sufficiente per il nuovo customer
+     * @param i Primo indice del customer
+     * @param j Secondo indice del customer
+     * @return True o false a seconda se lo spazio è sufficiente o meno
+     */
+    public boolean verifyCapacity(int i, int j){
+        if(routes.get(findRoute(i)).getUsed() + customers[j].getDemand() + customers[j].getSupply()<= depot.getMaxCapacity() ){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
