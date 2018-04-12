@@ -13,13 +13,16 @@ public class Route {
     private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
     private double costo; // costo del tragitto
 
+
     /**
      * Costruttore
-     *
+     * @param customer Customer che inizializza la route
+     * @param goods Merce che richiede il customer
      */
-    public Route() {
-        this.usedCapacity = 0;    //vuoto all'inizio
+    public Route(int customer, int goods) {
+        this.usedCapacity = goods;    //vuoto all'inizio
         this.costo = 0;     // vuoto all'inizio
+        route.add(customer);    //customer
     }
 
     
@@ -75,4 +78,21 @@ public class Route {
         }
         return false;
     }
+
+    /**
+     * Restituisce il primo customer della route
+     * @return Primo customer
+     */
+    public int firtCustomer(){
+        return route.get(0);
+    }
+
+    /**
+     * Restituisce l'ultimo customer della route
+     * @return Ultimo customer
+     */
+    public int lastCustomer(){
+        return route.get(route.size()-1);
+    }
+
 }
