@@ -366,9 +366,13 @@ public class Manager {
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
             int routeI=findRoute(occurrence.i);
             int routeJ=findRoute(occurrence.j);
-
+            
+            // per fare il merge tra due route devono essere rispettate tre condizioni
+            // condizione 1: le route di i e j devono essere diverse
             if ((routeI!=routeJ) &&
+                    // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
                     (routes.get(routeI).getUsed() +routes.get(routeJ).getUsed() <= depot.getMaxCapacity()) &&
+                    // condizione 3: i è first e j è last OR i è last e j e first
                     ((routes.get(routeI).firtCustomer()==occurrence.i && routes.get(routeJ).lastCustomer()==occurrence.j) ||
                             (routes.get(routeJ).firtCustomer()==occurrence.j && routes.get(routeI).lastCustomer()==occurrence.i))){
                 //si possono unire le due route
