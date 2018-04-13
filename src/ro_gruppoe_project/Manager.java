@@ -380,11 +380,15 @@ public class Manager {
                     //i è last, j è first
 
                     //unisci j ad i ed elimina  poi j
+                    routes.get(routeI).merge(routes.get(routeJ));
+                    routes.remove(routeJ);
                 }
                 else{
                     //j è last, i è first
 
                     //unisci i ad j ed elimina  poi i
+                    routes.get(routeJ).merge(routes.get(routeI));
+                    routes.remove(routeI);
                 }
 
 

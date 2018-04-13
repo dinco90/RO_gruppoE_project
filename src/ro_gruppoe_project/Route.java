@@ -1,6 +1,7 @@
 package ro_gruppoe_project;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Route
@@ -53,23 +54,46 @@ public class Route {
     public void addProducts(int p) {
         this.usedCapacity = this.usedCapacity + p;
     }
-    
+
+    /**
+     * Imposta il costo della route
+     * @param costo Costo calcolato
+     */
     public void setCosto(double costo) {
         this.costo = costo;
     }
-    
+
+    /**
+     * Restituisce il costo dell'intera route
+     * @return Costo route
+     */
     public double getCosto(){
         return this.costo;
     }
 
+    /**
+     * Restituisce l'ultimo customer della route
+     * @return Ultimo customer
+     */
     public Integer getLast() {
         return route.get(route.size() - 2);
     }
 
+    /**
+     * Verifica se due customer fanno parte della stessa route
+     * @param customer1 Indice primo customer
+     * @param customer2 Indice secondo customer
+     * @return True o false se sono presenti entrambi
+     */
     public boolean visitCustomers(Integer customer1, Integer customer2) {
         return route.contains(customer1) && route.contains(customer2);
     }
-    
+
+    /**
+     * Veriica se un customer fa parte della route
+     * @param customerToFind Customer da trovare
+     * @return True o false a seconda se faccia parte della route
+     */
     public boolean findCustomer(Integer customerToFind){
         for(Integer customer : route) {
             if(customerToFind == customer){
@@ -95,4 +119,21 @@ public class Route {
         return route.get(route.size()-1);
     }
 
+    /**
+     * Restituisce la lista di customer che fanno parte della route
+     * @return Route
+     */
+    public ArrayList<Integer> getRoute(){
+        return route;
+    }
+
+    /**
+     * Unisce una route in coda e modifica lo spazio utilizzato
+     * @param routeToMerge Route da unire in coda
+     */
+    public void merge (Route routeToMerge){
+        route.addAll(routeToMerge.getRoute());
+
+        usedCapacity += routeToMerge.getUsed();
+    }
 }
