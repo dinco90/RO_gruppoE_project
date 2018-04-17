@@ -2,7 +2,9 @@ package ro_gruppoe_project;
 
 import javax.swing.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -214,7 +216,7 @@ public class Manager {
 
         //si aggiungono ai backhaul i customer finali delle route dei linehaul
         for (Route route : routes) {
-            backhaul.add(route.getLast());
+            backhaul.add(route.lastCustomer());
         }
     }
 
@@ -451,6 +453,22 @@ public class Manager {
 
     }
     */
-
+    
+    /**
+     * Scrive il file dei risultati nella cartella "output"
+     * @param append true per allegare al file esistente, false per scrivere da capo
+     */
+    public void writeFile(boolean append){
+        try {
+            new File("output").mkdirs();
+            FileWriter writer = new FileWriter("output\\MyFile.txt", append); // append permette di allegare ad un file esistente
+            writer.write("Text File with Solution Of Problem: " + nameFile);
+            writer.write("\r\n\n");   // write new line
+            writer.write("Good Bye!");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -72,14 +72,6 @@ public class Route {
     }
 
     /**
-     * Restituisce l'ultimo customer della route
-     * @return Ultimo customer
-     */
-    public Integer getLast() {
-        return route.get(route.size() - 2);
-    }
-
-    /**
      * Verifica se due customer fanno parte della stessa route
      * @param customer1 Indice primo customer
      * @param customer2 Indice secondo customer
