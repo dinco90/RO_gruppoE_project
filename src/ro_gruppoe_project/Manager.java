@@ -373,8 +373,8 @@ public class Manager {
                     // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
                     (routes.get(routeI).getUsed() +routes.get(routeJ).getUsed() <= depot.getMaxCapacity()) &&
                     // condizione 3: i è first e j è last OR i è last e j e first
-                    ((routes.get(routeI).firtCustomer()==occurrence.i && routes.get(routeJ).lastCustomer()==occurrence.j) ||
-                            (routes.get(routeJ).firtCustomer()==occurrence.j && routes.get(routeI).lastCustomer()==occurrence.i))){
+                    ((routes.get(routeI).firstCustomer()==occurrence.i && routes.get(routeJ).lastCustomer()==occurrence.j) ||
+                            (routes.get(routeJ).firstCustomer()==occurrence.j && routes.get(routeI).lastCustomer()==occurrence.i))){
                 //si possono unire le due route
                 if (routes.get(routeI).lastCustomer()==occurrence.i){
                     //i è last, j è first
@@ -452,5 +452,32 @@ public class Manager {
     }
     */
 
+    /**
+     * Calcola il costo totale di ogni route
+     */
+    public void calculateCost(){
+        double cost=0;
+
+        for (Route route : routes){
+            ArrayList<Integer> listCustomer = route.getRoute();
+
+            if (listCustomer.size()>1){
+                //route composta da più customer
+                for (int i=0; i<listCustomer.size()-1; i++){
+                    //somma tutti i costi tra i customer
+                    cost += tableDistancesLinehaul[deliveries.indexOf(listCustomer.get(i))+1][deliveries.indexOf(listCustomer.get(i+1)+1)];
+                }
+                //somma i costi tra i first e i last con il depot
+                cost += tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.get(0))+1] + tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.size()-1)+1];
+            }
+            else {
+                //route composta da un solo customer
+                cost += tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.get(0))+1] * 2;
+            }
+
+            route.setCost(cost);
+            cost=0;
+        }
+    }
 
 }

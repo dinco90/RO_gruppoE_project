@@ -12,7 +12,7 @@ public class Route {
     private int usedCapacity;   //spazio utilizzato nel veicolo
     
     private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
-    private double costo; // costo del tragitto
+    private double cost; // costo del tragitto
 
 
     /**
@@ -22,7 +22,7 @@ public class Route {
      */
     public Route(int customer, int goods) {
         this.usedCapacity = goods;    //vuoto all'inizio
-        this.costo = 0;     // vuoto all'inizio
+        this.cost = 0;     // vuoto all'inizio
         route.add(customer);    //customer
     }
 
@@ -57,18 +57,18 @@ public class Route {
 
     /**
      * Imposta il costo della route
-     * @param costo Costo calcolato
+     * @param cost Costo calcolato
      */
-    public void setCosto(double costo) {
-        this.costo = costo;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 
     /**
      * Restituisce il costo dell'intera route
      * @return Costo route
      */
-    public double getCosto(){
-        return this.costo;
+    public double getCost(){
+        return this.cost;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Route {
      * Restituisce il primo customer della route
      * @return Primo customer
      */
-    public int firtCustomer(){
+    public int firstCustomer(){
         return route.get(0);
     }
 
