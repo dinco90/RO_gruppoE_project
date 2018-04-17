@@ -30,7 +30,6 @@ public class Route {
 
     /**
      * Set dello spazio utilizzato del veicolo
-     *
      * @param used Spazio da occupare
      */
     public void setUsed(int used) {

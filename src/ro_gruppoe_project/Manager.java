@@ -16,10 +16,8 @@ public class Manager {
     private Customer[] customers;   //vettore di customers
     private ArrayList<Integer> deliveries = new ArrayList<Integer>();   //lista di indici dei customer linehaul
     private ArrayList<Integer> pickups = new ArrayList<Integer>();  //lista di indici dei customer backhaul
-    private double[][] tableDistancesLinehaul; //tabella delle distanze dei Linehaul
-    private double[][] tableDistancesBackhaul; //tabella delle distanze dei Backhaul
-    private double[][] tableSavingsLinehaul;   //tabella dei savings dei Linehaul
-    private double[][] tableSavingsBackhaul;   //tabella dei savings dei Backhaul
+    private double[][] tableDistances; //tabella delle distanze
+    private double[][] tableSavings;   //tabella dei savings
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul = new ArrayList<SavingOccurrence>();  //savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul = new ArrayList<SavingOccurrence>();  //savings backhaul ordinati
     private ArrayList<Integer> backhaul;    //pickups + last linehaul
@@ -140,7 +138,6 @@ public class Manager {
 
     /**
      * Calcola la distanza tra il deposito e il customer
-     *
      * @param c1 Deposito
      * @param c2 Secondo customer
      * @return La distanza tra deposito e customer
@@ -152,19 +149,19 @@ public class Manager {
     }
 
     /**
-     * Crea la tabella delle distanze tra i customer che richiedono un delivery
+     * Crea la tabella delle distanze tra i customer
      */
-    public void createTableDistanceLinehaul() {
+    public void createTableDistance() {
         // customers.length+1 perché serve anche la distanza con il deposito
-        tableDistancesLinehaul = new double[customers.length + 1][customers.length + 1];
+        tableDistances = new double[customers.length + 1][customers.length + 1];
 
         double d;
 
-        // deliveries.size()+1 perché serve anche la distanza con il deposito
-        for (int i = 0; i < deliveries.size() + 1; i++) {
+        // customer.length+1 perché serve anche la distanza con il deposito
+        for (int i = 0; i < customers.length + 1; i++) {
             // j=i+1 per creare la matrice simmetrica
-            // deliveries.size()+1 perché serve anche la distanza con il deposito
-            for (int j = i + 1; j < deliveries.size() + 1; j++) {
+            // customer.length+1 perché serve anche la distanza con il deposito
+            for (int j = i + 1; j < customers.length + 1; j++) {
                 if (i == 0) {
                     //distanza tra deposito e customer
                     d = calculateDistance(depot, customers[j - 1]);
@@ -173,50 +170,9 @@ public class Manager {
                     d = calculateDistance(customers[i - 1], customers[j - 1]);
                 }
 
-                tableDistancesLinehaul[i][j] = d;
-                tableDistancesLinehaul[j][i] = d;
+                tableDistances[i][j] = d;
+                tableDistances[j][i] = d;
             }
-        }
-    }
-
-    /**
-     * Crea la tabella delle distanze tra i customer che richiedono un pickup
-     */
-    public void createTableDistanceBackhaul() {
-        // +1 perché serve anche la distanza con il deposito
-        tableDistancesBackhaul = new double[backhaul.size() + 1][backhaul.size() + 1];
-
-        double d;
-
-        // backhaul.size()+1 perché serve anche la distanza con il deposito
-        for (int i = 0; i < backhaul.size() + 1; i++) {
-            // j=i+1 per creare la matrice simmetrica
-            // backhaul.size()+1 perché serve anche la distanza con il deposito
-            for (int j = i + 1; j < backhaul.size() + 1; j++) {
-                if (i == 0) {
-                    //distanza tra deposito e customer
-                    d = calculateDistance(depot, customers[backhaul.get(j - 1)]);
-                } else {
-                    //distanza tra due customers
-                    d = calculateDistance(customers[backhaul.get(i - 1)], customers[backhaul.get(j - 1)]);
-                }
-
-                tableDistancesBackhaul[i][j] = d;
-                tableDistancesBackhaul[j][i] = d;
-            }
-        }
-    }
-
-    /**
-     * Inizializzazione della lista dei backhaul
-     */
-    public void initializeBackhaul() {
-        //inizializza i backhaul con la lista dei customers che richiedono il pickup
-        backhaul = new ArrayList<>(pickups);
-
-        //si aggiungono ai backhaul i customer finali delle route dei linehaul
-        for (Route route : routes) {
-            backhaul.add(route.lastCustomer());
         }
     }
 
@@ -225,49 +181,29 @@ public class Manager {
      *
      * @param i Indice della riga
      * @param j Indice della colonna
-     * @param table Tabella delle distanze
      * @return Il saving calcolato in base alla regola
      */
-    public double calculateSaving(int i, int j, double[][] table) {
+    public double calculateSaving(int i, int j) {
         double s;
-        s = table[i][0] + table[0][j] - table[i][j];
+        s = tableDistances[i][0] + tableDistances[0][j] - tableDistances[i][j];
         return s;
     }
 
     /**
-     * Crea la tabella dei savings linehaul
+     * Crea la tabella dei savings
      */
-    public void createTableSavingsLinehaul() {
-        //creazione della tabella dei savings linehaul
-        tableSavingsLinehaul = new double[deliveries.size()][deliveries.size()];
+    public void createTableSavings() {
+        //creazione della tabella dei savings
+        tableSavings = new double[customers.length][customers.length];
 
         double s;
 
-        //si popola la tabella dei saving linehaul
-        for (int i = 1; i < deliveries.size(); i++) {
-            for (int j = i + 1; j < deliveries.size(); j++) {
-                s = calculateSaving(i, j, tableDistancesLinehaul);
-                tableSavingsLinehaul[i][j] = s;
-                tableSavingsLinehaul[j][i] = s;
-            }
-        }
-    }
-
-    /**
-     * Crea la tabella dei savings backhaul
-     */
-    public void createTableSavingsBackhaul() {
-        //creazione della tabella dei savings backhaul
-        tableSavingsBackhaul = new double[backhaul.size()][backhaul.size()];
-
-        double s;
-
-        //si popola la tabella dei saving backhaul
-        for (int i = 1; i < backhaul.size(); i++) {
-            for (int j = i + 1; j < backhaul.size(); j++) {
-                s = calculateSaving(i, j, tableDistancesBackhaul);
-                tableSavingsBackhaul[i][j] = s;
-                tableSavingsBackhaul[j][i] = s;
+        //si popola la tabella dei saving
+        for (int i = 0; i < customers.length; i++) {
+            for (int j = i + 1; j < customers.length; j++) {
+                s = calculateSaving(i+1, j+1);
+                tableSavings[i][j] = s;
+                tableSavings[j][i] = s;
             }
         }
     }
@@ -277,9 +213,9 @@ public class Manager {
      */
     public void setSortedSavingsLinehaul() {
         //estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
-        for (int i = 1; i < tableSavingsLinehaul.length; i++) {
-            for (int j = i + 1; j < tableSavingsLinehaul.length; j++) {
-                sortedSavingsLinehaul.add(new SavingOccurrence(i, j, tableSavingsLinehaul[i][j]));
+        for (int i = 0; i < deliveries.size(); i++) {
+            for (int j = i + 1; j < deliveries.size(); j++) {
+                sortedSavingsLinehaul.add(new SavingOccurrence(deliveries.get(i), deliveries.get(j), tableSavings[deliveries.get(i)][deliveries.get(j)]));
             }
         }
 
@@ -292,9 +228,9 @@ public class Manager {
      */
     public void setSortedSavingsBackhaul() {
         //estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
-        for (int i = 1; i < tableSavingsBackhaul.length; i++) {
-            for (int j = i + 1; j < tableSavingsBackhaul.length; j++) {
-                sortedSavingsBackhaul.add(new SavingOccurrence(i, j, tableSavingsBackhaul[i][j]));
+        for (int i = 0; i < pickups.size(); i++) {
+            for (int j = i + 1; j < pickups.size(); j++) {
+                sortedSavingsBackhaul.add(new SavingOccurrence(pickups.get(i), pickups.get(j), tableSavings[pickups.get(i)][pickups.get(j)]));
             }
         }
 
@@ -309,20 +245,7 @@ public class Manager {
      * @return Distanza
      */
     public double getDistance(Integer customer) {
-        boolean l = true;
-        double d = 0;
-
-        if (pickups.contains(customer)) {
-            l = false;
-        }
-
-        if (l) {
-            d = tableDistancesLinehaul[0][(deliveries.indexOf(customer)) + 1];
-        } else {
-            d = tableDistancesBackhaul[0][pickups.indexOf(customer) + 1];
-        }
-
-        return d;
+        return tableDistances[0][customer + 1];
     }
 
     /**
@@ -333,20 +256,7 @@ public class Manager {
      * @return Distanza
      */
     public double getDistance(Integer first, Integer second) {
-        boolean l = true;
-        double d = 0;
-
-        if (pickups.contains(first) && pickups.contains(second)) {
-            l = false;
-        }
-
-        if (l) {
-            d = tableDistancesLinehaul[deliveries.indexOf(first) + 1][deliveries.indexOf(second) + 1];
-        } else {
-            d = tableDistancesBackhaul[pickups.indexOf(first) + 1][pickups.indexOf(second) + 1];
-        }
-
-        return d;
+        return tableDistances[first+ 1][second + 1];
     }
 
     /**
@@ -483,14 +393,14 @@ public class Manager {
                 //route composta da più customer
                 for (int i=0; i<listCustomer.size()-1; i++){
                     //somma tutti i costi tra i customer
-                    cost += tableDistancesLinehaul[deliveries.indexOf(listCustomer.get(i))+1][deliveries.indexOf(listCustomer.get(i+1)+1)];
+                    cost += tableDistances[listCustomer.get(i)+1][listCustomer.get(i+1)];
                 }
                 //somma i costi tra i first e i last con il depot
-                cost += tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.get(0))+1] + tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.size()-1)+1];
+                cost += tableDistances[0][listCustomer.get(0)+1] + tableDistances[0][listCustomer.get(listCustomer.size()-1)+1];
             }
             else {
                 //route composta da un solo customer
-                cost += tableDistancesLinehaul[0][deliveries.indexOf(listCustomer.get(0))+1] * 2;
+                cost += tableDistances[0][listCustomer.get(0)+1] * 2;
             }
 
             route.setCost(cost);
