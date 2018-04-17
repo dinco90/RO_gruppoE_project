@@ -20,8 +20,8 @@ public class RO_gruppoE_project {
         manager.readFile();
 
         // Linehaul: crea la tabella delle distanze, crea la tabella dei savings, ordina i savings
-        manager.createTableDistanceLinehaul();
-        manager.createTableSavingsLinehaul();
+        manager.createTableDistance();
+        manager.createTableSavings();
         manager.setSortedSavingsLinehaul();
 
         //
@@ -30,9 +30,6 @@ public class RO_gruppoE_project {
 
         //
         // Backhaul: crea la tabella delle distanze, crea la tabella dei savings, ordina i savings
-        manager.initializeBackhaul();
-        manager.createTableDistanceBackhaul();
-        manager.createTableSavingsBackhaul();
         manager.setSortedSavingsBackhaul();
 
         //
