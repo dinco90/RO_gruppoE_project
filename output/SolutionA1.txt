@@ -1,0 +1,132 @@
+Text File with Solution Of Problem: A1.txt
+
+
+PROBLEM DETAILS:
+Customers: 25
+Max Load: 1550
+Max Cost: ???
+
+SOLUTION DETAILS:
+Total Cost: ???
+Routes Of the Solution: 20
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+
+Cost: 0.0
+Delivery Load: 
+Pick-Up Load: 
+Customers in Route: 
+Vertex Sequence: 
+

@@ -18,7 +18,6 @@ public class RO_gruppoE_project {
         // selezione e lettura del file
         manager.selectFile();
         manager.readFile();
-        manager.writeFile(true);
 
         // Linehaul: crea la tabella delle distanze, crea la tabella dei savings, ordina i savings
         manager.createTableDistanceLinehaul();
@@ -42,6 +41,6 @@ public class RO_gruppoE_project {
         
         //
         //salvataggio risultati su file
-        //
+        manager.writeFile(false);   // true per allegare al file esistente, false per scrivere da capo
     }
 }
