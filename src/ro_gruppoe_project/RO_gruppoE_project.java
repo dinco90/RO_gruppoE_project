@@ -27,6 +27,7 @@ public class RO_gruppoE_project {
         //
         //calcolo delle routes linehaul
         manager.initializeRoutes();
+        manager.algoritmoClarkeWrightSequenziale();
 
         //
         // Backhaul: crea la tabella delle distanze, crea la tabella dei savings, ordina i savings
@@ -35,7 +36,12 @@ public class RO_gruppoE_project {
         //
         //calcolo delle routes backhaul
         //
-        
+
+
+        //
+        //calcolo dei costi
+        manager.calculateCost();
+
         //
         //salvataggio risultati su file
         manager.writeFile(false);   // true per allegare al file esistente, false per scrivere da capo

@@ -374,7 +374,7 @@ public class Manager {
         
         try {
             new File("output").mkdirs();
-            FileWriter writer = new FileWriter("output\\Solution" + nameFile, append);  // append permette di allegare ad un file esistente
+            FileWriter writer = new FileWriter("output/Solution " + nameFile, append);  // append permette di allegare ad un file esistente
             // stampa titolo
             writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n\r\n");
             // stampa dettagli problema
