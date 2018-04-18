@@ -104,7 +104,6 @@ public class Manager {
                         customers[lineCounter - 5] = new Customer(xC, yC, delivery, pickup);
                         break;
                 }
-                //System.out.println(sCurrentLine);
 
             }
         } catch (IOException e) {
@@ -140,6 +139,7 @@ public class Manager {
 
     /**
      * Calcola la distanza tra il deposito e il customer
+     *
      * @param c1 Deposito
      * @param c2 Secondo customer
      * @return La distanza tra deposito e customer
@@ -203,7 +203,7 @@ public class Manager {
         //si popola la tabella dei saving
         for (int i = 0; i < customers.length; i++) {
             for (int j = i + 1; j < customers.length; j++) {
-                s = calculateSaving(i+1, j+1);
+                s = calculateSaving(i + 1, j + 1);
                 tableSavings[i][j] = s;
                 tableSavings[j][i] = s;
             }
@@ -258,7 +258,7 @@ public class Manager {
      * @return Distanza
      */
     public double getDistance(Integer first, Integer second) {
-        return tableDistances[first+ 1][second + 1];
+        return tableDistances[first + 1][second + 1];
     }
 
     /**
@@ -266,10 +266,9 @@ public class Manager {
      */
     public void initializeRoutes() {
         for (Integer delivery : deliveries) {
-            routes.add(new Route(delivery, customers[delivery].getDemand()+customers[delivery].getSupply()));
+            routes.add(new Route(delivery, customers[delivery].getDemand() + customers[delivery].getSupply()));
         }
     }
-
 
     /**
      * Esegue l'algoritmo Clarke & Wright in modo sequenziale
@@ -278,33 +277,31 @@ public class Manager {
 
         // scorre la tabella dei savings
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
-            int routeI=findRoute(occurrence.i);
-            int routeJ=findRoute(occurrence.j);
+            int routeI = findRoute(occurrence.i);
+            int routeJ = findRoute(occurrence.j);
 
             // per fare il merge tra due route devono essere rispettate tre condizioni
             // condizione 1: le route di i e j devono essere diverse
-            if ((routeI!=routeJ) &&
-                    // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                    (routes.get(routeI).getUsed() +routes.get(routeJ).getUsed() <= depot.getMaxCapacity()) &&
-                    // condizione 3: i è first e j è last OR i è last e j e first
-                    ((routes.get(routeI).firstCustomer()==occurrence.i && routes.get(routeJ).lastCustomer()==occurrence.j) ||
-                            (routes.get(routeJ).firstCustomer()==occurrence.j && routes.get(routeI).lastCustomer()==occurrence.i))){
+            if ((routeI != routeJ)
+                    && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
+                    (routes.get(routeI).getUsed() + routes.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                    && // condizione 3: i è first e j è last OR i è last e j e first
+                    ((routes.get(routeI).firstCustomer() == occurrence.i && routes.get(routeJ).lastCustomer() == occurrence.j)
+                    || (routes.get(routeJ).firstCustomer() == occurrence.j && routes.get(routeI).lastCustomer() == occurrence.i))) {
                 //si possono unire le due route
-                if (routes.get(routeI).lastCustomer()==occurrence.i){
+                if (routes.get(routeI).lastCustomer() == occurrence.i) {
                     //i è last, j è first
 
                     //unisci j ad i ed elimina  poi j
                     routes.get(routeI).merge(routes.get(routeJ));
                     routes.remove(routeJ);
-                }
-                else{
+                } else {
                     //j è last, i è first
 
                     //unisci i ad j ed elimina  poi i
                     routes.get(routeJ).merge(routes.get(routeI));
                     routes.remove(routeI);
                 }
-
 
             }
 
@@ -314,38 +311,34 @@ public class Manager {
                     ()) {
                 ;
             }
-            */
+             */
         }
 
     }
-
 
     /**
      * Verifica se due customers si trovano nella stessa route
+     *
      * @param i Indice del primo customer
      * @param j Indice del secondo customer
-     * @return True o false a seconda del fatto che facciano parte della stessa route
+     * @return True o false a seconda del fatto che facciano parte della stessa
+     * route
      */
     /**
-    public boolean twoCustomersInRoute(int i, int j) {
-        boolean flag = false;
-        int k = 0;
-        while (!flag && k < routes.size()) {
-            flag = routes.get(k).visitCustomers(i, j);
-            k++;
-        }
-        return flag;
-    }
-    */
-
+     * public boolean twoCustomersInRoute(int i, int j) { boolean flag = false;
+     * int k = 0; while (!flag && k < routes.size()) { flag =
+     * routes.get(k).visitCustomers(i, j); k++; } return flag; }
+     */
+    
     /**
      * Trova la route di cui fa parte il customer
+     *
      * @param customerToFind Il customer di cui si vuole cercare la route
      * @return L'indice della route di cui fa parte il customer
      */
     public int findRoute(int customerToFind) {
         for (Route route : routes) {
-            if(route.findCustomer(customerToFind)){
+            if (route.findCustomer(customerToFind)) {
                 return routes.indexOf(route);
             }
         }
@@ -354,23 +347,31 @@ public class Manager {
 
     /**
      * Verifica se lo spazio è sufficiente per il nuovo customer
+     *
      * @param i Primo indice del customer
      * @param j Secondo indice del customer
      * @return True o false a seconda se lo spazio è sufficiente o meno
      */
     /**
-    public boolean verifyCapacity(int i, int j, int routeI){
-
-        return routes.get(routeI).getUsed() + customers[j].getDemand() + customers[j].getSupply()<= depot.getMaxCapacity();
-
-    }
-    */
-
+     * public boolean verifyCapacity(int i, int j, int routeI){
+     *
+     * return routes.get(routeI).getUsed() + customers[j].getDemand() +
+     * customers[j].getSupply()<= depot.getMaxCapacity();
+     *
+     * }
+     */
+    
     /**
      * Scrive il file dei risultati nella cartella "output"
-     * @param append true per allegare al file esistente, false per scrivere da capo
+     *
+     * @param append true per allegare al file esistente, false per scrivere da
+     * capo
      */
-    public void writeFile(boolean append){
+    public void writeFile(boolean append) {
+        int deliveryLoad=0;
+        int pickupLoad=0;
+        String routeString="";        
+        
         try {
             new File("output").mkdirs();
             FileWriter writer = new FileWriter("output\\Solution" + nameFile, append);  // append permette di allegare ad un file esistente
@@ -378,23 +379,42 @@ public class Manager {
             writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n\r\n");
             // stampa dettagli problema
             writer.write("\r\nPROBLEM DETAILS:\r\n");
-            writer.write("Customers: " + (customers.length) + "\r\n");
+            writer.write("Customers: " + customers.length + "\r\n");
             writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
             writer.write("Max Cost: " + "???" + "\r\n");
             // stampa dettagli soluzione
             writer.write("\r\nSOLUTION DETAILS:\r\n");
-            writer.write("Total Cost: " + "???" + "\r\n");
+            writer.write("Total Cost: " + "???" + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
             writer.write("Routes Of the Solution: " + routes.size() + "\r\n\r\n");
 
             // stampa di tutte le route
-            // ciclo for per scorrere tutte le route
             for (Route route : routes) {
                 writer.write("Cost: " + route.getCost() + "\r\n");
-                writer.write("Delivery Load: " + "\r\n");
-                writer.write("Pick-Up Load: " + "\r\n");
-                writer.write("Customers in Route: " + "\r\n");
-                writer.write("Vertex Sequence: " + "\r\n\r\n");
+                deliveryLoad=0;
+                pickupLoad=0;
+                routeString="";
+                // per ogni vertice della route
+                for (Integer vertex : route.getRoute()){
+                    // calcola la somma di delivery di tutta la route
+                    if (deliveries.contains(vertex)){
+                        deliveryLoad += customers[vertex].getDemand();
+                    }
+                    //// NON FUNZIONA
+                    // calcola la somma di pick-up di tutta la route
+                    if (pickups.contains(vertex)){
+                        pickupLoad += customers[vertex].getSupply();
+                    }
+                    //// NON FUNZIONA
+                    // salva i vertici in una stringa da stampare alla fine
+                    routeString += Integer.toString(vertex) + " - ";
+                }
+                writer.write("Delivery Load: " + deliveryLoad + "\r\n");
+                writer.write("Pick-Up Load: " + pickupLoad + "\r\n");
+                writer.write("Customers in Route: " + route.getRoute().size() + "\r\n");
+                writer.write("Vertex Sequence: " + "\r\n" + routeString);
                 // ciclo for per scorrere i vertici delle route
+                
+                writer.write("\r\n\r\n");
                 // metodo in Route che restituisce una stringa con tutti i customer
             }
 
@@ -403,31 +423,31 @@ public class Manager {
             e.printStackTrace();
         }
     }
+
     /**
      * Calcola il costo totale di ogni route
      */
-    public void calculateCost(){
-        double cost=0;
+    public void calculateCost() {
+        double cost = 0;
 
-        for (Route route : routes){
+        for (Route route : routes) {
             ArrayList<Integer> listCustomer = route.getRoute();
 
-            if (listCustomer.size()>1){
+            if (listCustomer.size() > 1) {
                 //route composta da più customer
-                for (int i=0; i<listCustomer.size()-1; i++){
+                for (int i = 0; i < listCustomer.size() - 1; i++) {
                     //somma tutti i costi tra i customer
-                    cost += tableDistances[listCustomer.get(i)+1][listCustomer.get(i+1)];
+                    cost += tableDistances[listCustomer.get(i) + 1][listCustomer.get(i + 1)];
                 }
                 //somma i costi tra i first e i last con il depot
-                cost += tableDistances[0][listCustomer.get(0)+1] + tableDistances[0][listCustomer.get(listCustomer.size()-1)+1];
-            }
-            else {
+                cost += tableDistances[0][listCustomer.get(0) + 1] + tableDistances[0][listCustomer.get(listCustomer.size() - 1) + 1];
+            } else {
                 //route composta da un solo customer
-                cost += tableDistances[0][listCustomer.get(0)+1] * 2;
+                cost += tableDistances[0][listCustomer.get(0) + 1] * 2;
             }
 
             route.setCost(cost);
-            cost=0;
+            cost = 0;
         }
     }
 

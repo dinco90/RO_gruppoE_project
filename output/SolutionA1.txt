@@ -11,122 +11,142 @@ Total Cost: ???
 Routes Of the Solution: 20
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 483
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+5 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 389
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+6 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 435
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+7 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 452
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+8 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 343
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+9 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 444
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+10 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 350
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+11 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 307
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+12 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 810
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+13 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 1002
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+14 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 476
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+15 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 674
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+16 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 691
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+17 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 675
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+18 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 410
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+19 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 351
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+20 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 786
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+21 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 59
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+22 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 362
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+23 - 
 
 Cost: 0.0
-Delivery Load: 
-Pick-Up Load: 
-Customers in Route: 
+Delivery Load: 550
+Pick-Up Load: 0
+Customers in Route: 1
 Vertex Sequence: 
+24 - 
 
