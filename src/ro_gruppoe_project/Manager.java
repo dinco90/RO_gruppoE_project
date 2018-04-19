@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Manager {
 
@@ -223,6 +224,8 @@ public class Manager {
 
         //riorndina i savings in ordine decrescente
         Collections.sort(sortedSavingsLinehaul, (so1, so2) -> Double.compare(so1.s, so2.s));
+
+        Collections.reverse(sortedSavingsLinehaul);
     }
 
     /**
@@ -238,6 +241,8 @@ public class Manager {
 
         //riorndina i savings in ordine decrescente
         Collections.sort(sortedSavingsBackhaul, (so1, so2) -> Double.compare(so1.s, so2.s));
+
+        Collections.reverse(sortedSavingsBackhaul);
     }
 
     /**
@@ -279,56 +284,49 @@ public class Manager {
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
             int routeI = findRoute(occurrence.i);
             int routeJ = findRoute(occurrence.j);
+            boolean iFirst= routes.get(routeI).firstCustomer() == occurrence.i ? true : false;
+            boolean iLast=routes.get(routeI).lastCustomer() == occurrence.i ? true : false;
+            boolean jFirst=routes.get(routeJ).firstCustomer() == occurrence.j ? true : false;
+            boolean jLast=routes.get(routeJ).lastCustomer() == occurrence.j ? true : false;
 
             // per fare il merge tra due route devono essere rispettate tre condizioni
             // condizione 1: le route di i e j devono essere diverse
             if ((routeI != routeJ)
                     && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
                     (routes.get(routeI).getUsed() + routes.get(routeJ).getUsed() <= depot.getMaxCapacity())
-                    && // condizione 3: i è first e j è last OR i è last e j e first
-                    ((routes.get(routeI).firstCustomer() == occurrence.i && routes.get(routeJ).lastCustomer() == occurrence.j)
-                    || (routes.get(routeJ).firstCustomer() == occurrence.j && routes.get(routeI).lastCustomer() == occurrence.i))) {
+                    && // condizione 3: i e j sono first o last
+                    ((iFirst || iLast) && (jFirst || jLast))){
                 //si possono unire le due route
-                if (routes.get(routeI).lastCustomer() == occurrence.i) {
+                if (iLast && jFirst) {
                     //i è last, j è first
 
                     //unisci j ad i ed elimina  poi j
                     routes.get(routeI).merge(routes.get(routeJ));
                     routes.remove(routeJ);
                 } else {
-                    //j è last, i è first
+                    if (jLast && iFirst){
+                        //j è last, i è first
 
-                    //unisci i ad j ed elimina  poi i
-                    routes.get(routeJ).merge(routes.get(routeI));
-                    routes.remove(routeI);
+                        //unisci i ad j ed elimina  poi i
+                        routes.get(routeJ).merge(routes.get(routeI));
+                        routes.remove(routeI);
+                    } else {
+                        if ((iLast && jLast) || (iFirst && jFirst)){
+                            // si effettua il reverse di una delle due route
+                            Collections.reverse((List<Integer>) routes.get(routeJ));
+
+                            //unisci j invertito ad i ed elimina  poi j
+                            routes.get(routeI).merge(routes.get(routeJ));
+                            routes.remove(routeJ);
+                        }
+                    }
                 }
 
             }
-
-            /*
-            if ((twoCustomersInRoute(occurrence.i, occurrence.j)) && 
-                    (verifyCapacity(occurrence.i, occurrence.j)) && 
-                    ()) {
-                ;
-            }
-             */
         }
 
     }
 
-    /**
-     * Verifica se due customers si trovano nella stessa route
-     *
-     * @param i Indice del primo customer
-     * @param j Indice del secondo customer
-     * @return True o false a seconda del fatto che facciano parte della stessa
-     * route
-     */
-    /**
-     * public boolean twoCustomersInRoute(int i, int j) { boolean flag = false;
-     * int k = 0; while (!flag && k < routes.size()) { flag =
-     * routes.get(k).visitCustomers(i, j); k++; } return flag; }
-     */
     
     /**
      * Trova la route di cui fa parte il customer
@@ -345,21 +343,6 @@ public class Manager {
         return -1;
     }
 
-    /**
-     * Verifica se lo spazio è sufficiente per il nuovo customer
-     *
-     * @param i Primo indice del customer
-     * @param j Secondo indice del customer
-     * @return True o false a seconda se lo spazio è sufficiente o meno
-     */
-    /**
-     * public boolean verifyCapacity(int i, int j, int routeI){
-     *
-     * return routes.get(routeI).getUsed() + customers[j].getDemand() +
-     * customers[j].getSupply()<= depot.getMaxCapacity();
-     *
-     * }
-     */
     
     /**
      * Scrive il file dei risultati nella cartella "output"
