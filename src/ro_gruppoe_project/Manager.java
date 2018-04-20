@@ -22,20 +22,12 @@ public class Manager {
     private double[][] tableSavings;   //tabella dei savings
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul = new ArrayList<SavingOccurrence>();  //savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul = new ArrayList<SavingOccurrence>();  //savings backhaul ordinati
-    private ArrayList<Integer> backhaul;    //pickups + last linehaul
-    private ArrayList<Route> routes = new ArrayList<Route>();   //insieme delle routes
+    private ArrayList<Integer> backhaul;    //pickups + last e first linehaul
+    private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   //insieme delle routes Linehaul
+    private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   //insieme delle routes Backhaul
 
-    //////
-    public void stampaSaving(){
-        for(SavingOccurrence saving : sortedSavingsLinehaul){
-            System.out.println(sortedSavingsLinehaul.indexOf(saving) + ": " + saving.i + " " + saving.j + ": " + saving.s);
-        }
-        System.out.println("distanza 9 - 0: " + tableDistances[10][0]);
-        System.out.println("distanza 0 - 11: " + tableDistances[0][12]);
-        System.out.println("distanza 9 - 11: " + tableDistances[10][12]);
-    }
-    //////
-    
+
+
     /**
      * Selezione del file in input
      */
@@ -157,11 +149,11 @@ public class Manager {
             // stampa dettagli soluzione
             writer.write("\r\nSOLUTION DETAILS:\r\n");
             writer.write("Total Cost: " + "???" + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
-            writer.write("Routes Of the Solution: " + routes.size() + "\r\n\r\n");
+            writer.write("Routes Of the Solution: " + routesLinehaul.size() + "\r\n\r\n");
 
             // stampa di tutte le route
-            for (Route route : routes) {
-                writer.write("ROUTE " + routes.indexOf(route) + ":\r\n");
+            for (Route route : routesLinehaul) {
+                writer.write("ROUTE " + routesLinehaul.indexOf(route) + ":\r\n");
                 writer.write("Cost: " + route.getCost() + "\r\n");
                 deliveryLoad=0;
                 pickupLoad=0;
@@ -319,32 +311,11 @@ public class Manager {
     }
 
     /**
-     * Restituisce la distanza tra il deposito e un customer
-     *
-     * @param customer Indice del customer nell'arraylist "customers"
-     * @return Distanza
-     */
-    public double getDistance(Integer customer) {
-        return tableDistances[0][customer + 1];
-    }
-
-    /**
-     * Restituisce la distanza tra due customer
-     *
-     * @param first Indice del primo customer nell'arraylist "customers"
-     * @param second Indice del secondo customer nell'arraylist "customers"
-     * @return Distanza
-     */
-    public double getDistance(Integer first, Integer second) {
-        return tableDistances[first + 1][second + 1];
-    }
-
-    /**
      * Inizializza le routes linehaul iniziali
      */
     public void initializeRoutes() {
         for (Integer delivery : deliveries) {
-            routes.add(new Route(delivery, customers[delivery].getDemand() + customers[delivery].getSupply()));
+            routesLinehaul.add(new Route(delivery, customers[delivery].getDemand() + customers[delivery].getSupply()));
         }
     }
 
@@ -352,21 +323,24 @@ public class Manager {
      * Esegue l'algoritmo Clarke & Wright in modo sequenziale
      */
     public void algoritmoClarkeWrightSequenziale() {
+        //LINEHAUL
 
         // scorre la tabella dei savings
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
             int routeI = findRoute(occurrence.i);
             int routeJ = findRoute(occurrence.j);
-            boolean iFirst= routes.get(routeI).firstCustomer() == occurrence.i ? true : false;
-            boolean iLast=routes.get(routeI).lastCustomer() == occurrence.i ? true : false;
-            boolean jFirst=routes.get(routeJ).firstCustomer() == occurrence.j ? true : false;
-            boolean jLast=routes.get(routeJ).lastCustomer() == occurrence.j ? true : false;
+            boolean iFirst= routesLinehaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
+            boolean iLast=routesLinehaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
+            boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
+            boolean jLast=routesLinehaul.get(routeJ).lastCustomer() == occurrence.j ? true : false;
+
+
 
             // per fare il merge tra due route devono essere rispettate tre condizioni
             // condizione 1: le route di i e j devono essere diverse
             if ((routeI != routeJ)
                     && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                    (routes.get(routeI).getUsed() + routes.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                    (routesLinehaul.get(routeI).getUsed() + routesLinehaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
                     && // condizione 3: i e j sono first o last
                     ((iFirst || iLast) && (jFirst || jLast))){
                 //si possono unire le due route
@@ -374,29 +348,32 @@ public class Manager {
                     //i è last, j è first
 
                     //unisci j ad i ed elimina  poi j
-                    routes.get(routeI).merge(routes.get(routeJ));
-                    routes.remove(routeJ);
+                    routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+                    routesLinehaul.remove(routeJ);
                 } else {
                     if (jLast && iFirst){
                         //j è last, i è first
 
                         //unisci i ad j ed elimina  poi i
-                        routes.get(routeJ).merge(routes.get(routeI));
-                        routes.remove(routeI);
+                        routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
+                        routesLinehaul.remove(routeI);
                     } else {
                         if ((iLast && jLast) || (iFirst && jFirst)){
                             // si effettua il reverse di una delle due route
-                            routes.get(routeJ).reverse();
+                            routesLinehaul.get(routeJ).reverse();
 
                             //unisci j invertito ad i ed elimina  poi j
-                            routes.get(routeI).merge(routes.get(routeJ));
-                            routes.remove(routeJ);
+                            routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+                            routesLinehaul.remove(routeJ);
                         }
                     }
                 }
 
             }
         }
+
+        //BACKHAUL
+
 
     }
 
@@ -408,9 +385,9 @@ public class Manager {
      * @return L'indice della route di cui fa parte il customer
      */
     public int findRoute(int customerToFind) {
-        for (Route route : routes) {
+        for (Route route : routesLinehaul) {
             if (route.findCustomer(customerToFind)) {
-                return routes.indexOf(route);
+                return routesLinehaul.indexOf(route);
             }
         }
         return -1;
@@ -422,7 +399,7 @@ public class Manager {
     public void calculateCost() {
         double cost = 0;
 
-        for (Route route : routes) {
+        for (Route route : routesLinehaul) {
             ArrayList<Integer> listCustomer = route.getRoute();
 
             if (listCustomer.size() > 1) {

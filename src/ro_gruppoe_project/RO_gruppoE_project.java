@@ -23,19 +23,16 @@ public class RO_gruppoE_project {
         manager.createTableDistance();
         manager.createTableSavings();
         manager.setSortedSavingsLinehaul();
+        manager.setSortedSavingsBackhaul();
 
         //
-        //calcolo delle routes linehaul
+        //calcolo delle routes Sequaziale
         manager.initializeRoutes();
         manager.algoritmoClarkeWrightSequenziale();
 
         //
         // Backhaul: crea la tabella delle distanze, crea la tabella dei savings, ordina i savings
-        manager.setSortedSavingsBackhaul();
 
-        //
-        //calcolo delle routes backhaul
-        //
 
 
         //
