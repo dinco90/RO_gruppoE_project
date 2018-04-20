@@ -124,6 +124,68 @@ public class Manager {
         }
         System.out.println("numero righe: " + lineCounter);
     }
+    
+    /**
+     * Scrive il file dei risultati nella cartella "output"
+     */
+    public void writeFile() {
+        int deliveryLoad=0;
+        int pickupLoad=0;
+        String routeString="";        
+        
+        try {
+            new File("output").mkdirs();
+            FileWriter writer = new FileWriter("output/Solution " + nameFile);
+            // stampa titolo
+            writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n\r\n");
+            // stampa dettagli problema
+            writer.write("\r\nPROBLEM DETAILS:\r\n");
+            writer.write("Customers: " + customers.length + "\r\n");
+            writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
+            writer.write("Max Cost: " + "???" + "\r\n");
+            // stampa dettagli soluzione
+            writer.write("\r\nSOLUTION DETAILS:\r\n");
+            writer.write("Total Cost: " + "???" + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
+            writer.write("Routes Of the Solution: " + routes.size() + "\r\n\r\n");
+
+            // stampa di tutte le route
+            for (Route route : routes) {
+                writer.write("ROUTE " + routes.indexOf(route) + ":\r\n");
+                writer.write("Cost: " + route.getCost() + "\r\n");
+                deliveryLoad=0;
+                pickupLoad=0;
+                routeString="0 - ";
+                // per ogni vertice della route
+                for (Integer vertex : route.getRoute()){
+                    // calcola la somma di delivery di tutta la route
+                    if (deliveries.contains(vertex)){
+                        deliveryLoad += customers[vertex].getDemand();
+                    }
+                    //// BACKHAUL NON ANCORA IMPLEMENTATO
+                    // calcola la somma di pick-up di tutta la route
+                    if (pickups.contains(vertex)){
+                        pickupLoad += customers[vertex].getSupply();
+                    }
+                    //// BACKHAUL NON ANCORA IMPLEMENTATO
+                    // salva i vertici in una stringa da stampare alla fine
+                    routeString += Integer.toString(vertex+1) + " - ";
+                }
+                routeString += "0";
+
+                writer.write("Delivery Load: " + deliveryLoad + "\r\n");
+                writer.write("Pick-Up Load: " + pickupLoad + "\r\n");
+                writer.write("Customers in Route: " + route.getRoute().size() + "\r\n");
+                writer.write("Vertex Sequence: " + "\r\n" + routeString);
+                
+                writer.write("\r\n\r\n");
+                // metodo in Route che restituisce una stringa con tutti i customer
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Calcola la distanza tra due customers
@@ -341,73 +403,6 @@ public class Manager {
             }
         }
         return -1;
-    }
-
-    
-    /**
-     * Scrive il file dei risultati nella cartella "output"
-     *
-     * @param append true per allegare al file esistente, false per scrivere da
-     * capo
-     */
-    public void writeFile(boolean append) {
-        int deliveryLoad=0;
-        int pickupLoad=0;
-        String routeString="";        
-        
-        try {
-            new File("output").mkdirs();
-            FileWriter writer = new FileWriter("output/Solution " + nameFile, append);  // append permette di allegare ad un file esistente
-            // stampa titolo
-            writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n\r\n");
-            // stampa dettagli problema
-            writer.write("\r\nPROBLEM DETAILS:\r\n");
-            writer.write("Customers: " + customers.length + "\r\n");
-            writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
-            writer.write("Max Cost: " + "???" + "\r\n");
-            // stampa dettagli soluzione
-            writer.write("\r\nSOLUTION DETAILS:\r\n");
-            writer.write("Total Cost: " + "???" + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
-            writer.write("Routes Of the Solution: " + routes.size() + "\r\n\r\n");
-
-            // stampa di tutte le route
-            for (Route route : routes) {
-                writer.write("ROUTE " + routes.indexOf(route) + ":\r\n");
-                writer.write("Cost: " + route.getCost() + "\r\n");
-                deliveryLoad=0;
-                pickupLoad=0;
-                routeString="0 - ";
-                // per ogni vertice della route
-                for (Integer vertex : route.getRoute()){
-                    // calcola la somma di delivery di tutta la route
-                    if (deliveries.contains(vertex)){
-                        deliveryLoad += customers[vertex].getDemand();
-                    }
-                    //// NON FUNZIONA
-                    // calcola la somma di pick-up di tutta la route
-                    if (pickups.contains(vertex)){
-                        pickupLoad += customers[vertex].getSupply();
-                    }
-                    //// NON FUNZIONA
-                    // salva i vertici in una stringa da stampare alla fine
-                    routeString += Integer.toString(vertex+1) + " - ";
-                }
-                routeString += "0";
-
-                writer.write("Delivery Load: " + deliveryLoad + "\r\n");
-                writer.write("Pick-Up Load: " + pickupLoad + "\r\n");
-                writer.write("Customers in Route: " + route.getRoute().size() + "\r\n");
-                writer.write("Vertex Sequence: " + "\r\n" + routeString);
-                // ciclo for per scorrere i vertici delle route
-                
-                writer.write("\r\n\r\n");
-                // metodo in Route che restituisce una stringa con tutti i customer
-            }
-
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

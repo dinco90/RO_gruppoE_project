@@ -44,6 +44,6 @@ public class RO_gruppoE_project {
 
         //
         //salvataggio risultati su file
-        manager.writeFile(false);   // true per allegare al file esistente, false per scrivere da capo
+        manager.writeFile();
     }
 }
