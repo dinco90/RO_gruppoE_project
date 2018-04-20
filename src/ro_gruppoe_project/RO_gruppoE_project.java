@@ -45,5 +45,9 @@ public class RO_gruppoE_project {
         //
         //salvataggio risultati su file
         manager.writeFile();
+        
+        
+        
+        manager.stampaSaving();
     }
 }
