@@ -226,20 +226,20 @@ public class Manager {
         double d;
 
         // customer.length+1 perché serve anche la distanza con il deposito
-        for (int i = -1; i < customers.length; i++) {
+        for (int i = 0; i < customers.length + 1; i++) {
             // j=i+1 per creare la matrice simmetrica
             // customer.length+1 perché serve anche la distanza con il deposito
-            for (int j = i + 1; j < customers.length; j++) {
-                if (i == -1) {
+            for (int j = i + 1; j < customers.length + 1; j++) {
+                if (i == 0) {
                     //distanza tra deposito e customer
-                    d = calculateDistance(depot, customers[j]);
+                    d = calculateDistance(depot, customers[j - 1]);
                 } else {
                     //distanza tra due customers
-                    d = calculateDistance(customers[i], customers[j]);
+                    d = calculateDistance(customers[i - 1], customers[j - 1]);
                 }
 
-                tableDistances[i+1][j+1] = d;
-                tableDistances[j+1][i+1] = d;
+                tableDistances[i][j] = d;
+                tableDistances[j][i] = d;
             }
         }
     }
