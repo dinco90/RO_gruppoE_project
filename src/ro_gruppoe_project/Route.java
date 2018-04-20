@@ -2,6 +2,7 @@ package ro_gruppoe_project;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Route
@@ -126,5 +127,12 @@ public class Route {
         route.addAll(routeToMerge.getRoute());
 
         usedCapacity += routeToMerge.getUsed();
+    }
+
+    /**
+     * Effettua il reverse di una route
+     */
+    public void reverse(){
+        Collections.reverse(route);
     }
 }

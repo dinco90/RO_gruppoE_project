@@ -313,7 +313,7 @@ public class Manager {
                     } else {
                         if ((iLast && jLast) || (iFirst && jFirst)){
                             // si effettua il reverse di una delle due route
-                            Collections.reverse((List<Integer>) routes.get(routeJ));
+                            routes.get(routeJ).reverse();
 
                             //unisci j invertito ad i ed elimina  poi j
                             routes.get(routeI).merge(routes.get(routeJ));
@@ -372,10 +372,11 @@ public class Manager {
 
             // stampa di tutte le route
             for (Route route : routes) {
+                writer.write("ROUTE " + routes.indexOf(route) + ":\r\n");
                 writer.write("Cost: " + route.getCost() + "\r\n");
                 deliveryLoad=0;
                 pickupLoad=0;
-                routeString="";
+                routeString="0 - ";
                 // per ogni vertice della route
                 for (Integer vertex : route.getRoute()){
                     // calcola la somma di delivery di tutta la route
@@ -389,8 +390,10 @@ public class Manager {
                     }
                     //// NON FUNZIONA
                     // salva i vertici in una stringa da stampare alla fine
-                    routeString += Integer.toString(vertex) + " - ";
+                    routeString += Integer.toString(vertex+1) + " - ";
                 }
+                routeString += "0";
+
                 writer.write("Delivery Load: " + deliveryLoad + "\r\n");
                 writer.write("Pick-Up Load: " + pickupLoad + "\r\n");
                 writer.write("Customers in Route: " + route.getRoute().size() + "\r\n");
