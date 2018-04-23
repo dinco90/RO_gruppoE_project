@@ -15,6 +15,8 @@ public class Route {
     private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
     private double cost; // costo del tragitto
 
+    private boolean union=false;
+
 
     /**
      * Costruttore
@@ -134,5 +136,13 @@ public class Route {
      */
     public void reverse(){
         Collections.reverse(route);
+    }
+
+    public void setUnion(){
+        union=true;
+    }
+
+    public boolean isUnion(){
+        return union;
     }
 }

@@ -134,7 +134,12 @@ public class Manager {
     public void writeFile() {
         int deliveryLoad=0;
         int pickupLoad=0;
-        String routeString="";        
+        double totalCost=0;
+        String routeString="";
+
+        for (Route route : routesLinehaul){
+            totalCost += route.getCost();
+        }
         
         try {
             new File("output").mkdirs();
@@ -145,10 +150,10 @@ public class Manager {
             writer.write("\r\nPROBLEM DETAILS:\r\n");
             writer.write("Customers: " + customers.length + "\r\n");
             writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
-            writer.write("Max Cost: " + "???" + "\r\n");
+            writer.write("Max Cost: " + "99999999999999" + "\r\n");
             // stampa dettagli soluzione
             writer.write("\r\nSOLUTION DETAILS:\r\n");
-            writer.write("Total Cost: " + "???" + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
+            writer.write("Total Cost: " + totalCost + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
             writer.write("Routes Of the Solution: " + routesLinehaul.size() + "\r\n\r\n");
 
             // stampa di tutte le route
@@ -382,55 +387,58 @@ public class Manager {
 
         //BACKHAUL
 
-        // scorre la tabella dei savings
-        for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
-            int routeI = findRoute(occurrence.i, false);
-            int routeJ = findRoute(occurrence.j, false);
-            boolean iFirst= routesBackhaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
-            boolean iLast=routesBackhaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
-            boolean jFirst=routesBackhaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
-            boolean jLast=routesBackhaul.get(routeJ).lastCustomer() == occurrence.j ? true : false;
+        if (routesBackhaul.size()>depot.numberOfVehicles()){
+            // scorre la tabella dei savings
+            for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
+                int routeI = findRoute(occurrence.i, false);
+                int routeJ = findRoute(occurrence.j, false);
+                boolean iFirst= routesBackhaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
+                boolean iLast=routesBackhaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
+                boolean jFirst=routesBackhaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
+                boolean jLast=routesBackhaul.get(routeJ).lastCustomer() == occurrence.j ? true : false;
 
 
 
-            // per fare il merge tra due route devono essere rispettate tre condizioni
-            // condizione 1: le route di i e j devono essere diverse
-            if ((routeI != routeJ)
-                    && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                    (routesBackhaul.get(routeI).getUsed() + routesBackhaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
-                    && // condizione 3: i e j sono first o last
-                    ((iFirst || iLast) && (jFirst || jLast))){
-                //si possono unire le due route
-                if (iLast && jFirst) {
-                    //i è last, j è first
+                // per fare il merge tra due route devono essere rispettate tre condizioni
+                // condizione 1: le route di i e j devono essere diverse
+                if ((routeI != routeJ)
+                        && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
+                        (routesBackhaul.get(routeI).getUsed() + routesBackhaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                        && // condizione 3: i e j sono first o last
+                        ((iFirst || iLast) && (jFirst || jLast))){
+                    //si possono unire le due route
+                    if (iLast && jFirst) {
+                        //i è last, j è first
 
-                    //unisci j ad i ed elimina  poi j
-                    routesLinehaul.get(routeI).merge(routesBackhaul.get(routeJ));
-                    routesBackhaul.remove(routeJ);
-                } else {
-                    if (jLast && iFirst){
-                        //j è last, i è first
-
-                        //unisci i ad j ed elimina  poi i
-                        routesBackhaul.get(routeJ).merge(routesBackhaul.get(routeI));
-                        routesBackhaul.remove(routeI);
+                        //unisci j ad i ed elimina  poi j
+                        routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
+                        routesBackhaul.remove(routeJ);
                     } else {
-                        if ((iLast && jLast) || (iFirst && jFirst)){
-                            // si effettua il reverse di una delle due route
-                            routesBackhaul.get(routeJ).reverse();
+                        if (jLast && iFirst){
+                            //j è last, i è first
 
-                            //unisci j invertito ad i ed elimina  poi j
-                            routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
-                            routesBackhaul.remove(routeJ);
+                            //unisci i ad j ed elimina  poi i
+                            routesBackhaul.get(routeJ).merge(routesBackhaul.get(routeI));
+                            routesBackhaul.remove(routeI);
+                        } else {
+                            if ((iLast && jLast) || (iFirst && jFirst)){
+                                // si effettua il reverse di una delle due route
+                                routesBackhaul.get(routeJ).reverse();
+
+                                //unisci j invertito ad i ed elimina  poi j
+                                routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
+                                routesBackhaul.remove(routeJ);
+                            }
                         }
                     }
                 }
             }
         }
 
+
         //UNIONE LINEHAUL E BACKHAUL
 
-
+        unionRoutesSequenziale();
 
     }
 
@@ -496,7 +504,7 @@ public class Manager {
     /**
      * Determinazione dei savings utilizzabili per l'unione delle routes linehaul e backhaul
      */
-    public void unionRoutes(){
+    public void unionRoutesSequenziale(){
         int i;  //riga
         int j;   //colonna
 
@@ -528,6 +536,51 @@ public class Manager {
 
         //unione route in base ai savings
 
+        routesLinehaul.addAll(routesBackhaul);
+
+        // scorre la tabella dei savings
+        for (SavingOccurrence occurrence : sortedSavingsUnion) {
+            int routeI = findRoute(occurrence.i, true);
+            int routeJ = findRoute(occurrence.j, true);
+            boolean iFirst= routesLinehaul.get(routeI).firstCustomer() == occurrence.i;
+            boolean iLast=routesLinehaul.get(routeI).lastCustomer() == occurrence.i;
+            boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j;
+            boolean jLast=routesLinehaul.get(routeJ).lastCustomer() == occurrence.j;
+
+
+
+            // per fare il merge tra due route devono essere rispettate tre condizioni
+            // condizione 1: le route di i e j devono essere diverse ed la route i non deve essere stata unita in precedenza
+            if (((routeI != routeJ) && !routesLinehaul.get(routeI).isUnion())
+                    && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
+                    (routesLinehaul.get(routeI).getUsed() + routesLinehaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                    && // condizione 3: i e j sono first o last
+                    ((iFirst || iLast) && (jFirst || jLast))){
+                //si possono unire le due route
+
+                if (iFirst && jLast){
+                    // si effettua il reverse della route di i
+                    routesLinehaul.get(routeI).reverse();
+
+                    // si effettua il reverse della route di j
+                    routesLinehaul.get(routeJ).reverse();
+                } else {
+                    if (iLast && jLast){
+                        // si effettua il reverse della route di j
+                        routesLinehaul.get(routeJ).reverse();
+                    } else {
+                        if (iFirst && jFirst){
+                            // si effettua il reverse della route di i
+                            routesLinehaul.get(routeI).reverse();
+                        }
+                    }
+                }
+                //unisci j ad i ed elimina  poi j
+                routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+                routesLinehaul.remove(routeJ);
+                routesLinehaul.get(routeI).setUnion();
+            }
+        }
     }
 
 }
