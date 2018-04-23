@@ -22,7 +22,7 @@ public class Manager {
     private double[][] tableSavings;   //tabella dei savings
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul = new ArrayList<SavingOccurrence>();  //savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul = new ArrayList<SavingOccurrence>();  //savings backhaul ordinati
-    private ArrayList<Integer> backhaul;    //pickups + last e first linehaul
+    private ArrayList<SavingOccurrence> sortedSavingsUnion = new ArrayList<SavingOccurrence>();  //savings ordinati per l'unione di linehaul e backhaul
     private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   //insieme delle routes Linehaul
     private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   //insieme delle routes Backhaul
 
@@ -313,9 +313,18 @@ public class Manager {
     /**
      * Inizializza le routes linehaul iniziali
      */
-    public void initializeRoutes() {
+    public void initializeRoutesLinehaul() {
         for (Integer delivery : deliveries) {
             routesLinehaul.add(new Route(delivery, customers[delivery].getDemand() + customers[delivery].getSupply()));
+        }
+    }
+
+    /**
+     * Inizializza le routes backhaul iniziali
+     */
+    public void initializeRoutesBackhaul() {
+        for (Integer pickup : pickups) {
+            routesBackhaul.add(new Route(pickup, customers[pickup].getDemand() + customers[pickup].getSupply()));
         }
     }
 
@@ -327,8 +336,8 @@ public class Manager {
 
         // scorre la tabella dei savings
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
-            int routeI = findRoute(occurrence.i);
-            int routeJ = findRoute(occurrence.j);
+            int routeI = findRoute(occurrence.i, true);
+            int routeJ = findRoute(occurrence.j, true);
             boolean iFirst= routesLinehaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
             boolean iLast=routesLinehaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
             boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
@@ -368,11 +377,59 @@ public class Manager {
                         }
                     }
                 }
-
             }
         }
 
         //BACKHAUL
+
+        // scorre la tabella dei savings
+        for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
+            int routeI = findRoute(occurrence.i, false);
+            int routeJ = findRoute(occurrence.j, false);
+            boolean iFirst= routesBackhaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
+            boolean iLast=routesBackhaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
+            boolean jFirst=routesBackhaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
+            boolean jLast=routesBackhaul.get(routeJ).lastCustomer() == occurrence.j ? true : false;
+
+
+
+            // per fare il merge tra due route devono essere rispettate tre condizioni
+            // condizione 1: le route di i e j devono essere diverse
+            if ((routeI != routeJ)
+                    && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
+                    (routesBackhaul.get(routeI).getUsed() + routesBackhaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                    && // condizione 3: i e j sono first o last
+                    ((iFirst || iLast) && (jFirst || jLast))){
+                //si possono unire le due route
+                if (iLast && jFirst) {
+                    //i è last, j è first
+
+                    //unisci j ad i ed elimina  poi j
+                    routesLinehaul.get(routeI).merge(routesBackhaul.get(routeJ));
+                    routesBackhaul.remove(routeJ);
+                } else {
+                    if (jLast && iFirst){
+                        //j è last, i è first
+
+                        //unisci i ad j ed elimina  poi i
+                        routesBackhaul.get(routeJ).merge(routesBackhaul.get(routeI));
+                        routesBackhaul.remove(routeI);
+                    } else {
+                        if ((iLast && jLast) || (iFirst && jFirst)){
+                            // si effettua il reverse di una delle due route
+                            routesBackhaul.get(routeJ).reverse();
+
+                            //unisci j invertito ad i ed elimina  poi j
+                            routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
+                            routesBackhaul.remove(routeJ);
+                        }
+                    }
+                }
+            }
+        }
+
+        //UNIONE LINEHAUL E BACKHAUL
+
 
 
     }
@@ -382,14 +439,26 @@ public class Manager {
      * Trova la route di cui fa parte il customer
      *
      * @param customerToFind Il customer di cui si vuole cercare la route
+     * @param linehaul Flag impostato a true se il customer è linehaul, false altrimenti
      * @return L'indice della route di cui fa parte il customer
      */
-    public int findRoute(int customerToFind) {
-        for (Route route : routesLinehaul) {
-            if (route.findCustomer(customerToFind)) {
-                return routesLinehaul.indexOf(route);
+
+    public int findRoute(int customerToFind, boolean linehaul) {
+        if (linehaul){
+            for (Route route : routesLinehaul) {
+                if (route.findCustomer(customerToFind)) {
+                    return routesLinehaul.indexOf(route);
+                }
+            }
+        }else {
+            for (Route route : routesBackhaul) {
+                if (route.findCustomer(customerToFind)) {
+                    return routesBackhaul.indexOf(route);
+                }
             }
         }
+
+
         return -1;
     }
 
@@ -418,6 +487,47 @@ public class Manager {
             route.setCost(cost);
             cost = 0;
         }
+    }
+
+
+    //
+    //  DA COMPLETARE
+    //
+    /**
+     * Determinazione dei savings utilizzabili per l'unione delle routes linehaul e backhaul
+     */
+    public void unionRoutes(){
+        int i;  //riga
+        int j;   //colonna
+
+        for (Route routeL : routesLinehaul){
+            for (Route routeB : routesBackhaul){
+                i=routeL.firstCustomer();
+                j=routeB.firstCustomer();
+                sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                if (routeL.getRoute().size()>1){
+                    i=routeL.lastCustomer();
+                    sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+
+
+                    if (routeB.getRoute().size()>1){
+                        j=routeL.lastCustomer();
+                        sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+
+                        i=routeL.firstCustomer();
+                        sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                    }
+                }
+            }
+        }
+
+        //riorndina i savings in ordine decrescente
+        Collections.sort(sortedSavingsUnion, (so1, so2) -> Double.compare(so1.s, so2.s));
+
+        Collections.reverse(sortedSavingsUnion);
+
+        //unione route in base ai savings
+        
     }
 
 }
