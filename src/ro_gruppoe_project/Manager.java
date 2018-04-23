@@ -527,7 +527,7 @@ public class Manager {
         Collections.reverse(sortedSavingsUnion);
 
         //unione route in base ai savings
-        
+
     }
 
 }

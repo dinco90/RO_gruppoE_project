@@ -27,7 +27,8 @@ public class RO_gruppoE_project {
 
         //
         //calcolo delle routes Sequaziale
-        manager.initializeRoutes();
+        manager.initializeRoutesLinehaul();
+        manager.initializeRoutesBackhaul();
         manager.algoritmoClarkeWrightSequenziale();
 
         //
