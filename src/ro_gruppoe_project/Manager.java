@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Manager {
 
@@ -320,7 +319,7 @@ public class Manager {
      */
     public void initializeRoutesLinehaul() {
         for (Integer delivery : deliveries) {
-            routesLinehaul.add(new Route(delivery, customers[delivery].getDemand() + customers[delivery].getSupply()));
+            routesLinehaul.add(new Route(delivery, customers[delivery].getDemand(),0 ));
         }
     }
 
@@ -329,7 +328,7 @@ public class Manager {
      */
     public void initializeRoutesBackhaul() {
         for (Integer pickup : pickups) {
-            routesBackhaul.add(new Route(pickup, customers[pickup].getDemand() + customers[pickup].getSupply()));
+            routesBackhaul.add(new Route(pickup, 0, customers[pickup].getSupply()));
         }
     }
 
@@ -343,10 +342,10 @@ public class Manager {
         for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
             int routeI = findRoute(occurrence.i, true);
             int routeJ = findRoute(occurrence.j, true);
-            boolean iFirst= routesLinehaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
-            boolean iLast=routesLinehaul.get(routeI).lastCustomer() == occurrence.i ? true : false;
-            boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j ? true : false;
-            boolean jLast=routesLinehaul.get(routeJ).lastCustomer() == occurrence.j ? true : false;
+            boolean iFirst= routesLinehaul.get(routeI).firstCustomer() == occurrence.i;
+            boolean iLast=routesLinehaul.get(routeI).lastCustomer() == occurrence.i;
+            boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j;
+            boolean jLast=routesLinehaul.get(routeJ).lastCustomer() == occurrence.j;
 
 
 
@@ -354,7 +353,7 @@ public class Manager {
             // condizione 1: le route di i e j devono essere diverse
             if ((routeI != routeJ)
                     && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                    (routesLinehaul.get(routeI).getUsed() + routesLinehaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                    (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery() <= depot.getMaxCapacity())
                     && // condizione 3: i e j sono first o last
                     ((iFirst || iLast) && (jFirst || jLast))){
                 //si possono unire le due route
@@ -403,7 +402,7 @@ public class Manager {
                 // condizione 1: le route di i e j devono essere diverse
                 if ((routeI != routeJ)
                         && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                        (routesBackhaul.get(routeI).getUsed() + routesBackhaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+                        (routesBackhaul.get(routeI).getPickupLoad() + routesBackhaul.get(routeJ).getPickupLoad() <= depot.getMaxCapacity())
                         && // condizione 3: i e j sono first o last
                         ((iFirst || iLast) && (jFirst || jLast))){
                     //si possono unire le due route
@@ -547,13 +546,13 @@ public class Manager {
             boolean jFirst=routesLinehaul.get(routeJ).firstCustomer() == occurrence.j;
             boolean jLast=routesLinehaul.get(routeJ).lastCustomer() == occurrence.j;
 
-
+            boolean iIsUnion=routesLinehaul.get(routeI).isUnion() || routesLinehaul.get(routeJ).isUnion();
 
             // per fare il merge tra due route devono essere rispettate tre condizioni
             // condizione 1: le route di i e j devono essere diverse ed la route i non deve essere stata unita in precedenza
-            if (((routeI != routeJ) && !routesLinehaul.get(routeI).isUnion())
-                    && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                    (routesLinehaul.get(routeI).getUsed() + routesLinehaul.get(routeJ).getUsed() <= depot.getMaxCapacity())
+            if ((routeI != routeJ)
+                    && // coondizione 2: la routeIdeve contenere solo linehaul
+                    (!iIsUnion)
                     && // condizione 3: i e j sono first o last
                     ((iFirst || iLast) && (jFirst || jLast))){
                 //si possono unire le due route
@@ -578,6 +577,8 @@ public class Manager {
                 //unisci j ad i ed elimina  poi j
                 routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                 routesLinehaul.remove(routeJ);
+
+                // segna la route come completa perché contiene linehaul e backhaul
                 routesLinehaul.get(routeI).setUnion();
             }
         }

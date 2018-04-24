@@ -1,7 +1,6 @@
 package ro_gruppoe_project;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -10,8 +9,10 @@ import java.util.Collections;
 public class Route {
 
     private int maxCapacity;    //Massima capacità del veicolo
-    private int usedCapacity;   //spazio utilizzato nel veicolo
-    
+    private int deliveryLoad;   //spazio utilizzato nel veicolo per i delivery
+    private int pickupLoad;   //spazio utilizzato nel veicolo per i pickup
+
+
     private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
     private double cost; // costo del tragitto
 
@@ -21,22 +22,14 @@ public class Route {
     /**
      * Costruttore
      * @param customer Customer che inizializza la route
-     * @param goods Merce che richiede il customer
+     * @param deliveryLoad Delivery
+     * @param pickupLoad Pickup
      */
-    public Route(int customer, int goods) {
-        this.usedCapacity = goods;    //vuoto all'inizio
+    public Route(int customer, int deliveryLoad, int pickupLoad) {
+        this.deliveryLoad = deliveryLoad;
+        this.pickupLoad=pickupLoad;
         this.cost = 0;     // vuoto all'inizio
         route.add(customer);    //customer
-    }
-
-    
-
-    /**
-     * Set dello spazio utilizzato del veicolo
-     * @param used Spazio da occupare
-     */
-    public void setUsed(int used) {
-        this.usedCapacity = used;
     }
 
     /**
@@ -44,17 +37,8 @@ public class Route {
      *
      * @return Spazio utilizzato
      */
-    public int getUsed() {
-        return usedCapacity;
-    }
-
-    /**
-     * Aggiunge merce al veicolo
-     *
-     * @param p Quantità di merce aggiunta
-     */
-    public void addProducts(int p) {
-        this.usedCapacity = this.usedCapacity + p;
+    public int getDelivery() {
+        return deliveryLoad;
     }
 
     /**
@@ -71,16 +55,6 @@ public class Route {
      */
     public double getCost(){
         return this.cost;
-    }
-
-    /**
-     * Verifica se due customer fanno parte della stessa route
-     * @param customer1 Indice primo customer
-     * @param customer2 Indice secondo customer
-     * @return True o false se sono presenti entrambi
-     */
-    public boolean visitCustomers(Integer customer1, Integer customer2) {
-        return route.contains(customer1) && route.contains(customer2);
     }
 
     /**
@@ -128,7 +102,8 @@ public class Route {
     public void merge (Route routeToMerge){
         route.addAll(routeToMerge.getRoute());
 
-        usedCapacity += routeToMerge.getUsed();
+        deliveryLoad += routeToMerge.getDelivery();
+        pickupLoad += routeToMerge.getPickupLoad();
     }
 
     /**
@@ -138,11 +113,26 @@ public class Route {
         Collections.reverse(route);
     }
 
+    /**
+     * Viene richiamata tale funzione quando sono stati aggiunti i nodi backhaul
+     */
     public void setUnion(){
         union=true;
     }
 
+    /**
+     * Verifica se si tratta di una route con soli linehaul
+     * @return Flag che identifica l'unione tra linehaul e backhaul
+     */
     public boolean isUnion(){
         return union;
+    }
+
+    /**
+     * Pickup dei prodotti per route
+     * @return Pickup
+     */
+    public int getPickupLoad(){
+        return pickupLoad;
     }
 }
