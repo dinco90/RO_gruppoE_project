@@ -597,6 +597,8 @@ public class Manager {
 
     /**
      * Algoritmo Clarke & Wright parallelo
+     * 
+     * CLAUDIA
      */
     public void parallelAlgorithm(){
         ArrayList<Integer> checked=new ArrayList<Integer>();    //customer collegati ad ogni iterazione. Svuotato ogni volta che si riprende a leggere a leggere i saving dall'inizio
@@ -614,6 +616,71 @@ public class Manager {
                 //savingOccurrence.checked();   //segnare il seving come utilizzato nell'iterazione
             }
         }
+    }
+    
+    
+    
+    /**
+     * Esegue l'algoritmo Clarke & Wright in modo parallelo
+     * 
+     * DENNIS
+     */
+    public void algoritmoClarkeWrightParallelo() {
+        int k = 0;  // indice per scorrimento sortedSavingsLinehaul
+        boolean usableSaving = false;   // flag per uscire da ciclo dato che le routes vanno popolate in parallelo
+        int[] usedCustomers;
+        
+        routes.clear();
+        // crea un numero di routes pari al numero di veicoli
+        for (int i = 0; i < depot.numberOfVehicles(); i++) {
+            routes.add(new Route());
+        }
 
+        // scorre lista di route
+        for (Route route : routes) {
+            usableSaving = false;
+            // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
+            while (k<sortedSavingsLinehaul.size() && !usableSaving){
+                // se route è vuota
+                if (route.getRoute().isEmpty() && !usableSaving){
+                    route.getRoute().add(sortedSavingsLinehaul.get(k).i);
+                    route.getRoute().add(sortedSavingsLinehaul.get(k).j);
+                    usableSaving = true;
+                }
+                
+                // se primo customer di route corrisponde al saving corrente
+                else if ( (route.firstCustomer()==sortedSavingsLinehaul.get(k).i) && !usableSaving ){
+                    // aggiunge il customer i in testa
+                    route.getRoute().add(0, sortedSavingsLinehaul.get(k).i);
+                    usableSaving = true;
+                }
+                else if ( (route.firstCustomer()==sortedSavingsLinehaul.get(k).j) && !usableSaving ){
+                    // aggiunge il customer j in testa
+                    route.getRoute().add(0, sortedSavingsLinehaul.get(k).j);
+                    usableSaving = true;
+                }
+                // se ultimo customer di route corrisponde al saving corrente
+                else if ( (route.lastCustomer()==sortedSavingsLinehaul.get(k).i) && !usableSaving ){
+                    // aggiunge il customer i in coda
+                    route.getRoute().add(route.getRoute().size()-1, sortedSavingsLinehaul.get(k).j);
+                    usableSaving = true;
+                }
+                else if ( (route.lastCustomer()==sortedSavingsLinehaul.get(k).j) && !usableSaving ){
+                    // aggiunge il customer j in coda
+                    route.getRoute().add(route.getRoute().size()-1, sortedSavingsLinehaul.get(k).j);
+                    usableSaving = true;
+                }
+                /*
+                int routeI = findRoute(occurrence.i);
+                int routeJ = findRoute(occurrence.j);
+                boolean iFirst=routes.get(routeI).firstCustomer() == occurrence.i;
+                boolean iLast=routes.get(routeI).lastCustomer() == occurrence.i;
+                boolean jFirst=routes.get(routeJ).firstCustomer() == occurrence.j;
+                boolean jLast=routes.get(routeJ).lastCustomer() == occurrence.j;
+                 */
+
+                k++;
+            }
+        }
     }
 }

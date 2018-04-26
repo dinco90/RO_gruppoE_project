@@ -18,7 +18,14 @@ public class Route {
 
     private boolean union=false;
 
-
+    /**
+     * Costruttore
+     */
+    public Route(){
+        this.cost = 0;
+    }
+    
+    
     /**
      * Costruttore
      * @param customer Customer che inizializza la route
