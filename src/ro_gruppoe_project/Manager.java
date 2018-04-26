@@ -24,6 +24,7 @@ public class Manager {
     private ArrayList<SavingOccurrence> sortedSavingsUnion = new ArrayList<SavingOccurrence>();  //savings ordinati per l'unione di linehaul e backhaul
     private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   //insieme delle routes Linehaul
     private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   //insieme delle routes Backhaul
+    private ArrayList<Route> routes=new ArrayList<Route>();    //copia delle routes
 
 
 
@@ -434,7 +435,7 @@ public class Manager {
             }
         }
 
-
+        setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
 
         unionRoutesSequenziale();
@@ -496,14 +497,10 @@ public class Manager {
         }
     }
 
-
-    //
-    //  DA COMPLETARE
-    //
     /**
-     * Determinazione dei savings utilizzabili per l'unione delle routes linehaul e backhaul
+     * Riordina i savings in ordine decrescente per i first e last delle routes linehaul e backhaul
      */
-    public void unionRoutesSequenziale(){
+    public void setSortedSavings(){
         int i;  //riga
         int j;   //colonna
 
@@ -532,9 +529,12 @@ public class Manager {
         Collections.sort(sortedSavingsUnion, (so1, so2) -> Double.compare(so1.s, so2.s));
 
         Collections.reverse(sortedSavingsUnion);
+    }
 
-        //unione route in base ai savings
-
+    /**
+     * Unione delle routes linehaul e backhaul
+     */
+    public void unionRoutesSequenziale(){
         routesLinehaul.addAll(routesBackhaul);
 
         // scorre la tabella dei savings
@@ -584,4 +584,13 @@ public class Manager {
         }
     }
 
+    /**
+     * Copia le route sequenziali e svuota routeLinehaul e routeBackhaul
+     */
+    public void copyRoutes(){
+        routes.addAll(routesLinehaul);
+
+        routesLinehaul.clear();
+        routesBackhaul.clear();
+    }
 }

@@ -31,8 +31,9 @@ public class RO_gruppoE_project {
         manager.initializeRoutesBackhaul();
         manager.algoritmoClarkeWrightSequenziale();
 
-
-
+        //
+        //copia delle routes prima di chiamare l'algoritmo parallelo
+        manager.copyRoutes();
 
         //
         //calcolo dei costi
