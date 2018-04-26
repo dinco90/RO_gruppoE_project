@@ -10,6 +10,7 @@ public class SavingOccurrence implements Comparable<SavingOccurrence> {
     int i;  //riga
     int j;  //colonna
     double s;   //saving
+    boolean c;    //checked: true se il saving è stato utilizzato
 
     /**
      * Costruttore
@@ -22,6 +23,7 @@ public class SavingOccurrence implements Comparable<SavingOccurrence> {
         this.i = i;
         this.j = j;
         this.s = s;
+        this.c = false;
     }
 
     @Override
@@ -41,4 +43,7 @@ public class SavingOccurrence implements Comparable<SavingOccurrence> {
         }
     }
 
+    public void checked(){
+        this.c=true;
+    }
 }

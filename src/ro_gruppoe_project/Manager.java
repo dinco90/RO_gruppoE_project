@@ -131,7 +131,7 @@ public class Manager {
     /**
      * Scrive il file dei risultati nella cartella "output"
      */
-    public void writeFile() {
+    public void writeFile(String algorithm) {
         int deliveryLoad=0;
         int pickupLoad=0;
         double totalCost=0;
@@ -143,9 +143,10 @@ public class Manager {
         
         try {
             new File("output").mkdirs();
-            FileWriter writer = new FileWriter("output/Solution " + nameFile);
+            FileWriter writer = new FileWriter("output/Solution " + nameFile + " " + algorithm);
             // stampa titolo
-            writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n\r\n");
+            writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n");
+            writer.write("Algorithm: " + algorithm + "\r\n\r\n");
             // stampa dettagli problema
             writer.write("\r\nPROBLEM DETAILS:\r\n");
             writer.write("Customers: " + customers.length + "\r\n");
@@ -592,5 +593,27 @@ public class Manager {
 
         routesLinehaul.clear();
         routesBackhaul.clear();
+    }
+
+    /**
+     * Algoritmo Clarke & Wright parallelo
+     */
+    public void parallelAlgorithm(){
+        ArrayList<Integer> checked=new ArrayList<Integer>();    //customer collegati ad ogni iterazione. Svuotato ogni volta che si riprende a leggere a leggere i saving dall'inizio
+
+        //
+        //DA VEDERE COME INIZIARE LA PRIMA ITERAZIONE forse con un while(...)
+        for (SavingOccurrence savingOccurrence : sortedSavingsLinehaul){
+            checked.add(savingOccurrence.i);
+            checked.add(savingOccurrence.j);
+
+            if (!savingOccurrence.c){
+
+                //
+                //verificare le condizioni e se possibile unire le route di i e j
+                //savingOccurrence.checked();   //segnare il seving come utilizzato nell'iterazione
+            }
+        }
+
     }
 }
