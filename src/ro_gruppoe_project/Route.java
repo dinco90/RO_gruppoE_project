@@ -25,7 +25,6 @@ public class Route {
         this.cost = 0;
     }
     
-    
     /**
      * Costruttore
      * @param customer Customer che inizializza la route

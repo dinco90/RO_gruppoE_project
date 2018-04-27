@@ -1,0 +1,77 @@
+Text File with Solution Of Problem: A1.txt
+Algorithm: Sequential
+
+
+PROBLEM DETAILS:
+Customers: 25
+Max Load: 1550
+Max Cost: 99999999999999
+
+SOLUTION DETAILS:
+Total Cost: 409983.87186004326
+Routes Of the Solution: 8
+
+ROUTE 0:
+Cost: 51895.591887935254
+Delivery Load: 1217
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 6 - 19 - 23 - 0
+
+ROUTE 1:
+Cost: 43167.13003035465
+Delivery Load: 1309
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 7 - 16 - 11 - 0
+
+ROUTE 2:
+Cost: 41887.73904600114
+Delivery Load: 1437
+Pick-Up Load: 558
+Customers in Route: 3
+Vertex Sequence: 
+0 - 15 - 8 - 2 - 0
+
+ROUTE 3:
+Cost: 88817.75734607369
+Delivery Load: 1550
+Pick-Up Load: 851
+Customers in Route: 5
+Vertex Sequence: 
+0 - 13 - 25 - 12 - 10 - 3 - 0
+
+ROUTE 4:
+Cost: 47342.71681253322
+Delivery Load: 1161
+Pick-Up Load: 388
+Customers in Route: 3
+Vertex Sequence: 
+0 - 21 - 14 - 4 - 0
+
+ROUTE 5:
+Cost: 68050.68550495002
+Delivery Load: 1488
+Pick-Up Load: 194
+Customers in Route: 4
+Vertex Sequence: 
+0 - 24 - 9 - 17 - 5 - 0
+
+ROUTE 6:
+Cost: 15434.29233881489
+Delivery Load: 691
+Pick-Up Load: 0
+Customers in Route: 1
+Vertex Sequence: 
+0 - 18 - 0
+
+ROUTE 7:
+Cost: 53387.958893380404
+Delivery Load: 1196
+Pick-Up Load: 549
+Customers in Route: 3
+Vertex Sequence: 
+0 - 20 - 22 - 1 - 0
+
