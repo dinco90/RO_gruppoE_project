@@ -47,7 +47,7 @@ public class RO_gruppoE_project {
         manager.initializeRoutesBackhaul();
         manager.parallelAlgorithm();
 
-        //manager.algoritmoClarkeWrightParallelo();
+        manager.algoritmoClarkeWrightParallelo();
 
         //
         //calcolo dei costi per l'algoritmo parallelo

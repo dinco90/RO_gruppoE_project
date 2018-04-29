@@ -634,12 +634,16 @@ public class Manager {
 
         // eseguire il ciclo fino a quando non sono stati visitati tutti i customers
         while (usedCustomers.size() < deliveries.size()) {
+            k=0;
+            // stampa test
             System.out.println("customers usati: " + usedCustomers.size());
             // scorre lista di route
             for (Route route : routes) {
+                k=0;
                 currentSavingFlag = false;
                 // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
                 while (k < sortedSavingsLinehaul.size() && !currentSavingFlag) {
+                    // stampa test
                     System.out.println("saving corrente: " + sortedSavingsLinehaul.get(k).i + " - " + sortedSavingsLinehaul.get(k).j);
                     
                     // se i savings correnti i o j sono già stati inseriti in una route
