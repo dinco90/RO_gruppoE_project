@@ -8,7 +8,7 @@ public class Depot {
     private int x;  //coordinata x
     private int y;  //coordinata y
     private int vehicles; //numero dei veicoli
-    private int maxCapacity;
+    private int maxCapacity; // capacità massima del veicolo
 
     /**
      * Costruttore

@@ -8,13 +8,13 @@ import java.util.Collections;
  */
 public class Route {
 
-    private int maxCapacity;    //Massima capacità del veicolo
+    //private int maxCapacity;    //Massima capacità del veicolo // IN DEPOT
     private int deliveryLoad;   //spazio utilizzato nel veicolo per i delivery
-    private int pickupLoad;   //spazio utilizzato nel veicolo per i pickup
+    private int pickupLoad;     //spazio utilizzato nel veicolo per i pickup
 
 
-    private ArrayList<Integer> route = new ArrayList<Integer>();   // route: indice dei customer
-    private double cost; // costo del tragitto
+    private ArrayList<Integer> route = new ArrayList<Integer>();    // route: indice dei customer
+    private double cost;    // costo del tragitto
 
     private boolean union=false;
 
@@ -45,6 +45,13 @@ public class Route {
      */
     public int getDelivery() {
         return deliveryLoad;
+    }
+    /**
+     * Aggiunge carico allo spazio utilizzato
+     * @param addedDeliveryLoad Il carico agguiunto
+     */
+    public void addDelivery(int addedDeliveryLoad){
+        deliveryLoad += addedDeliveryLoad;
     }
 
     /**
