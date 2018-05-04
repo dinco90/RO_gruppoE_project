@@ -43,9 +43,9 @@ public class RO_gruppoE_project {
         //
         //copia delle routes prima di chiamare l'algoritmo parallelo
         manager.copyRoutes();
-        manager.initializeRoutesLinehaul();
-        manager.initializeRoutesBackhaul();
-        manager.parallelAlgorithm();
+        //manager.initializeRoutesLinehaul();
+        //manager.initializeRoutesBackhaul();
+        //manager.parallelAlgorithm();
 
         manager.algoritmoClarkeWrightParallelo();
 

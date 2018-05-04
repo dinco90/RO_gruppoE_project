@@ -386,6 +386,9 @@ public class Manager {
         if (routesBackhaul.size() > depot.numberOfVehicles()) {
             // scorre la tabella dei savings
             for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
+                if (routesBackhaul.size() == depot.numberOfVehicles()){
+                    break;
+                }
                 int routeI = findRoute(occurrence.i, false);
                 int routeJ = findRoute(occurrence.j, false);
                 boolean iFirst = routesBackhaul.get(routeI).firstCustomer() == occurrence.i ? true : false;
