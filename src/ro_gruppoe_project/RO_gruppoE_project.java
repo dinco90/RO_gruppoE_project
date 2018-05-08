@@ -47,15 +47,15 @@ public class RO_gruppoE_project {
         //manager.initializeRoutesBackhaul();
         //manager.parallelAlgorithm();
 
-        manager.algoritmoClarkeWrightParallelo();
+        //manager.algoritmoClarkeWrightParallelo();
 
         //
         //calcolo dei costi per l'algoritmo parallelo
-        manager.calculateCost();
+        //manager.calculateCost();
 
         //
         //salvataggio risultati su file
-        manager.writeFile("Parallel");
+        //manager.writeFile("Parallel");
 
     }
 }
