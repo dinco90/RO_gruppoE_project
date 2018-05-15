@@ -46,9 +46,10 @@ public class Route {
     public int getDelivery() {
         return deliveryLoad;
     }
+    
     /**
      * Aggiunge carico allo spazio utilizzato
-     * @param addedDeliveryLoad Il carico agguiunto
+     * @param addedDeliveryLoad Il carico aggiunto
      */
     public void addDelivery(int addedDeliveryLoad){
         deliveryLoad += addedDeliveryLoad;
@@ -147,5 +148,13 @@ public class Route {
      */
     public int getPickupLoad(){
         return pickupLoad;
+    }
+    
+    /**
+     * Aggiunge carico allo spazio utilizzato
+     * @param addedPickupLoad Il carico aggiunto
+     */
+    public void addPickup(int addedPickupLoad){
+        pickupLoad += addedPickupLoad;
     }
 }
