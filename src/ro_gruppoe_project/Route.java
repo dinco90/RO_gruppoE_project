@@ -78,7 +78,7 @@ public class Route {
      */
     public boolean findCustomer(Integer customerToFind){
         for(Integer customer : route) {
-            if(customerToFind == customer){
+            if(customerToFind.equals(customer)){
                 return true;
             }
         }

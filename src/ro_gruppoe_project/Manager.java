@@ -357,6 +357,8 @@ public class Manager {
                     routeI = findRoute(occurrence.i, true);
                     routeJ = findRoute(occurrence.j, true);
 
+                    System.out.println(routeI + " - " + routeJ);
+
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
 
