@@ -404,20 +404,22 @@ public class Manager {
 
                             //unisci j ad i ed elimina  poi j
                             routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-                            routesLinehaul.remove(routeJ);
 
                             currentFirst = routesLinehaul.get(routeI).firstCustomer();
                             currentLast = routesLinehaul.get(routeI).lastCustomer();
+
+                            routesLinehaul.remove(routeJ);
                         } else {
                             if (jLast && iFirst) {
                                 //j è last, i è first
 
                                 //unisci i ad j ed elimina  poi i
                                 routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
-                                routesLinehaul.remove(routeI);
 
                                 currentFirst = routesLinehaul.get(routeJ).firstCustomer();
                                 currentLast = routesLinehaul.get(routeJ).lastCustomer();
+
+                                routesLinehaul.remove(routeI);
                             } else {
                                 if ((iLast && jLast) || (iFirst && jFirst)) {
                                     // si effettua il reverse di una delle due route
@@ -425,10 +427,11 @@ public class Manager {
 
                                     //unisci j invertito ad i ed elimina  poi j
                                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-                                    routesLinehaul.remove(routeJ);
 
                                     currentFirst = routesLinehaul.get(routeI).firstCustomer();
                                     currentLast = routesLinehaul.get(routeI).lastCustomer();
+
+                                    routesLinehaul.remove(routeJ);
                                 }
                             }
                         }
@@ -448,7 +451,7 @@ public class Manager {
         usedCustomers.clear();
 
         while (usedCustomers.size() < pickups.size() && routesBackhaul.size() > depot.numberOfVehicles()) {
-
+            //si identificano i primi first e last  della route da creare
             for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
                     routeI = findRoute(occurrence.i, false);
@@ -501,20 +504,22 @@ public class Manager {
 
                             //unisci j ad i ed elimina  poi j
                             routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
-                            routesBackhaul.remove(routeJ);
 
                             currentFirst = routesBackhaul.get(routeI).firstCustomer();
                             currentLast = routesBackhaul.get(routeI).lastCustomer();
+
+                            routesBackhaul.remove(routeJ);
                         } else {
                             if (jLast && iFirst) {
                                 //j è last, i è first
 
                                 //unisci i ad j ed elimina  poi i
                                 routesBackhaul.get(routeJ).merge(routesBackhaul.get(routeI));
-                                routesBackhaul.remove(routeI);
 
                                 currentFirst = routesBackhaul.get(routeJ).firstCustomer();
                                 currentLast = routesBackhaul.get(routeJ).lastCustomer();
+
+                                routesBackhaul.remove(routeI);
                             } else {
                                 if ((iLast && jLast) || (iFirst && jFirst)) {
                                     // si effettua il reverse di una delle due route
@@ -522,15 +527,15 @@ public class Manager {
 
                                     //unisci j invertito ad i ed elimina  poi j
                                     routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
-                                    routesBackhaul.remove(routeJ);
 
                                     currentFirst = routesBackhaul.get(routeI).firstCustomer();
                                     currentLast = routesBackhaul.get(routeI).lastCustomer();
+
+                                    routesBackhaul.remove(routeJ);
                                 }
                             }
                         }
                         //si aggiunge il nuovo customer alla lista di quelli già presenti nelle route
-
                         if (usedCustomers.contains(occurrence.i)) {
                             usedCustomers.add(occurrence.j);
                         } else {
@@ -881,7 +886,7 @@ public class Manager {
                     k = 0; // si riparte dall'inizio della lista dei saving
                     currentSavingFlag = false;
 
-                    int indexRoute = routesLinehaul.indexOf(route);
+                    int indexRoute = routesBackhaul.indexOf(route);
 
                     // se il numero di customer restanti è minore o uguale al numero di route, allora assegna un customer ad ogni route
                     if (((pickups.size()) - (usedCustomers.size())) <= (depot.numberOfVehicles() - (indexRoute))) {
