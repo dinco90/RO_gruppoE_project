@@ -117,7 +117,7 @@ public class Route {
         route.addAll(routeToMerge.getRoute());
 
         deliveryLoad += routeToMerge.getDelivery();
-        pickupLoad += routeToMerge.getPickupLoad();
+        pickupLoad += routeToMerge.getPickup();
     }
 
     /**
@@ -146,7 +146,7 @@ public class Route {
      * Pickup dei prodotti per route
      * @return Pickup
      */
-    public int getPickupLoad(){
+    public int getPickup(){
         return pickupLoad;
     }
     

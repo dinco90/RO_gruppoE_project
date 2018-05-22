@@ -451,8 +451,8 @@ public class Manager {
 
             for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
-                    routeI = findRoute(occurrence.i, true);
-                    routeJ = findRoute(occurrence.j, true);
+                    routeI = findRoute(occurrence.i, false);
+                    routeJ = findRoute(occurrence.j, false);
 
                     routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
                     routesBackhaul.remove(routeJ);
@@ -481,8 +481,8 @@ public class Manager {
                         != ((cond3) != (cond4)))
                         && (cond5 != cond6)) {
 
-                    routeI = findRoute(occurrence.i, true);
-                    routeJ = findRoute(occurrence.j, true);
+                    routeI = findRoute(occurrence.i, false);
+                    routeJ = findRoute(occurrence.j, false);
                     iFirst = routesBackhaul.get(routeI).firstCustomer() == occurrence.i;
                     iLast = routesBackhaul.get(routeI).lastCustomer() == occurrence.i;
                     jFirst = routesBackhaul.get(routeJ).firstCustomer() == occurrence.j;
@@ -492,7 +492,7 @@ public class Manager {
                     // condizione 1: le route di i e j devono essere diverse
                     if ((routeI != routeJ)
                             && // condizione 2:  la somma dello spazio occupato dalle due route deve essere <= maxcapacity
-                            (routesBackhaul.get(routeI).getPickupLoad() + routesBackhaul.get(routeJ).getPickupLoad() <= depot.getMaxCapacity())
+                            (routesBackhaul.get(routeI).getPickup() + routesBackhaul.get(routeJ).getPickup() <= depot.getMaxCapacity())
                             && // condizione 3: i e j sono first o last
                             ((iFirst || iLast) && (jFirst || jLast))) {
                         //si possono unire le due route
@@ -736,10 +736,7 @@ public class Manager {
         // un veicolo per ogni customer
         if (deliveries.size() <= depot.numberOfVehicles()) {
             initializeRoutesLinehaul();
-        } // per alcuni rotte si avrà un solo veicolo
-        //        else if (deliveries.size() < depot.numberOfVehicles()*2){
-        //            // ???
-        //        }
+        }
         else {
             routesLinehaul.clear();
             // crea un numero di routes pari al numero di veicoli
@@ -753,76 +750,92 @@ public class Manager {
                 for (Route route : routesLinehaul) {
                     k = 0; // si riparte dall'inizio della lista dei saving
                     currentSavingFlag = false;
-                    // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
-                    while (k < sortedSavingsLinehaul.size() && !currentSavingFlag) {
-                        // se i savings correnti i o j sono già stati inseriti in una route
-                        boolean iUsed = usedCustomers.contains(sortedSavingsLinehaul.get(k).i);
-                        boolean jUsed = usedCustomers.contains(sortedSavingsLinehaul.get(k).j);
 
-                        // se la richiesta è minore della capacità massima
-                        boolean iCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).i].getDemand());
-                        boolean jCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
-                        boolean ijCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).i].getDemand() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
+                    int indexRoute = routesLinehaul.indexOf(route);
 
-                      
-                        // se la route non è vuota
-                        if (!route.getRoute().isEmpty() && !currentSavingFlag) {
-                            iFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).i;
-                            jFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).j;
-                            iLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).i;
-                            jLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).j;
+                    // se il numero di customer restanti è minore o uguale al numero di route, allora assegna un customer ad ogni route
+                    if (((deliveries.size()) - (usedCustomers.size())) <= (depot.numberOfVehicles() - (indexRoute))) {
+                        for (int i = 0; i < customers.length; i++) {
+                            if ((!usedCustomers.contains(i)) && (customers[i].getDemand() != 0 && (depot.getMaxCapacity() >= (route.getDelivery() + customers[i].getDemand())))) {
+                                routesLinehaul.get(indexRoute).getRoute().add(i);
+                                routesLinehaul.get(indexRoute).addDelivery(customers[i].getDemand());
+                                usedCustomers.add(i);
 
-                            // se primo customer di route corrisponde al saving corrente i e j non è stato visitato
-                            if (iFirst && !jUsed && !currentSavingFlag && jCapacity) {
-                                // aggiunge il customer j in testa
-                                route.getRoute().add(0, sortedSavingsLinehaul.get(k).j);
+                                indexRoute++;
+                            }
+                        }
+                    // altrimenti esegue l'algoritmo normale
+                    } else {
+                        // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
+                        while (k < sortedSavingsLinehaul.size() && !currentSavingFlag) {
+                            // se i savings correnti i o j sono già stati inseriti in una route
+                            boolean iUsed = usedCustomers.contains(sortedSavingsLinehaul.get(k).i);
+                            boolean jUsed = usedCustomers.contains(sortedSavingsLinehaul.get(k).j);
+
+                            // se la richiesta è minore della capacità massima
+                            boolean iCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).i].getDemand());
+                            boolean jCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
+                            boolean ijCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).i].getDemand() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
+
+                            // se la route non è vuota
+                            if (!route.getRoute().isEmpty() && !currentSavingFlag) {
+                                iFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).i;
+                                jFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).j;
+                                iLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).i;
+                                jLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).j;
+
+                                // se primo customer di route corrisponde al saving corrente i e j non è stato visitato
+                                if (iFirst && !jUsed && !currentSavingFlag && jCapacity) {
+                                    // aggiunge il customer j in testa
+                                    route.getRoute().add(0, sortedSavingsLinehaul.get(k).j);
+                                    route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
+
+                                    usedCustomers.add(sortedSavingsLinehaul.get(k).j);
+
+                                    currentSavingFlag = true;
+                                } // se primo customer di route corrisponde al saving corrente j e i non è stato visitato
+                                else if (jFirst && !iUsed && !currentSavingFlag && iCapacity) {
+                                    // aggiunge il customer i in testa
+                                    route.getRoute().add(0, sortedSavingsLinehaul.get(k).i);
+                                    route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
+
+                                    usedCustomers.add(sortedSavingsLinehaul.get(k).i);
+
+                                    currentSavingFlag = true;
+                                } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
+                                else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
+                                    // aggiunge il customer j in coda
+                                    route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).j);
+                                    route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
+
+                                    usedCustomers.add(sortedSavingsLinehaul.get(k).j);
+
+                                    currentSavingFlag = true;
+                                } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
+                                else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
+                                    // aggiunge il customer i in coda
+                                    route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).i);
+                                    route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
+
+                                    usedCustomers.add(sortedSavingsLinehaul.get(k).i);
+
+                                    currentSavingFlag = true;
+                                }
+                            } // se route è vuota, i e j non sono ancora stati usati
+                            else if (route.getRoute().isEmpty() && !iUsed && !jUsed && !currentSavingFlag && ijCapacity) {
+                                route.getRoute().add(sortedSavingsLinehaul.get(k).i);
+                                route.getRoute().add(sortedSavingsLinehaul.get(k).j);
+                                route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
                                 route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
 
-                                usedCustomers.add(sortedSavingsLinehaul.get(k).j);
-
-                                currentSavingFlag = true;
-                            } // se primo customer di route corrisponde al saving corrente j e i non è stato visitato
-                            else if (jFirst && !iUsed && !currentSavingFlag && iCapacity) {
-                                // aggiunge il customer i in testa
-                                route.getRoute().add(0, sortedSavingsLinehaul.get(k).i);
-                                route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
-
                                 usedCustomers.add(sortedSavingsLinehaul.get(k).i);
-
-                                currentSavingFlag = true;
-                            } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
-                            else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
-                                // aggiunge il customer j in coda
-                                route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).j);
-                                route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
-
                                 usedCustomers.add(sortedSavingsLinehaul.get(k).j);
-
-                                currentSavingFlag = true;
-                            } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
-                            else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
-                                // aggiunge il customer i in coda
-                                route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).i);
-                                route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
-
-                                usedCustomers.add(sortedSavingsLinehaul.get(k).i);
 
                                 currentSavingFlag = true;
                             }
-                        } // se route è vuota, i e j non sono ancora stati usati
-                        else if (route.getRoute().isEmpty() && !iUsed && !jUsed && !currentSavingFlag && ijCapacity) {
-                            route.getRoute().add(sortedSavingsLinehaul.get(k).i);
-                            route.getRoute().add(sortedSavingsLinehaul.get(k).j);
-                            route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
-                            route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
 
-                            usedCustomers.add(sortedSavingsLinehaul.get(k).i);
-                            usedCustomers.add(sortedSavingsLinehaul.get(k).j);
-
-                            currentSavingFlag = true;
+                            k++;
                         }
-
-                        k++;
                     }
                 }
             }
@@ -853,10 +866,7 @@ public class Manager {
         // un veicolo per ogni customer
         if (pickups.size() <= depot.numberOfVehicles()) {
             initializeRoutesBackhaul();
-        } // per alcuni rotte si avrà un solo veicolo
-        //        else if (pickups.size() < depot.numberOfVehicles()*2){
-        //            // ???
-        //        }
+        }
         else {
             routesBackhaul.clear();
             // crea un numero di routes pari al numero di veicoli
@@ -870,75 +880,92 @@ public class Manager {
                 for (Route route : routesBackhaul) {
                     k = 0; // si riparte dall'inizio della lista dei saving
                     currentSavingFlag = false;
-                    // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
-                    while (k < sortedSavingsBackhaul.size() && !currentSavingFlag) {
-                        // se i savings correnti i o j sono già stati inseriti in una route
-                        boolean iUsed = usedCustomers.contains(sortedSavingsBackhaul.get(k).i);
-                        boolean jUsed = usedCustomers.contains(sortedSavingsBackhaul.get(k).j);
 
-                        // se la richiesta è minore della capacità massima
-                        boolean iCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).i].getSupply());
-                        boolean jCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).j].getSupply());
-                        boolean ijCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).i].getSupply() + customers[sortedSavingsBackhaul.get(k).j].getSupply());
+                    int indexRoute = routesLinehaul.indexOf(route);
 
-                        // se la route non è vuota
-                        if (!route.getRoute().isEmpty() && !currentSavingFlag) {
-                            iFirst = route.firstCustomer() == sortedSavingsBackhaul.get(k).i;
-                            jFirst = route.firstCustomer() == sortedSavingsBackhaul.get(k).j;
-                            iLast = route.lastCustomer() == sortedSavingsBackhaul.get(k).i;
-                            jLast = route.lastCustomer() == sortedSavingsBackhaul.get(k).j;
+                    // se il numero di customer restanti è minore o uguale al numero di route, allora assegna un customer ad ogni route
+                    if (((pickups.size()) - (usedCustomers.size())) <= (depot.numberOfVehicles() - (indexRoute))) {
+                        for (int i = 0; i < customers.length; i++) {
+                            if ((!usedCustomers.contains(i)) && (customers[i].getSupply() != 0 && (depot.getMaxCapacity() >= (route.getPickup() + customers[i].getSupply())))) {
+                                routesBackhaul.get(indexRoute).getRoute().add(i);
+                                routesBackhaul.get(indexRoute).addPickup(customers[i].getSupply());
+                                usedCustomers.add(i);
 
-                            // se primo customer di route corrisponde al saving corrente i e j non è stato visitato
-                            if (iFirst && !jUsed && !currentSavingFlag && jCapacity) {
-                                // aggiunge il customer j in testa
-                                route.getRoute().add(0, sortedSavingsBackhaul.get(k).j);
+                                indexRoute++;
+                            }
+                        }
+                    // altrimenti esegue l'algoritmo normale
+                    } else {
+                        // per ogni route scorre la lista di saving e aggiunge il primo utilizzabile
+                        while (k < sortedSavingsBackhaul.size() && !currentSavingFlag) {
+                            // se i savings correnti i o j sono già stati inseriti in una route
+                            boolean iUsed = usedCustomers.contains(sortedSavingsBackhaul.get(k).i);
+                            boolean jUsed = usedCustomers.contains(sortedSavingsBackhaul.get(k).j);
+
+                            // se la richiesta è minore della capacità massima
+                            boolean iCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).i].getSupply());
+                            boolean jCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).j].getSupply());
+                            boolean ijCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsBackhaul.get(k).i].getSupply() + customers[sortedSavingsBackhaul.get(k).j].getSupply());
+
+                            // se la route non è vuota
+                            if (!route.getRoute().isEmpty() && !currentSavingFlag) {
+                                iFirst = route.firstCustomer() == sortedSavingsBackhaul.get(k).i;
+                                jFirst = route.firstCustomer() == sortedSavingsBackhaul.get(k).j;
+                                iLast = route.lastCustomer() == sortedSavingsBackhaul.get(k).i;
+                                jLast = route.lastCustomer() == sortedSavingsBackhaul.get(k).j;
+
+                                // se primo customer di route corrisponde al saving corrente i e j non è stato visitato
+                                if (iFirst && !jUsed && !currentSavingFlag && jCapacity) {
+                                    // aggiunge il customer j in testa
+                                    route.getRoute().add(0, sortedSavingsBackhaul.get(k).j);
+                                    route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
+
+                                    usedCustomers.add(sortedSavingsBackhaul.get(k).j);
+
+                                    currentSavingFlag = true;
+                                } // se primo customer di route corrisponde al saving corrente j e i non è stato visitato
+                                else if (jFirst && !iUsed && !currentSavingFlag && iCapacity) {
+                                    // aggiunge il customer i in testa
+                                    route.getRoute().add(0, sortedSavingsBackhaul.get(k).i);
+                                    route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
+
+                                    usedCustomers.add(sortedSavingsBackhaul.get(k).i);
+
+                                    currentSavingFlag = true;
+                                } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
+                                else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
+                                    // aggiunge il customer j in coda
+                                    route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).j);
+                                    route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
+
+                                    usedCustomers.add(sortedSavingsBackhaul.get(k).j);
+
+                                    currentSavingFlag = true;
+                                } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
+                                else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
+                                    // aggiunge il customer i in coda
+                                    route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).i);
+                                    route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
+
+                                    usedCustomers.add(sortedSavingsBackhaul.get(k).i);
+
+                                    currentSavingFlag = true;
+                                }
+                            } // se route è vuota, i e j non sono ancora stati usati
+                            else if (route.getRoute().isEmpty() && !iUsed && !jUsed && !currentSavingFlag && ijCapacity) {
+                                route.getRoute().add(sortedSavingsBackhaul.get(k).i);
+                                route.getRoute().add(sortedSavingsBackhaul.get(k).j);
+                                route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
                                 route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
 
-                                usedCustomers.add(sortedSavingsBackhaul.get(k).j);
-
-                                currentSavingFlag = true;
-                            } // se primo customer di route corrisponde al saving corrente j e i non è stato visitato
-                            else if (jFirst && !iUsed && !currentSavingFlag && iCapacity) {
-                                // aggiunge il customer i in testa
-                                route.getRoute().add(0, sortedSavingsBackhaul.get(k).i);
-                                route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
-
                                 usedCustomers.add(sortedSavingsBackhaul.get(k).i);
-
-                                currentSavingFlag = true;
-                            } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
-                            else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
-                                // aggiunge il customer j in coda
-                                route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).j);
-                                route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
-
                                 usedCustomers.add(sortedSavingsBackhaul.get(k).j);
-
-                                currentSavingFlag = true;
-                            } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
-                            else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
-                                // aggiunge il customer i in coda
-                                route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).i);
-                                route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
-
-                                usedCustomers.add(sortedSavingsBackhaul.get(k).i);
 
                                 currentSavingFlag = true;
                             }
-                        } // se route è vuota, i e j non sono ancora stati usati
-                        else if (route.getRoute().isEmpty() && !iUsed && !jUsed && !currentSavingFlag && ijCapacity) {
-                            route.getRoute().add(sortedSavingsBackhaul.get(k).i);
-                            route.getRoute().add(sortedSavingsBackhaul.get(k).j);
-                            route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
-                            route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
 
-                            usedCustomers.add(sortedSavingsBackhaul.get(k).i);
-                            usedCustomers.add(sortedSavingsBackhaul.get(k).j);
-
-                            currentSavingFlag = true;
+                            k++;
                         }
-
-                        k++;
                     }
                 }
             }
