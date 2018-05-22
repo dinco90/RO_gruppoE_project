@@ -764,9 +764,7 @@ public class Manager {
                         boolean jCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
                         boolean ijCapacity = depot.getMaxCapacity() >= (route.getDelivery() + customers[sortedSavingsLinehaul.get(k).i].getDemand() + customers[sortedSavingsLinehaul.get(k).j].getDemand());
 
-                        /*
-                    *** INSERIRE CALCOLO DEL COSTO, ECC
-                         */
+                      
                         // se la route non è vuota
                         if (!route.getRoute().isEmpty() && !currentSavingFlag) {
                             iFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).i;
@@ -795,7 +793,7 @@ public class Manager {
                             } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
                             else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
                                 // aggiunge il customer j in coda
-                                route.getRoute().add(route.getRoute().size() - 1, sortedSavingsLinehaul.get(k).j);
+                                route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).j);
                                 route.addDelivery(customers[sortedSavingsLinehaul.get(k).j].getDemand());
 
                                 usedCustomers.add(sortedSavingsLinehaul.get(k).j);
@@ -804,7 +802,7 @@ public class Manager {
                             } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
                             else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
                                 // aggiunge il customer i in coda
-                                route.getRoute().add(route.getRoute().size() - 1, sortedSavingsLinehaul.get(k).i);
+                                route.getRoute().add(route.getRoute().size(), sortedSavingsLinehaul.get(k).i);
                                 route.addDelivery(customers[sortedSavingsLinehaul.get(k).i].getDemand());
 
                                 usedCustomers.add(sortedSavingsLinehaul.get(k).i);
@@ -911,7 +909,7 @@ public class Manager {
                             } // se ultimo customer di route corrisponde al saving corrente i e j non è stato visitato
                             else if (iLast && !jUsed && !currentSavingFlag && jCapacity) {
                                 // aggiunge il customer j in coda
-                                route.getRoute().add(route.getRoute().size() - 1, sortedSavingsBackhaul.get(k).j);
+                                route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).j);
                                 route.addPickup(customers[sortedSavingsBackhaul.get(k).j].getSupply());
 
                                 usedCustomers.add(sortedSavingsBackhaul.get(k).j);
@@ -920,7 +918,7 @@ public class Manager {
                             } // se ultimo customer di route corrisponde al saving corrente j e i non è stato visitato
                             else if (jLast && !iUsed && !currentSavingFlag && iCapacity) {
                                 // aggiunge il customer i in coda
-                                route.getRoute().add(route.getRoute().size() - 1, sortedSavingsBackhaul.get(k).i);
+                                route.getRoute().add(route.getRoute().size(), sortedSavingsBackhaul.get(k).i);
                                 route.addPickup(customers[sortedSavingsBackhaul.get(k).i].getSupply());
 
                                 usedCustomers.add(sortedSavingsBackhaul.get(k).i);
