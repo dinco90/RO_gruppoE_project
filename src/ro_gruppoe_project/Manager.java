@@ -141,7 +141,7 @@ public class Manager {
 
         try {
             new File("output").mkdirs();
-            FileWriter writer = new FileWriter("output/Solution " + nameFile + " " + algorithm);
+            FileWriter writer = new FileWriter("output/Solution " + algorithm + " " + nameFile);
             // stampa titolo
             writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n");
             writer.write("Algorithm: " + algorithm + "\r\n\r\n");
@@ -726,9 +726,9 @@ public class Manager {
     /**
      * Esegue l'algoritmo Clarke & Wright in modo parallelo
      *
-     * DENNIS
+     * ERROR
      */
-    public void algoritmoClarkeWrightParallelo() {
+    public void algoritmoClarkeWrightParalleloERROR() {
         int k = 0;  // indice per scorrimento sortedSavingsLinehaul
         boolean currentSavingFlag = false;   // flag per uscire da ciclo dato che le routes vanno popolate in parallelo
         ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
