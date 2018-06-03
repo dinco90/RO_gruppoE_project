@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Progetto: 
+ * Ricerca Operativa
+ * Corso di Informatica
+ * Facoltà di Scienze
+ * Università degli Studi di Cagliari
  */
 package ro_gruppoe_project;
 
@@ -25,36 +27,36 @@ public class RO_gruppoE_project {
         manager.setSortedSavingsLinehaul();
         manager.setSortedSavingsBackhaul();
 
-        //
-        //calcolo delle routes Sequaziale
+        // SEQUENZIALE
+        // inizializzazione routes
         manager.initializeRoutesLinehaul();
         manager.initializeRoutesBackhaul();
+        // chiamata alla funzione sequenziale
         manager.algoritmoClarkeWrightSequenziale();
-
-        //
         //calcolo dei costi per l'algoritmo sequenziale
         manager.calculateCost();
-
-        //
-        //salvataggio risultati su file
+        // salvataggio risultati su file
         manager.writeFile("Sequential");
 
-
-        //
         //copia delle routes prima di chiamare l'algoritmo parallelo
         manager.copyRoutes();
-        //manager.initializeRoutesLinehaul();
-        //manager.initializeRoutesBackhaul();
 
-        manager.algoritmoClarkeWrightParalleloERROR();
-
-        //
+        // PARALLELO
+        // inizializzazione routes
+        manager.initializeRoutesLinehaul();
+        manager.initializeRoutesBackhaul();
+        // chiamata alla funzione parallelo
+        manager.algoritmoClarkeWrightParallelo();
         //calcolo dei costi per l'algoritmo parallelo
         manager.calculateCost();
-
-        //
-        //salvataggio risultati su file
+        // salvataggio risultati su file
         manager.writeFile("Parallel");
 
+        // PARALLEL ERROR
+        manager.algoritmoClarkeWrightParalleloERROR();
+        //calcolo dei costi per l'algoritmo parallelo
+        manager.calculateCost();
+        //salvataggio risultati su file
+        manager.writeFile("Parallel Error");
     }
 }
