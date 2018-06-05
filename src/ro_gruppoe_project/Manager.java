@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 public class Manager {
 
@@ -996,8 +997,8 @@ public class Manager {
      *
      */
     public void algoritmoClarkeWrightParallelo() {
-        ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
-        ArrayList<Integer> usedCustomersParallel = new ArrayList<>();   // lista degli ultimi customer usati (per tenere conto di quali routes non modficare e rendere l'algoritmo parallelo)
+        ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+//        ArrayList<Integer> usedRoutes = new ArrayList<>();   // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
         int counterSavings = 0; // contatore dei savings utilizzati
 
         // routes dei savings correnti
@@ -1015,32 +1016,49 @@ public class Manager {
             for (SavingOccurrence saving : sortedSavingsLinehaul) {
                 routeI = findRoute(saving.i, true);
                 routeJ = findRoute(saving.j, true);
-                iFirst = routesLinehaul.get(saving.i).firstCustomer() == saving.i;
-                jFirst = routesLinehaul.get(saving.j).firstCustomer() == saving.i;
-                iLast = routesLinehaul.get(saving.i).lastCustomer() == saving.i;
-                jLast = routesLinehaul.get(saving.j).lastCustomer() == saving.i;
-
-                // se il numero dei customers usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
+                iFirst = routesLinehaul.get(routeI).firstCustomer() == saving.i;
+                jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.i;
+                iLast = routesLinehaul.get(routeI).lastCustomer() == saving.i;
+                jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.i;
+                
+                // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
                 if (counterSavings == depot.numberOfVehicles()) {
-                    usedCustomersParallel.clear();
+                    usedCustomers.clear();
                 }
-
+                
                 // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route)
-                if (usedCustomersParallel.contains(saving.i) || usedCustomersParallel.contains(saving.j)) {
+                if (usedCustomers.contains(saving.i) || usedCustomers.contains(saving.j)) {
                     // salta saving corrente
-                } // se il customer j può essere collegato alla route contenente il customer i
-                else if (usedCustomers.contains(saving.i) && !usedCustomers.contains(saving.j)) {
-
-                    usedCustomers.add(saving.j);
-                    counterSavings++;
-                } // se il customer i può essere collegato alla route contenente il customer j
-                else if (usedCustomers.contains(saving.j) && !usedCustomers.contains(saving.i)) {
+                }
+                // iFirst - jFirst
+                else if (iFirst && jFirst) {
 
                     usedCustomers.add(saving.i);
+                    usedCustomers.add(saving.j);
                     counterSavings++;
-                } // se nessuno dei due customer è stato utilizzato
+                }
+                // iFirst - jLast
+                else if (iFirst && jLast) {
+
+                    usedCustomers.add(saving.i);
+                    usedCustomers.add(saving.j);
+                    counterSavings++;
+                }
+                // iLast - jFirst
+                else if(iLast && jFirst){
+                    
+                }
+                // iLast - jLast
+                else if(iLast && jLast){
+                    
+                }
+                // se nessuno dei due customer è stato utilizzato
+                // FORSE NON NECESSARIO
                 else if (!usedCustomers.contains(saving.i) && !usedCustomers.contains(saving.j)) {
 
+                    // merge i e j
+                    // rimuovi j
+                    
                     usedCustomers.add(saving.i);
                     usedCustomers.add(saving.j);
                     counterSavings++;
@@ -1051,9 +1069,9 @@ public class Manager {
 //                jFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).j;
 //                iLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).i;
 //                jLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).j;
-                // se customer i del saving corrente non è stato usato
-                // se una route è stata utilizzata nel turno corrente
-//                if ((!usedCustomers.contains(saving.i)) && (!usedCustomersParallel.contains(saving.i))) {
+// se customer i del saving corrente non è stato usato
+// se una route è stata utilizzata nel turno corrente
+//                if ((!usedCustomers.contains(saving.i)) && (!usedRoutes.contains(saving.i))) {
 //                    ;
 //                }
             }
