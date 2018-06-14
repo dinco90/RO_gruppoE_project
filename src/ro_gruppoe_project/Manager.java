@@ -847,17 +847,17 @@ public class Manager {
                 }
             }
         }
-        // stampa di controllo LINEHAUL
-        int x = 0;
-        System.out.print("\nLinehaul:");
-        for (Route route : routesLinehaul) {
-            System.out.print("\nroute " + x + ": ");
-            for (Integer rotta : route.getRoute()) {
-                System.out.print(rotta + 1 + " - ");
-            }
-            x++;
-        }
-        // stampa di controllo LINEHAUL
+//        // stampa di controllo LINEHAUL
+//        int x = 0;
+//        System.out.print("\nLinehaul:");
+//        for (Route route : routesLinehaul) {
+//            System.out.print("\nroute " + x + ": ");
+//            for (Integer rotta : route.getRoute()) {
+//                System.out.print(rotta + 1 + " - ");
+//            }
+//            x++;
+//        }
+//        // stampa di controllo LINEHAUL
 
         // BACKHAUL
         k = 0;  // indice per scorrimento sortedSavingsLinehaul
@@ -976,16 +976,16 @@ public class Manager {
                 }
             }
         }
-        // stampa di controllo BACKHAUL
-        x = 0;
-        System.out.print("\nBackhaul:");
-        for (Route route : routesBackhaul) {
-            System.out.print("\nroute " + x + ": ");
-            for (Integer rotta : route.getRoute()) {
-                System.out.print(rotta + 1 + " - ");
-            }
-            x++;
-        }
+//        // stampa di controllo BACKHAUL
+//        x = 0;
+//        System.out.print("\nBackhaul:");
+//        for (Route route : routesBackhaul) {
+//            System.out.print("\nroute " + x + ": ");
+//            for (Integer rotta : route.getRoute()) {
+//                System.out.print(rotta + 1 + " - ");
+//            }
+//            x++;
+//        }
         // stampa di controllo BACKHAUL
 
         // MERGE TRA LINEHAUL E BACKHAUL
@@ -1011,58 +1011,72 @@ public class Manager {
         boolean jLast = false;
 
         // finchè non sono stati tutti i customer e si ha il numero di routes richiesto
-        while (usedCustomers.size() < deliveries.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
+        while (routesLinehaul.size() > depot.numberOfVehicles()) {
 
             for (SavingOccurrence saving : sortedSavingsLinehaul) {
                 routeI = findRoute(saving.i, true);
                 routeJ = findRoute(saving.j, true);
                 iFirst = routesLinehaul.get(routeI).firstCustomer() == saving.i;
-                jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.i;
+                jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.j;
                 iLast = routesLinehaul.get(routeI).lastCustomer() == saving.i;
-                jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.i;
-                
+                jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.j;
+
                 // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
                 if (counterSavings == depot.numberOfVehicles()) {
                     usedCustomers.clear();
                 }
                 
+                
+                // stampa corrente
+//                System.out.println("current saving: " + saving.i + " - " + saving.j);
+//                System.out.println("routesLinehaul size: " + routesLinehaul.size());
+//                System.out.println(usedCustomers.contains(saving.i));
+//                System.out.println(usedCustomers.contains(saving.j));
+                
+                                
                 // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route)
                 if (usedCustomers.contains(saving.i) || usedCustomers.contains(saving.j)) {
                     // salta saving corrente
-                }
-                // iFirst - jFirst
-                else if (iFirst && jFirst) {
+                } // iFirst - jFirst OR iLast - jLast
+                else if ((iFirst && jFirst) || (iLast && jLast)) {
+                    // si effettua il reverse di una delle due route
+                    routesLinehaul.get(routeJ).reverse();
+                    //unisci j invertito ad i ed elimina poi j
+                    routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+                    routesLinehaul.remove(routeJ);
 
                     usedCustomers.add(saving.i);
                     usedCustomers.add(saving.j);
                     counterSavings++;
-                }
-                // iFirst - jLast
+                } // iFirst - jLast
                 else if (iFirst && jLast) {
+                    //unisci i ad j ed elimina poi i
+                    routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
+                    routesLinehaul.remove(routeI);
 
                     usedCustomers.add(saving.i);
                     usedCustomers.add(saving.j);
                     counterSavings++;
-                }
-                // iLast - jFirst
-                else if(iLast && jFirst){
-                    
-                }
-                // iLast - jLast
-                else if(iLast && jLast){
-                    
+                } // iLast - jFirst
+                else if (iLast && jFirst) {
+                    //unisci j ad i ed elimina poi j
+                    routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+                    routesLinehaul.remove(routeJ);
+
+                    usedCustomers.add(saving.i);
+                    usedCustomers.add(saving.j);
+                    counterSavings++;
                 }
                 // se nessuno dei due customer è stato utilizzato
                 // FORSE NON NECESSARIO
-                else if (!usedCustomers.contains(saving.i) && !usedCustomers.contains(saving.j)) {
-
-                    // merge i e j
-                    // rimuovi j
-                    
-                    usedCustomers.add(saving.i);
-                    usedCustomers.add(saving.j);
-                    counterSavings++;
-                }
+//                else if (!usedCustomers.contains(saving.i) && !usedCustomers.contains(saving.j)) {
+//
+//                    // merge i e j
+//                    // rimuovi j
+//                    usedCustomers.add(saving.i);
+//                    usedCustomers.add(saving.j);
+//                    counterSavings++;
+//                }
 
                 // se i savings correnti i o j sono primo o ultimo nella route corrente
 //                iFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).i;
@@ -1076,5 +1090,17 @@ public class Manager {
 //                }
             }
         }
+        // stampa di controllo LINEHAUL
+        int x = 0;
+        System.out.print("\nLinehaul:");
+        for (Route route : routesLinehaul) {
+            System.out.print("\nroute " + x + ": ");
+            for (Integer rotta : route.getRoute()) {
+                System.out.print(rotta + 1 + " - ");
+            }
+            x++;
+        }
+        // stampa di controllo LINEHAUL
     }
+
 }
