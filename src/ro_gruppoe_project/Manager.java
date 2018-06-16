@@ -997,18 +997,20 @@ public class Manager {
      *
      */
     public void algoritmoClarkeWrightParallelo() {
-        ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+        ArrayList<Route> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
 //        ArrayList<Integer> usedRoutes = new ArrayList<>();   // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
-        int counterSavings = 0; // contatore dei savings utilizzati
-
+        // contatore dei savings utilizzati
+        int counterSavings = 0;
         // routes dei savings correnti
-        int routeI;
-        int routeJ;
+        int routeI = 0;
+        int routeJ = 0;
         // se i savings correnti i o j sono primo o ultimo nella route corrente
         boolean iFirst = false;
         boolean jFirst = false;
         boolean iLast = false;
         boolean jLast = false;
+        // se la richiesta è minore della capacità massima
+        boolean ijCapacity = false;
 
         for (SavingOccurrence saving : sortedSavingsLinehaul) {
             // uscita forzata dal ciclo for nel caso in cui è stato raggiunto il numero di routes richiesti
@@ -1016,26 +1018,30 @@ public class Manager {
                 break;
             }
 
+            // routes dei savings correnti
             routeI = findRoute(saving.i, true);
             routeJ = findRoute(saving.j, true);
+            // se i savings correnti i o j sono primo o ultimo nella route corrente            
+            iFirst = routesLinehaul.get(routeI).firstCustomer() == saving.i;
+            jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.j;
+            iLast = routesLinehaul.get(routeI).lastCustomer() == saving.i;
+            jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.j;
+            // se la richiesta è minore della capacità massima
+            ijCapacity = depot.getMaxCapacity() > (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
 
 //                System.out.println("\n\nrouteI - first: " + routesLinehaul.get(routeI).firstCustomer() + " - saving.i: " + saving.i);
 //                System.out.println("routeJ - first: " + routesLinehaul.get(routeJ).firstCustomer() + " - saving.j: " + saving.j);
 //                System.out.println("routeI - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.i: " + saving.i);
 //                System.out.println("routeJ - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.j: " + saving.j);
-            iFirst = routesLinehaul.get(routeI).firstCustomer() == saving.i;
-            jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.j;
-            iLast = routesLinehaul.get(routeI).lastCustomer() == saving.i;
-            jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.j;
 
             // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
             if (counterSavings == depot.numberOfVehicles()) {
                 usedCustomers.clear();
             }
 
-            // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route)
-            if (!usedCustomers.contains(saving.i) || !usedCustomers.contains(saving.j)) {
-                // salta saving corrente se saving corrente i o j è stato usato nel turno corrente
+            // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route) e se non viene superata la capacità massima
+            if ((!usedCustomers.contains(routesLinehaul.get(routeI)) || !usedCustomers.contains(routesLinehaul.get(routeJ))) && ijCapacity) {
+                // salta saving corrente se saving corrente i o j è stato usato nel turno corrente o se viene superata la capacità massima
 
                 // stampa corrente
                 System.out.println("\ncurrent saving: " + (saving.i + 1) + " - " + (saving.j + 1));
@@ -1045,33 +1051,30 @@ public class Manager {
 
                 // iFirst - jFirst OR iLast - jLast
                 if ((iFirst && jFirst) || (iLast && jLast)) {
+                    usedCustomers.add(routesLinehaul.get(routeI));
+                    counterSavings++;
+                    
                     // si effettua il reverse di una delle due route
                     routesLinehaul.get(routeJ).reverse();
                     //unisci j invertito ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
-
-                    usedCustomers.add(saving.i);
-                    usedCustomers.add(saving.j);
-                    counterSavings++;
                 } // iFirst - jLast
                 else if (iFirst && jLast) {
+                    usedCustomers.add(routesLinehaul.get(routeJ));
+                    counterSavings++;
+                    
                     //unisci i ad j ed elimina poi i
                     routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
                     routesLinehaul.remove(routeI);
-
-                    usedCustomers.add(saving.i);
-                    usedCustomers.add(saving.j);
-                    counterSavings++;
                 } // iLast - jFirst
                 else if (iLast && jFirst) {
+                    usedCustomers.add(routesLinehaul.get(routeI));
+                    counterSavings++;
+                    
                     //unisci j ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
-
-                    usedCustomers.add(saving.i);
-                    usedCustomers.add(saving.j);
-                    counterSavings++;
                 }
             }
             // se nessuno dei due customer è stato utilizzato
