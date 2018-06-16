@@ -37,7 +37,7 @@ public class RO_gruppoE_project {
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Sequential");
-        System.out.println("File 'Solution Sequential A1.txt' written.");
+        System.out.println("\nFile 'Solution Sequential A1.txt' written.\n\n");
 
         //copia delle routes prima di chiamare l'algoritmo parallelo
         manager.copyRoutes();
@@ -52,7 +52,7 @@ public class RO_gruppoE_project {
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Parallel");
-        System.out.println("File 'Solution Parallel A1.txt' written.");
+        System.out.println("\nFile 'Solution Parallel A1.txt' written.\n\n");
         
         //copia delle routes prima di chiamare l'algoritmo parallelo
         //manager.copyRoutes();
@@ -63,6 +63,6 @@ public class RO_gruppoE_project {
         manager.calculateCost();
         //salvataggio risultati su file
         manager.writeFile("Parallel Error");
-        System.out.println("File 'Solution Parallel Error A1.txt' written.");
+        System.out.println("\nFile 'Solution Parallel Error A1.txt' written.\n\n");
     }
 }
