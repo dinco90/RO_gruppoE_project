@@ -1011,23 +1011,26 @@ public class Manager {
         boolean jLast = false;
         // se la richiesta è minore della capacità massima
         boolean ijCapacity = false;
+        // indice
+        int k = 0;
 
-        for (SavingOccurrence saving : sortedSavingsLinehaul) {
+        while ( (k < sortedSavingsLinehaul.size()) && (routesLinehaul.size() > depot.numberOfVehicles()) ) {
+        //for (SavingOccurrence saving : sortedSavingsLinehaul) {
             // uscita forzata dal ciclo for nel caso in cui è stato raggiunto il numero di routes richiesti
-            if (routesLinehaul.size() == depot.numberOfVehicles()) {
-                break;
-            }
+//            if (routesLinehaul.size() == depot.numberOfVehicles()) {
+//                break;
+//            }
 
             // routes dei savings correnti
-            routeI = findRoute(saving.i, true);
-            routeJ = findRoute(saving.j, true);
+            routeI = findRoute(sortedSavingsLinehaul.get(k).i, true);
+            routeJ = findRoute(sortedSavingsLinehaul.get(k).j, true);
             // se i savings correnti i o j sono primo o ultimo nella route corrente            
-            iFirst = routesLinehaul.get(routeI).firstCustomer() == saving.i;
-            jFirst = routesLinehaul.get(routeJ).firstCustomer() == saving.j;
-            iLast = routesLinehaul.get(routeI).lastCustomer() == saving.i;
-            jLast = routesLinehaul.get(routeJ).lastCustomer() == saving.j;
+            iFirst = routesLinehaul.get(routeI).firstCustomer() == sortedSavingsLinehaul.get(k).i;
+            jFirst = routesLinehaul.get(routeJ).firstCustomer() == sortedSavingsLinehaul.get(k).j;
+            iLast = routesLinehaul.get(routeI).lastCustomer() == sortedSavingsLinehaul.get(k).i;
+            jLast = routesLinehaul.get(routeJ).lastCustomer() == sortedSavingsLinehaul.get(k).j;
             // se la richiesta è minore della capacità massima
-            ijCapacity = depot.getMaxCapacity() > (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
+            ijCapacity = depot.getMaxCapacity() >= (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
 
 //                System.out.println("\n\nrouteI - first: " + routesLinehaul.get(routeI).firstCustomer() + " - saving.i: " + saving.i);
 //                System.out.println("routeJ - first: " + routesLinehaul.get(routeJ).firstCustomer() + " - saving.j: " + saving.j);
@@ -1037,6 +1040,7 @@ public class Manager {
             // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
             if (counterSavings == depot.numberOfVehicles()) {
                 usedCustomers.clear();
+                counterSavings = 0;
             }
 
             // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route) e se non viene superata la capacità massima
@@ -1044,7 +1048,7 @@ public class Manager {
                 // salta saving corrente se saving corrente i o j è stato usato nel turno corrente o se viene superata la capacità massima
 
                 // stampa corrente
-                System.out.println("\ncurrent saving: " + (saving.i + 1) + " - " + (saving.j + 1));
+                System.out.println("\ncurrent saving: " + (sortedSavingsLinehaul.get(k).i + 1) + " - " + (sortedSavingsLinehaul.get(k).j + 1));
                 System.out.println("routesLinehaul size: " + routesLinehaul.size());
 //                System.out.println(usedCustomers.contains(saving.i));
 //                System.out.println(usedCustomers.contains(saving.j));
@@ -1059,6 +1063,8 @@ public class Manager {
                     //unisci j invertito ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
+                    
+                    k=0;
                 } // iFirst - jLast
                 else if (iFirst && jLast) {
                     usedCustomers.add(routesLinehaul.get(routeJ));
@@ -1067,6 +1073,8 @@ public class Manager {
                     //unisci i ad j ed elimina poi i
                     routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
                     routesLinehaul.remove(routeI);
+                    
+                    k=0;
                 } // iLast - jFirst
                 else if (iLast && jFirst) {
                     usedCustomers.add(routesLinehaul.get(routeI));
@@ -1075,6 +1083,8 @@ public class Manager {
                     //unisci j ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
+                    
+                    k=0;
                 }
             }
             // se nessuno dei due customer è stato utilizzato
@@ -1098,6 +1108,7 @@ public class Manager {
 //                if ((!usedCustomers.contains(saving.i)) && (!usedRoutes.contains(saving.i))) {
 //                    ;
 //                }
+            k++;
         }
         // stampa di controllo LINEHAUL
         int x = 0;
