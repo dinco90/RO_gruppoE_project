@@ -1055,7 +1055,6 @@ public class Manager {
 
                 // iFirst - jFirst OR iLast - jLast
                 if ((iFirst && jFirst) || (iLast && jLast)) {
-                    usedCustomers.add(routesLinehaul.get(routeI));
                     counterSavings++;
                     
                     // si effettua il reverse di una delle due route
@@ -1065,9 +1064,10 @@ public class Manager {
                     routesLinehaul.remove(routeJ);
                     
                     k=0;
+                    
+                    usedCustomers.add(routesLinehaul.get(routeI));
                 } // iFirst - jLast
                 else if (iFirst && jLast) {
-                    usedCustomers.add(routesLinehaul.get(routeJ));
                     counterSavings++;
                     
                     //unisci i ad j ed elimina poi i
@@ -1075,9 +1075,10 @@ public class Manager {
                     routesLinehaul.remove(routeI);
                     
                     k=0;
+                    
+                    usedCustomers.add(routesLinehaul.get(routeJ));
                 } // iLast - jFirst
                 else if (iLast && jFirst) {
-                    usedCustomers.add(routesLinehaul.get(routeI));
                     counterSavings++;
                     
                     //unisci j ad i ed elimina poi j
@@ -1085,6 +1086,8 @@ public class Manager {
                     routesLinehaul.remove(routeJ);
                     
                     k=0;
+                    
+                    usedCustomers.add(routesLinehaul.get(routeI));
                 }
             }
             // se nessuno dei due customer è stato utilizzato
