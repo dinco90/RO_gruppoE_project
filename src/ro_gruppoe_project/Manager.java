@@ -358,8 +358,6 @@ public class Manager {
                     routeI = findRoute(occurrence.i, true);
                     routeJ = findRoute(occurrence.j, true);
 
-                    System.out.println(routeI + " - " + routeJ);
-
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
 
@@ -1043,8 +1041,11 @@ public class Manager {
                 counterSavings = 0;
             }
 
+            boolean condI=usedCustomers.contains(routesLinehaul.get(routeI));
+            boolean condJ=usedCustomers.contains(routesLinehaul.get(routeJ));
+
             // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route) e se non viene superata la capacità massima
-            if ((!usedCustomers.contains(routesLinehaul.get(routeI)) || !usedCustomers.contains(routesLinehaul.get(routeJ))) && ijCapacity) {
+            if (!(condI || condJ) && ijCapacity) {
                 // salta saving corrente se saving corrente i o j è stato usato nel turno corrente o se viene superata la capacità massima
 
                 // stampa corrente
