@@ -1035,17 +1035,13 @@ public class Manager {
 //                System.out.println("routeI - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.i: " + saving.i);
 //                System.out.println("routeJ - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.j: " + saving.j);
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
-            if (counterSavings == depot.numberOfVehicles()) {
-                usedCustomers.clear();
-                counterSavings = 0;
-            }
+
 
             boolean condI=usedCustomers.contains(routesLinehaul.get(routeI));
             boolean condJ=usedCustomers.contains(routesLinehaul.get(routeJ));
 
             // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route) e se non viene superata la capacità massima
-            if (!(condI || condJ) && ijCapacity) {
+            if ((!(condI || condJ)) && (routeI!=routeJ) && ijCapacity) {
                 // salta saving corrente se saving corrente i o j è stato usato nel turno corrente o se viene superata la capacità massima
 
                 // stampa corrente
@@ -1064,7 +1060,7 @@ public class Manager {
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
                     
-                    k=0;
+                    //k=0;
                     
                     usedCustomers.add(routesLinehaul.get(routeI));
                 } // iFirst - jLast
@@ -1075,7 +1071,7 @@ public class Manager {
                     routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
                     routesLinehaul.remove(routeI);
                     
-                    k=0;
+                    //k=0;
                     
                     usedCustomers.add(routesLinehaul.get(routeJ));
                 } // iLast - jFirst
@@ -1086,7 +1082,7 @@ public class Manager {
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
                     
-                    k=0;
+                    //k=0;
                     
                     usedCustomers.add(routesLinehaul.get(routeI));
                 }
@@ -1113,6 +1109,13 @@ public class Manager {
 //                    ;
 //                }
             k++;
+
+            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
+            if (counterSavings == depot.numberOfVehicles()) {
+                usedCustomers.clear();
+                counterSavings = 0;
+                k=0;
+            }
         }
         // stampa di controllo LINEHAUL
         int x = 0;
