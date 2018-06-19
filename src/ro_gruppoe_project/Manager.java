@@ -1025,6 +1025,8 @@ public class Manager {
 //                break;
 //            }
 
+            int i=sortedSavingsLinehaul.get(k).i;
+            int j=sortedSavingsLinehaul.get(k).j;
             // routes dei savings correnti
             routeI = findRoute(sortedSavingsLinehaul.get(k).i, true);
             routeJ = findRoute(sortedSavingsLinehaul.get(k).j, true);
@@ -1059,41 +1061,46 @@ public class Manager {
 //                System.out.println(usedRoutesTurn.contains(saving.i));
 //                System.out.println(usedRoutesTurn.contains(saving.j));
 
-                // iFirst - jFirst OR iLast - jLast
-                if ((iFirst && jFirst) || (iLast && jLast)) {
-                    counterSavings++;
-
-                    // si effettua il reverse di una delle due route
-                    routesLinehaul.get(routeJ).reverse();
-                    //unisci j invertito ad i ed elimina poi j
-                    routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-                    routesLinehaul.remove(routeJ);
-
-                    //k=0;
-                    usedRoutes.add(routesLinehaul.get(routeI));
-                    usedRoutesTurn.add(routesLinehaul.get(routeI));
-                } // iFirst - jLast
-                else if (iFirst && jLast) {
+                // iFirst - jLast
+                if (iFirst && jLast) {
                     counterSavings++;
 
                     //unisci i ad j ed elimina poi i
                     routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
-                    routesLinehaul.remove(routeI);
 
                     //k=0;
                     usedRoutes.add(routesLinehaul.get(routeJ));
                     usedRoutesTurn.add(routesLinehaul.get(routeJ));
+
+                    routesLinehaul.remove(routeI);
+
                 } // iLast - jFirst
                 else if (iLast && jFirst) {
                     counterSavings++;
 
                     //unisci j ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-                    routesLinehaul.remove(routeJ);
 
                     //k=0;
                     usedRoutes.add(routesLinehaul.get(routeI));
                     usedRoutesTurn.add(routesLinehaul.get(routeI));
+
+                    routesLinehaul.remove(routeJ);
+
+                } // iFirst - jFirst OR iLast - jLast
+                else if ((iFirst && jFirst) || (iLast && jLast)) {
+                    counterSavings++;
+
+                    // si effettua il reverse di una delle due route
+                    routesLinehaul.get(routeJ).reverse();
+                    //unisci j invertito ad i ed elimina poi j
+                    routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
+
+                    //k=0;
+                    usedRoutes.add(routesLinehaul.get(routeI));
+                    usedRoutesTurn.add(routesLinehaul.get(routeI));
+
+                    routesLinehaul.remove(routeJ);
                 }
             }
             // se nessuno dei due customer è stato utilizzato
