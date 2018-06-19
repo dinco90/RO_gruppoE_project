@@ -8,7 +8,7 @@ Max Load: 1550
 Max Cost: 99999999999999
 
 SOLUTION DETAILS:
-Total Cost: 226671.08854545513
+Total Cost: 238932.28447203228
 Routes Of the Solution: 8
 
 ROUTE 0:
@@ -36,20 +36,20 @@ Vertex Sequence:
 0 - 9 - 24 - 17 - 0
 
 ROUTE 3:
-Cost: 40489.18521490192
-Delivery Load: 1550
+Cost: 29967.12181543589
+Delivery Load: 1137
 Pick-Up Load: 0
-Customers in Route: 4
+Customers in Route: 3
 Vertex Sequence: 
-0 - 10 - 12 - 25 - 13 - 0
+0 - 11 - 12 - 10 - 0
 
 ROUTE 4:
-Cost: 10758.42813797629
-Delivery Load: 444
+Cost: 33541.68746401948
+Delivery Load: 857
 Pick-Up Load: 0
-Customers in Route: 1
+Customers in Route: 2
 Vertex Sequence: 
-0 - 11 - 0
+0 - 13 - 25 - 0
 
 ROUTE 5:
 Cost: 26162.387826785205
