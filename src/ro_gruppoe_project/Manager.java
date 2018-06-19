@@ -995,8 +995,10 @@ public class Manager {
      *
      */
     public void algoritmoClarkeWrightParallelo() {
-        ArrayList<Route> usedRoutes = new ArrayList<>();    // lista dell già utilizzati
-        ArrayList<Route> usedRoutesTurn = new ArrayList<>();   // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+        // lista delle routes utilizzate almeno una volta
+        ArrayList<Route> usedRoutes = new ArrayList<>();        
+        // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+        ArrayList<Route> usedRoutesTurn = new ArrayList<>();    
         // contatore dei savings utilizzati
         int counterSavings = 0;
         // routes dei savings correnti
@@ -1012,21 +1014,13 @@ public class Manager {
         // se le routes sono state utilizzate nel turno corrente
         boolean condI = false;
         boolean condJ = false;
-        //
+        // se le routes sono state utilizzate almeno una volta
         boolean condUsedI = false;
         boolean condUsedJ = false;
         // indice
         int k = 0;
 
         while ((k < sortedSavingsLinehaul.size()) && (routesLinehaul.size() > depot.numberOfVehicles())) {
-            //for (SavingOccurrence saving : sortedSavingsLinehaul) {
-            // uscita forzata dal ciclo for nel caso in cui è stato raggiunto il numero di routes richiesti
-//            if (routesLinehaul.size() == depot.numberOfVehicles()) {
-//                break;
-//            }
-
-            int i=sortedSavingsLinehaul.get(k).i;
-            int j=sortedSavingsLinehaul.get(k).j;
             // routes dei savings correnti
             routeI = findRoute(sortedSavingsLinehaul.get(k).i, true);
             routeJ = findRoute(sortedSavingsLinehaul.get(k).j, true);
@@ -1040,94 +1034,43 @@ public class Manager {
             // se le routes sono state utilizzate nel turno corrente
             condI = usedRoutesTurn.contains(routesLinehaul.get(routeI));
             condJ = usedRoutesTurn.contains(routesLinehaul.get(routeJ));
-            //
+            // se le routes sono state utilizzate almeno una volta
             condUsedI = usedRoutes.contains(routesLinehaul.get(routeI));
             condUsedJ = usedRoutes.contains(routesLinehaul.get(routeJ));
 
-            // stampe di controllo
-//                System.out.println("\n\nrouteI - first: " + routesLinehaul.get(routeI).firstCustomer() + " - saving.i: " + saving.i);
-//                System.out.println("routeJ - first: " + routesLinehaul.get(routeJ).firstCustomer() + " - saving.j: " + saving.j);
-//                System.out.println("routeI - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.i: " + saving.i);
-//                System.out.println("routeJ - last: " + routesLinehaul.get(routeI).lastCustomer() + " - saving.j: " + saving.j);
-            // stampe di controllo
-            
-            // se customer i o j sono già stati usati nel turno corrente (non si può usare tale route) e se non viene superata la capacità massima
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && ( !condUsedI || !condUsedJ)) {
-                // salta saving corrente se saving corrente i o j è stato usato nel turno corrente o se viene superata la capacità massima
-
-                // stampa corrente
-                System.out.println("\ncurrent saving: " + (sortedSavingsLinehaul.get(k).i + 1) + " - " + (sortedSavingsLinehaul.get(k).j + 1));
-                System.out.println("routesLinehaul size: " + routesLinehaul.size());
-//                System.out.println(usedRoutesTurn.contains(saving.i));
-//                System.out.println(usedRoutesTurn.contains(saving.j));
-
-                // iFirst - jLast
+            // salta saving corrente se non sono rispettate le condizioni
+            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ)) {
+                // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
 
-                    //unisci i ad j ed elimina poi i
                     routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
-
-                    //k=0;
                     usedRoutes.add(routesLinehaul.get(routeJ));
                     usedRoutesTurn.add(routesLinehaul.get(routeJ));
-
                     routesLinehaul.remove(routeI);
-
-                } // iLast - jFirst
+                } // iLast - jFirst: unisce j ad i ed elimina poi j
                 else if (iLast && jFirst) {
                     counterSavings++;
 
-                    //unisci j ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-
-                    //k=0;
                     usedRoutes.add(routesLinehaul.get(routeI));
                     usedRoutesTurn.add(routesLinehaul.get(routeI));
-
                     routesLinehaul.remove(routeJ);
-
-                } // iFirst - jFirst OR iLast - jLast
+                } // iFirst - jFirst OR iLast - jLast: effettua il reverse di j e unisce j invertito ad i ed elimina poi j
                 else if ((iFirst && jFirst) || (iLast && jLast)) {
                     counterSavings++;
 
-                    // si effettua il reverse di una delle due route
                     routesLinehaul.get(routeJ).reverse();
-                    //unisci j invertito ad i ed elimina poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-
-                    //k=0;
                     usedRoutes.add(routesLinehaul.get(routeI));
                     usedRoutesTurn.add(routesLinehaul.get(routeI));
-
                     routesLinehaul.remove(routeJ);
                 }
             }
-            // se nessuno dei due customer è stato utilizzato
-            // FORSE NON NECESSARIO
-//                else if (!usedRoutesTurn.contains(saving.i) && !usedRoutesTurn.contains(saving.j)) {
-//
-//                    // merge i e j
-//                    // rimuovi j
-//                    usedRoutesTurn.add(saving.i);
-//                    usedRoutesTurn.add(saving.j);
-//                    counterSavings++;
-//                }
-
-            // se i savings correnti i o j sono primo o ultimo nella route corrente
-//                iFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).i;
-//                jFirst = route.firstCustomer() == sortedSavingsLinehaul.get(k).j;
-//                iLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).i;
-//                jLast = route.lastCustomer() == sortedSavingsLinehaul.get(k).j;
-// se customer i del saving corrente non è stato usato
-// se una route è stata utilizzata nel turno corrente
-//                if ((!usedRoutesTurn.contains(saving.i)) && (!usedRoutes.contains(saving.i))) {
-//                    ;
-//                }
             k++;
-            System.out.println("test");
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto, allora azzera l'ArrayList
+            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto: 
+            // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
                 counterSavings = 0;
