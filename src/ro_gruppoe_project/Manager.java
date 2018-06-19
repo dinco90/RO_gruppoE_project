@@ -194,6 +194,13 @@ public class Manager {
             e.printStackTrace();
         }
     }
+    /**
+     * Restituisce il nome del file in input
+     * @return Nome del file
+     */
+    public String getNameFile(){
+        return nameFile;
+    }
 
     /**
      * Calcola la distanza tra due customers
