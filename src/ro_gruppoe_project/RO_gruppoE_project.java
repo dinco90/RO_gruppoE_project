@@ -55,7 +55,7 @@ public class RO_gruppoE_project {
         System.out.println("\nFile 'Solution Parallel A1.txt' written.\n\n");
         
         //copia delle routes prima di chiamare l'algoritmo parallelo
-        //manager.copyRoutes();
+        manager.copyRoutes();
 
         // PARALLEL ERROR
         manager.algoritmoClarkeWrightParalleloERROR();
