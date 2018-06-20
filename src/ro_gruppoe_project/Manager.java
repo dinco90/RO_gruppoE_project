@@ -1107,8 +1107,8 @@ public class Manager {
         
         while ((k < sortedSavingsBackhaul.size()) && (routesBackhaul.size() > depot.numberOfVehicles())) {
             // routes dei savings correnti
-            routeI = findRoute(sortedSavingsBackhaul.get(k).i, true);
-            routeJ = findRoute(sortedSavingsBackhaul.get(k).j, true);
+            routeI = findRoute(sortedSavingsBackhaul.get(k).i, false);
+            routeJ = findRoute(sortedSavingsBackhaul.get(k).j, false);
             // se i savings correnti i o j sono primo o ultimo nella route corrente            
             iFirst = routesBackhaul.get(routeI).firstCustomer() == sortedSavingsBackhaul.get(k).i;
             jFirst = routesBackhaul.get(routeJ).firstCustomer() == sortedSavingsBackhaul.get(k).j;
