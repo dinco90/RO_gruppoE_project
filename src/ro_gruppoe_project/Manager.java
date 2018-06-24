@@ -27,6 +27,10 @@ public class Manager {
     private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   // insieme delle routes Backhaul
     private ArrayList<Route> routes = new ArrayList<Route>();    // copia delle routes
 
+    long startTime;
+    long endTime;
+    long executionTime;
+
     /**
      * Selezione del file in input
      */
@@ -145,7 +149,8 @@ public class Manager {
             FileWriter writer = new FileWriter("output/Solution " + algorithm + " " + nameFile);
             // stampa titolo
             writer.write("Text File with Solution Of Problem: " + nameFile + "\r\n");
-            writer.write("Algorithm: " + algorithm + "\r\n\r\n");
+            writer.write("Algorithm: " + algorithm + "\r\n");
+            writer.write("Execution time: " + executionTime + " ms.\r\n\r\n");
             // stampa dettagli problema
             writer.write("\r\nPROBLEM DETAILS:\r\n");
             writer.write("Customers: " + customers.length + "\r\n");
@@ -512,7 +517,10 @@ public class Manager {
     /**
      * Esegue l'algoritmo Clarke & Wright in modo sequenziale
      */
-    public void algoritmoClarkeWrightSequenziale() {
+    public long algoritmoClarkeWrightSequenziale() {
+        // startTime time
+        startTime = System.currentTimeMillis();
+        
         ArrayList<Integer> usedCustomers = new ArrayList<>();    //lista di customer inseriti nelle route
         int currentFirst = 0; //primo customer della route che si sta popolando
         int currentLast = 0;  //ultimo customer della route che si sta popolando
@@ -751,16 +759,22 @@ public class Manager {
 
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
-
         unionRoutesSequenziale();
-
+        
+        // endTime time
+        endTime = System.currentTimeMillis();
+        executionTime = endTime - startTime;
+        return executionTime;
     }
 
     /**
      * Esegue l'algoritmo Clarke & Wright in modo parallelo
      *
      */
-    public void algoritmoClarkeWrightParallelo() {
+    public long algoritmoClarkeWrightParallelo() {
+        // startTime time
+        startTime = System.currentTimeMillis();
+        
         // lista delle routes utilizzate almeno una volta
         ArrayList<Route> usedRoutes = new ArrayList<>();
         // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
@@ -931,8 +945,12 @@ public class Manager {
 
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
-
         unionRoutesSequenziale();
+        
+        // endTime time
+        endTime = System.currentTimeMillis();
+        executionTime = endTime - startTime;
+        return executionTime;
     }
 
     /**

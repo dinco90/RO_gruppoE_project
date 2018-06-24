@@ -16,10 +16,8 @@ public class RO_gruppoE_project {
     public static void main(String[] args) {
 
         Manager manager = new Manager();
-        long start;
-        long end;
-        long timeSequential;
-        long timeParallel;
+        
+        long executionTime = 0;
 
         // selezione e lettura del file
         manager.selectFile();
@@ -35,19 +33,14 @@ public class RO_gruppoE_project {
         // inizializzazione routes
         manager.initializeRoutesLinehaul();
         manager.initializeRoutesBackhaul();
-        // start time
-        start = System.currentTimeMillis();
         // chiamata alla funzione sequenziale
-        manager.algoritmoClarkeWrightSequenziale();
-        // end time
-        end = System.currentTimeMillis();
-        timeSequential = end - start;
+        executionTime = manager.algoritmoClarkeWrightSequenziale();
         //calcolo dei costi per l'algoritmo sequenziale
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Sequential");
         System.out.println("\nFile 'Solution Sequential " + manager.getNameFile() + "' written.");
-        System.out.println("Algoritmo sequenziale eseguito in " + timeSequential + " ms.");
+        System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
         //copia delle routes prima di chiamare l'algoritmo parallelo
         manager.copyRoutes();
@@ -56,19 +49,14 @@ public class RO_gruppoE_project {
         // inizializzazione routes
         manager.initializeRoutesLinehaul();
         manager.initializeRoutesBackhaul();
-        // start time
-        start = System.currentTimeMillis();
         // chiamata alla funzione parallelo
-        manager.algoritmoClarkeWrightParallelo();
-        // end time
-        end = System.currentTimeMillis();
-        timeParallel = end - start;
+        executionTime = manager.algoritmoClarkeWrightParallelo();
         //calcolo dei costi per l'algoritmo parallelo
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Parallel");
         System.out.println("\nFile 'Solution Parallel " + manager.getNameFile() + "' written.");
-        System.out.println("Algoritmo sequenziale eseguito in " + timeParallel + " ms.");
+        System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
         //copia delle routes prima di chiamare l'algoritmo parallelo
         manager.copyRoutes();

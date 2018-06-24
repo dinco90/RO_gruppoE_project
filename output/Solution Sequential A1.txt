@@ -1,5 +1,6 @@
 Text File with Solution Of Problem: A1.txt
 Algorithm: Sequential
+Execution time: 6 ms.
 
 
 PROBLEM DETAILS:
