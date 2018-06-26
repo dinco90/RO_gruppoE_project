@@ -1,0 +1,54 @@
+Text File with Solution Of Problem: B3.txt
+Algorithm: Parallel
+Execution time: 2 ms.
+
+
+PROBLEM DETAILS:
+Customers: 30
+Max Load: 4000
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 249008.99436122942
+Routes Of the Solution: 5
+
+ROUTE 0:
+Cost: 59700.675651344674
+Delivery Load: 1990
+Pick-Up Load: 2350
+Customers in Route: 8
+Vertex Sequence: 
+0 - 12 - 15 - 19 - 14 - 5 - 7 - 6 - 1 - 0
+
+ROUTE 1:
+Cost: 36786.27016462163
+Delivery Load: 2044
+Pick-Up Load: 0
+Customers in Route: 4
+Vertex Sequence: 
+0 - 13 - 28 - 24 - 21 - 0
+
+ROUTE 2:
+Cost: 43124.360221185845
+Delivery Load: 1825
+Pick-Up Load: 0
+Customers in Route: 4
+Vertex Sequence: 
+0 - 17 - 22 - 23 - 18 - 0
+
+ROUTE 3:
+Cost: 61149.60204070421
+Delivery Load: 1385
+Pick-Up Load: 2087
+Customers in Route: 6
+Vertex Sequence: 
+0 - 25 - 11 - 16 - 8 - 9 - 2 - 0
+
+ROUTE 4:
+Cost: 48248.08628337306
+Delivery Load: 2596
+Pick-Up Load: 791
+Customers in Route: 8
+Vertex Sequence: 
+0 - 26 - 27 - 29 - 30 - 20 - 10 - 4 - 3 - 0
+

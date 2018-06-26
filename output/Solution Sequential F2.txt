@@ -1,0 +1,70 @@
+Text File with Solution Of Problem: F2.txt
+Algorithm: Sequential
+Execution time: 10 ms.
+
+
+PROBLEM DETAILS:
+Customers: 60
+Max Load: 3000
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 381509.16766682075
+Routes Of the Solution: 7
+
+ROUTE 0:
+Cost: 40013.43645244473
+Delivery Load: 2567
+Pick-Up Load: 2823
+Customers in Route: 9
+Vertex Sequence: 
+0 - 43 - 58 - 33 - 31 - 22 - 17 - 19 - 23 - 10 - 0
+
+ROUTE 1:
+Cost: 35908.29215307466
+Delivery Load: 674
+Pick-Up Load: 2886
+Customers in Route: 6
+Vertex Sequence: 
+0 - 37 - 3 - 18 - 21 - 29 - 2 - 0
+
+ROUTE 2:
+Cost: 110004.89121194105
+Delivery Load: 2994
+Pick-Up Load: 2912
+Customers in Route: 14
+Vertex Sequence: 
+0 - 36 - 42 - 48 - 51 - 53 - 45 - 38 - 27 - 24 - 30 - 4 - 12 - 25 - 15 - 0
+
+ROUTE 3:
+Cost: 62344.271606882685
+Delivery Load: 2896
+Pick-Up Load: 2706
+Customers in Route: 10
+Vertex Sequence: 
+0 - 56 - 40 - 52 - 39 - 35 - 44 - 16 - 26 - 11 - 28 - 0
+
+ROUTE 4:
+Cost: 57885.379873254875
+Delivery Load: 475
+Pick-Up Load: 2982
+Customers in Route: 7
+Vertex Sequence: 
+0 - 46 - 9 - 13 - 5 - 8 - 7 - 14 - 0
+
+ROUTE 5:
+Cost: 20676.31727235204
+Delivery Load: 2859
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence: 
+0 - 55 - 41 - 57 - 34 - 47 - 0
+
+ROUTE 6:
+Cost: 54676.57909687066
+Delivery Load: 2945
+Pick-Up Load: 2101
+Customers in Route: 9
+Vertex Sequence: 
+0 - 54 - 32 - 50 - 49 - 60 - 59 - 6 - 1 - 20 - 0
+

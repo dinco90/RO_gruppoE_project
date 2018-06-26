@@ -1,0 +1,62 @@
+Text File with Solution Of Problem: I4.txt
+Algorithm: Sequential
+Execution time: 16 ms.
+
+
+PROBLEM DETAILS:
+Customers: 90
+Max Load: 5700
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 400584.04355159804
+Routes Of the Solution: 6
+
+ROUTE 0:
+Cost: 91548.24292578825
+Delivery Load: 5572
+Pick-Up Load: 5505
+Customers in Route: 21
+Vertex Sequence: 
+0 - 53 - 77 - 52 - 61 - 74 - 58 - 69 - 66 - 65 - 68 - 60 - 47 - 8 - 37 - 43 - 13 - 44 - 12 - 22 - 40 - 16 - 0
+
+ROUTE 1:
+Cost: 103453.61873597195
+Delivery Load: 5658
+Pick-Up Load: 5526
+Customers in Route: 22
+Vertex Sequence: 
+0 - 79 - 88 - 64 - 75 - 84 - 67 - 51 - 87 - 49 - 71 - 85 - 55 - 31 - 25 - 41 - 39 - 6 - 19 - 34 - 1 - 3 - 35 - 0
+
+ROUTE 2:
+Cost: 116426.70946848256
+Delivery Load: 5646
+Pick-Up Load: 5683
+Customers in Route: 23
+Vertex Sequence: 
+0 - 83 - 89 - 72 - 56 - 62 - 70 - 90 - 76 - 86 - 73 - 59 - 63 - 57 - 33 - 9 - 7 - 30 - 36 - 20 - 2 - 29 - 15 - 10 - 0
+
+ROUTE 3:
+Cost: 32866.7204994168
+Delivery Load: 4551
+Pick-Up Load: 0
+Customers in Route: 8
+Vertex Sequence: 
+0 - 81 - 46 - 48 - 80 - 82 - 50 - 54 - 78 - 0
+
+ROUTE 4:
+Cost: 20611.23601088478
+Delivery Load: 0
+Pick-Up Load: 3293
+Customers in Route: 6
+Vertex Sequence: 
+0 - 11 - 14 - 4 - 45 - 18 - 27 - 0
+
+ROUTE 5:
+Cost: 35677.515911053706
+Delivery Load: 0
+Pick-Up Load: 5609
+Customers in Route: 10
+Vertex Sequence: 
+0 - 17 - 24 - 32 - 21 - 5 - 26 - 42 - 38 - 28 - 23 - 0
+

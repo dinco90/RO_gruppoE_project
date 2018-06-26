@@ -1,0 +1,46 @@
+Text File with Solution Of Problem: A4.txt
+Algorithm: Parallel
+Execution time: 3 ms.
+
+
+PROBLEM DETAILS:
+Customers: 25
+Max Load: 4050
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 181159.87706610272
+Routes Of the Solution: 4
+
+ROUTE 0:
+Cost: 44102.271785805526
+Delivery Load: 1736
+Pick-Up Load: 752
+Customers in Route: 6
+Vertex Sequence: 
+0 - 11 - 25 - 13 - 8 - 5 - 2 - 0
+
+ROUTE 1:
+Cost: 60848.650488125524
+Delivery Load: 3332
+Pick-Up Load: 1239
+Customers in Route: 8
+Vertex Sequence: 
+0 - 15 - 12 - 10 - 14 - 21 - 16 - 4 - 3 - 0
+
+ROUTE 2:
+Cost: 35817.09597289622
+Delivery Load: 2684
+Pick-Up Load: 549
+Customers in Route: 6
+Vertex Sequence: 
+0 - 17 - 9 - 24 - 20 - 22 - 1 - 0
+
+ROUTE 3:
+Cost: 40391.85881927546
+Delivery Load: 2297
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence: 
+0 - 23 - 19 - 6 - 7 - 18 - 0
+

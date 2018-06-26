@@ -1,0 +1,46 @@
+Text File with Solution Of Problem: E3.txt
+Algorithm: Sequential
+Execution time: 4 ms.
+
+
+PROBLEM DETAILS:
+Customers: 45
+Max Load: 5225
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 247004.77160673583
+Routes Of the Solution: 4
+
+ROUTE 0:
+Cost: 120034.35187500168
+Delivery Load: 5170
+Pick-Up Load: 5069
+Customers in Route: 20
+Vertex Sequence: 
+0 - 17 - 38 - 18 - 26 - 20 - 29 - 42 - 40 - 16 - 13 - 2 - 8 - 10 - 11 - 5 - 15 - 1 - 4 - 12 - 6 - 0
+
+ROUTE 1:
+Cost: 96079.95606700428
+Delivery Load: 5164
+Pick-Up Load: 1971
+Customers in Route: 16
+Vertex Sequence: 
+0 - 28 - 31 - 45 - 41 - 25 - 35 - 30 - 39 - 24 - 37 - 21 - 23 - 14 - 9 - 3 - 7 - 0
+
+ROUTE 2:
+Cost: 29494.523837946475
+Delivery Load: 4537
+Pick-Up Load: 0
+Customers in Route: 8
+Vertex Sequence: 
+0 - 34 - 33 - 43 - 22 - 32 - 27 - 36 - 19 - 0
+
+ROUTE 3:
+Cost: 1395.9398267833753
+Delivery Load: 783
+Pick-Up Load: 0
+Customers in Route: 1
+Vertex Sequence: 
+0 - 44 - 0
+

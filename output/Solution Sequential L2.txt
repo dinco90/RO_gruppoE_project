@@ -1,0 +1,78 @@
+Text File with Solution Of Problem: L2.txt
+Algorithm: Sequential
+Execution time: 53 ms.
+
+
+PROBLEM DETAILS:
+Customers: 150
+Max Load: 5000
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 557525.085375293
+Routes Of the Solution: 8
+
+ROUTE 0:
+Cost: 92782.4017930763
+Delivery Load: 4914
+Pick-Up Load: 4967
+Customers in Route: 20
+Vertex Sequence: 
+0 - 77 - 130 - 121 - 107 - 113 - 83 - 117 - 81 - 97 - 22 - 17 - 1 - 10 - 60 - 2 - 68 - 65 - 62 - 48 - 69 - 0
+
+ROUTE 1:
+Cost: 77477.22191159044
+Delivery Load: 4990
+Pick-Up Load: 4867
+Customers in Route: 23
+Vertex Sequence: 
+0 - 84 - 118 - 149 - 108 - 138 - 111 - 101 - 125 - 115 - 85 - 148 - 114 - 5 - 37 - 41 - 36 - 74 - 53 - 32 - 35 - 34 - 15 - 4 - 0
+
+ROUTE 2:
+Cost: 75500.39139331553
+Delivery Load: 4886
+Pick-Up Load: 4996
+Customers in Route: 19
+Vertex Sequence: 
+0 - 105 - 140 - 90 - 98 - 136 - 80 - 112 - 145 - 55 - 30 - 75 - 40 - 28 - 73 - 14 - 46 - 47 - 21 - 38 - 0
+
+ROUTE 3:
+Cost: 17112.91097732412
+Delivery Load: 616
+Pick-Up Load: 1498
+Customers in Route: 5
+Vertex Sequence: 
+0 - 129 - 122 - 67 - 72 - 71 - 0
+
+ROUTE 4:
+Cost: 65671.77030443706
+Delivery Load: 4957
+Pick-Up Load: 4810
+Customers in Route: 22
+Vertex Sequence: 
+0 - 94 - 95 - 96 - 124 - 99 - 137 - 88 - 104 - 150 - 133 - 91 - 82 - 123 - 8 - 42 - 33 - 12 - 54 - 70 - 43 - 51 - 24 - 0
+
+ROUTE 5:
+Cost: 76832.93880358846
+Delivery Load: 4939
+Pick-Up Load: 4997
+Customers in Route: 21
+Vertex Sequence: 
+0 - 131 - 126 - 92 - 100 - 86 - 102 - 79 - 146 - 119 - 59 - 19 - 57 - 49 - 31 - 66 - 7 - 13 - 63 - 18 - 52 - 44 - 0
+
+ROUTE 6:
+Cost: 56943.87246575376
+Delivery Load: 4809
+Pick-Up Load: 4623
+Customers in Route: 18
+Vertex Sequence: 
+0 - 139 - 76 - 132 - 78 - 110 - 141 - 127 - 142 - 109 - 3 - 23 - 58 - 29 - 27 - 25 - 6 - 16 - 26 - 0
+
+ROUTE 7:
+Cost: 95203.57772620743
+Delivery Load: 4982
+Pick-Up Load: 4943
+Customers in Route: 22
+Vertex Sequence: 
+0 - 147 - 128 - 120 - 134 - 135 - 106 - 116 - 103 - 89 - 93 - 87 - 144 - 143 - 45 - 61 - 64 - 11 - 56 - 9 - 20 - 39 - 50 - 0
+

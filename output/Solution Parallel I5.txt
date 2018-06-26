@@ -1,0 +1,102 @@
+Text File with Solution Of Problem: I5.txt
+Algorithm: Parallel
+Execution time: 11 ms.
+
+
+PROBLEM DETAILS:
+Customers: 90
+Max Load: 5700
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 490497.9105808022
+Routes Of the Solution: 11
+
+ROUTE 0:
+Cost: 37916.458371341694
+Delivery Load: 2099
+Pick-Up Load: 2418
+Customers in Route: 8
+Vertex Sequence: 
+0 - 46 - 86 - 76 - 90 - 36 - 20 - 34 - 45 - 0
+
+ROUTE 1:
+Cost: 28592.096283174207
+Delivery Load: 2105
+Pick-Up Load: 1474
+Customers in Route: 7
+Vertex Sequence: 
+0 - 54 - 88 - 65 - 66 - 47 - 28 - 23 - 0
+
+ROUTE 2:
+Cost: 27110.827098703634
+Delivery Load: 955
+Pick-Up Load: 0
+Customers in Route: 2
+Vertex Sequence: 
+0 - 61 - 52 - 0
+
+ROUTE 3:
+Cost: 45745.776183104535
+Delivery Load: 2298
+Pick-Up Load: 3077
+Customers in Route: 10
+Vertex Sequence: 
+0 - 79 - 50 - 60 - 68 - 64 - 38 - 42 - 26 - 8 - 24 - 0
+
+ROUTE 4:
+Cost: 57327.981976478135
+Delivery Load: 2564
+Pick-Up Load: 3714
+Customers in Route: 11
+Vertex Sequence: 
+0 - 67 - 53 - 83 - 77 - 84 - 17 - 31 - 40 - 22 - 43 - 37 - 0
+
+ROUTE 5:
+Cost: 40729.54262646765
+Delivery Load: 2579
+Pick-Up Load: 920
+Customers in Route: 8
+Vertex Sequence: 
+0 - 78 - 82 - 57 - 63 - 59 - 73 - 30 - 1 - 0
+
+ROUTE 6:
+Cost: 34838.969714442486
+Delivery Load: 1680
+Pick-Up Load: 1225
+Customers in Route: 7
+Vertex Sequence: 
+0 - 74 - 58 - 69 - 75 - 21 - 5 - 32 - 0
+
+ROUTE 7:
+Cost: 54089.47702775916
+Delivery Load: 1182
+Pick-Up Load: 3637
+Customers in Route: 8
+Vertex Sequence: 
+0 - 48 - 80 - 18 - 35 - 3 - 33 - 9 - 7 - 0
+
+ROUTE 8:
+Cost: 55008.530157630186
+Delivery Load: 2311
+Pick-Up Load: 2723
+Customers in Route: 9
+Vertex Sequence: 
+0 - 81 - 70 - 62 - 71 - 11 - 6 - 19 - 29 - 2 - 0
+
+ROUTE 9:
+Cost: 65834.53269563764
+Delivery Load: 2343
+Pick-Up Load: 3162
+Customers in Route: 11
+Vertex Sequence: 
+0 - 85 - 49 - 72 - 56 - 55 - 14 - 41 - 15 - 10 - 39 - 4 - 0
+
+ROUTE 10:
+Cost: 43303.718446062834
+Delivery Load: 1311
+Pick-Up Load: 3266
+Customers in Route: 9
+Vertex Sequence: 
+0 - 51 - 87 - 89 - 25 - 12 - 44 - 13 - 16 - 27 - 0
+

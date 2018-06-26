@@ -1,0 +1,62 @@
+Text File with Solution Of Problem: C2.txt
+Algorithm: Parallel
+Execution time: 4 ms.
+
+
+PROBLEM DETAILS:
+Customers: 40
+Max Load: 2600
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 281693.1023823255
+Routes Of the Solution: 6
+
+ROUTE 0:
+Cost: 53569.855049684455
+Delivery Load: 1720
+Pick-Up Load: 1662
+Customers in Route: 7
+Vertex Sequence: 
+0 - 21 - 34 - 25 - 32 - 4 - 17 - 5 - 0
+
+ROUTE 1:
+Cost: 64830.053240617905
+Delivery Load: 1996
+Pick-Up Load: 1593
+Customers in Route: 8
+Vertex Sequence: 
+0 - 31 - 40 - 23 - 22 - 7 - 18 - 13 - 12 - 0
+
+ROUTE 2:
+Cost: 46964.067041316375
+Delivery Load: 1906
+Pick-Up Load: 1290
+Customers in Route: 7
+Vertex Sequence: 
+0 - 26 - 29 - 36 - 24 - 8 - 3 - 19 - 0
+
+ROUTE 3:
+Cost: 47211.903086324746
+Delivery Load: 2042
+Pick-Up Load: 2334
+Customers in Route: 7
+Vertex Sequence: 
+0 - 27 - 37 - 33 - 1 - 11 - 16 - 14 - 0
+
+ROUTE 4:
+Cost: 43671.648152417016
+Delivery Load: 1194
+Pick-Up Load: 2290
+Customers in Route: 6
+Vertex Sequence: 
+0 - 30 - 35 - 2 - 20 - 9 - 6 - 0
+
+ROUTE 5:
+Cost: 25445.575811965035
+Delivery Load: 1135
+Pick-Up Load: 1137
+Customers in Route: 5
+Vertex Sequence: 
+0 - 28 - 38 - 39 - 15 - 10 - 0
+

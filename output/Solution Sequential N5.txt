@@ -1,0 +1,70 @@
+Text File with Solution Of Problem: N5.txt
+Algorithm: Sequential
+Execution time: 77 ms.
+
+
+PROBLEM DETAILS:
+Customers: 150
+Max Load: 8500
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 504367.3488457423
+Routes Of the Solution: 7
+
+ROUTE 0:
+Cost: 104130.59406201867
+Delivery Load: 8472
+Pick-Up Load: 5877
+Customers in Route: 30
+Vertex Sequence: 
+0 - 60 - 139 - 140 - 89 - 142 - 76 - 107 - 74 - 72 - 78 - 114 - 123 - 102 - 96 - 59 - 54 - 55 - 41 - 26 - 18 - 46 - 23 - 32 - 24 - 3 - 12 - 27 - 38 - 6 - 44 - 0
+
+ROUTE 1:
+Cost: 65588.90600893524
+Delivery Load: 8398
+Pick-Up Load: 0
+Customers in Route: 20
+Vertex Sequence: 
+0 - 63 - 79 - 58 - 146 - 99 - 147 - 150 - 64 - 144 - 117 - 149 - 113 - 120 - 97 - 93 - 130 - 98 - 75 - 67 - 66 - 0
+
+ROUTE 2:
+Cost: 23503.17049111231
+Delivery Load: 3836
+Pick-Up Load: 0
+Customers in Route: 6
+Vertex Sequence: 
+0 - 87 - 62 - 83 - 51 - 119 - 105 - 0
+
+ROUTE 3:
+Cost: 29663.656280405205
+Delivery Load: 8029
+Pick-Up Load: 0
+Customers in Route: 12
+Vertex Sequence: 
+0 - 104 - 84 - 124 - 132 - 125 - 141 - 52 - 80 - 111 - 135 - 81 - 57 - 0
+
+ROUTE 4:
+Cost: 50043.01582871925
+Delivery Load: 8393
+Pick-Up Load: 0
+Customers in Route: 15
+Vertex Sequence: 
+0 - 109 - 108 - 115 - 101 - 94 - 138 - 137 - 106 - 122 - 145 - 128 - 136 - 143 - 127 - 110 - 0
+
+ROUTE 5:
+Cost: 117336.73909580435
+Delivery Load: 8476
+Pick-Up Load: 8495
+Customers in Route: 34
+Vertex Sequence: 
+0 - 126 - 116 - 82 - 129 - 70 - 100 - 91 - 73 - 65 - 103 - 134 - 69 - 95 - 92 - 133 - 56 - 19 - 25 - 15 - 8 - 37 - 9 - 21 - 40 - 29 - 45 - 16 - 1 - 14 - 30 - 5 - 22 - 34 - 10 - 0
+
+ROUTE 6:
+Cost: 114101.26707874727
+Delivery Load: 8496
+Pick-Up Load: 8467
+Customers in Route: 33
+Vertex Sequence: 
+0 - 86 - 88 - 53 - 85 - 68 - 90 - 112 - 71 - 148 - 121 - 77 - 61 - 118 - 131 - 11 - 2 - 31 - 42 - 17 - 28 - 39 - 33 - 43 - 48 - 7 - 4 - 50 - 20 - 36 - 13 - 47 - 49 - 35 - 0
+

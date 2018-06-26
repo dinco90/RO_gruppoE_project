@@ -1,0 +1,38 @@
+Text File with Solution Of Problem: B3.txt
+Algorithm: Sequential
+Execution time: 2 ms.
+
+
+PROBLEM DETAILS:
+Customers: 30
+Max Load: 4000
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 224978.3973232536
+Routes Of the Solution: 3
+
+ROUTE 0:
+Cost: 49445.0697902805
+Delivery Load: 1995
+Pick-Up Load: 1628
+Customers in Route: 8
+Vertex Sequence: 
+0 - 12 - 26 - 27 - 16 - 21 - 3 - 8 - 1 - 0
+
+ROUTE 1:
+Cost: 38887.649786316804
+Delivery Load: 3968
+Pick-Up Load: 0
+Customers in Route: 7
+Vertex Sequence: 
+0 - 13 - 28 - 24 - 14 - 19 - 15 - 17 - 0
+
+ROUTE 2:
+Cost: 136645.6777466563
+Delivery Load: 3877
+Pick-Up Load: 3600
+Customers in Route: 15
+Vertex Sequence: 
+0 - 29 - 25 - 11 - 20 - 30 - 18 - 23 - 22 - 5 - 7 - 2 - 9 - 6 - 10 - 4 - 0
+

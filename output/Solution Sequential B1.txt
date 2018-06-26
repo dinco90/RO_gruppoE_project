@@ -1,0 +1,70 @@
+Text File with Solution Of Problem: B1.txt
+Algorithm: Sequential
+Execution time: 4 ms.
+
+
+PROBLEM DETAILS:
+Customers: 30
+Max Load: 1600
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 286104.164143732
+Routes Of the Solution: 7
+
+ROUTE 0:
+Cost: 16277.144924905177
+Delivery Load: 783
+Pick-Up Load: 413
+Customers in Route: 2
+Vertex Sequence: 
+0 - 13 - 3 - 0
+
+ROUTE 1:
+Cost: 29163.400936471822
+Delivery Load: 1561
+Pick-Up Load: 557
+Customers in Route: 3
+Vertex Sequence: 
+0 - 14 - 19 - 5 - 0
+
+ROUTE 2:
+Cost: 35018.42975534121
+Delivery Load: 1321
+Pick-Up Load: 513
+Customers in Route: 4
+Vertex Sequence: 
+0 - 28 - 24 - 15 - 1 - 0
+
+ROUTE 3:
+Cost: 28725.793378770628
+Delivery Load: 1538
+Pick-Up Load: 702
+Customers in Route: 4
+Vertex Sequence: 
+0 - 17 - 26 - 27 - 8 - 0
+
+ROUTE 4:
+Cost: 61356.71834677773
+Delivery Load: 1522
+Pick-Up Load: 1414
+Customers in Route: 6
+Vertex Sequence: 
+0 - 22 - 23 - 18 - 2 - 9 - 10 - 0
+
+ROUTE 5:
+Cost: 48379.67567683665
+Delivery Load: 1549
+Pick-Up Load: 349
+Customers in Route: 5
+Vertex Sequence: 
+0 - 12 - 25 - 30 - 20 - 4 - 0
+
+ROUTE 6:
+Cost: 67183.00112462876
+Delivery Load: 1566
+Pick-Up Load: 1280
+Customers in Route: 6
+Vertex Sequence: 
+0 - 21 - 16 - 11 - 29 - 6 - 7 - 0
+

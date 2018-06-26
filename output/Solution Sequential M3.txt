@@ -1,0 +1,86 @@
+Text File with Solution Of Problem: M3.txt
+Algorithm: Sequential
+Execution time: 69 ms.
+
+
+PROBLEM DETAILS:
+Customers: 125
+Max Load: 6200
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 540127.1991798211
+Routes Of the Solution: 9
+
+ROUTE 0:
+Cost: 42110.827093327505
+Delivery Load: 6058
+Pick-Up Load: 0
+Customers in Route: 10
+Vertex Sequence: 
+0 - 35 - 81 - 89 - 39 - 119 - 95 - 26 - 83 - 85 - 27 - 0
+
+ROUTE 1:
+Cost: 33017.45391157053
+Delivery Load: 6200
+Pick-Up Load: 0
+Customers in Route: 10
+Vertex Sequence: 
+0 - 40 - 87 - 62 - 45 - 67 - 117 - 30 - 86 - 110 - 120 - 0
+
+ROUTE 2:
+Cost: 10526.823271745918
+Delivery Load: 1034
+Pick-Up Load: 0
+Customers in Route: 2
+Vertex Sequence: 
+0 - 66 - 101 - 0
+
+ROUTE 3:
+Cost: 121437.1143236361
+Delivery Load: 6189
+Pick-Up Load: 5827
+Customers in Route: 26
+Vertex Sequence: 
+0 - 82 - 111 - 112 - 103 - 46 - 37 - 42 - 79 - 56 - 32 - 65 - 36 - 52 - 91 - 11 - 21 - 13 - 3 - 24 - 22 - 5 - 6 - 12 - 4 - 7 - 17 - 0
+
+ROUTE 4:
+Cost: 130562.71223334367
+Delivery Load: 6166
+Pick-Up Load: 6161
+Customers in Route: 25
+Vertex Sequence: 
+0 - 96 - 108 - 54 - 77 - 57 - 47 - 123 - 58 - 29 - 105 - 41 - 72 - 50 - 10 - 20 - 9 - 16 - 1 - 23 - 14 - 2 - 19 - 25 - 18 - 15 - 0
+
+ROUTE 5:
+Cost: 47867.18595446145
+Delivery Load: 6173
+Pick-Up Load: 0
+Customers in Route: 12
+Vertex Sequence: 
+0 - 97 - 106 - 88 - 55 - 94 - 38 - 73 - 98 - 69 - 75 - 51 - 118 - 0
+
+ROUTE 6:
+Cost: 46029.85037992067
+Delivery Load: 6161
+Pick-Up Load: 0
+Customers in Route: 15
+Vertex Sequence: 
+0 - 102 - 125 - 49 - 34 - 61 - 70 - 71 - 78 - 100 - 116 - 90 - 115 - 104 - 99 - 48 - 0
+
+ROUTE 7:
+Cost: 31905.67157758175
+Delivery Load: 6025
+Pick-Up Load: 442
+Customers in Route: 12
+Vertex Sequence: 
+0 - 76 - 84 - 63 - 59 - 107 - 28 - 60 - 109 - 92 - 74 - 122 - 8 - 0
+
+ROUTE 8:
+Cost: 76669.56043423343
+Delivery Load: 6198
+Pick-Up Load: 0
+Customers in Route: 13
+Vertex Sequence: 
+0 - 124 - 114 - 31 - 121 - 33 - 43 - 44 - 68 - 53 - 80 - 113 - 64 - 93 - 0
+

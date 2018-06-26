@@ -1,0 +1,62 @@
+Text File with Solution Of Problem: G4.txt
+Algorithm: Sequential
+Execution time: 10 ms.
+
+
+PROBLEM DETAILS:
+Customers: 57
+Max Load: 5300
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 325183.42848547176
+Routes Of the Solution: 6
+
+ROUTE 0:
+Cost: 31193.519419327673
+Delivery Load: 2906
+Pick-Up Load: 0
+Customers in Route: 6
+Vertex Sequence: 
+0 - 19 - 16 - 53 - 32 - 57 - 43 - 0
+
+ROUTE 1:
+Cost: 121932.5725830858
+Delivery Load: 5257
+Pick-Up Load: 5055
+Customers in Route: 21
+Vertex Sequence: 
+0 - 24 - 18 - 34 - 13 - 15 - 47 - 49 - 50 - 44 - 20 - 11 - 2 - 3 - 12 - 1 - 7 - 4 - 5 - 10 - 6 - 9 - 0
+
+ROUTE 2:
+Cost: 45991.619481863556
+Delivery Load: 5199
+Pick-Up Load: 0
+Customers in Route: 10
+Vertex Sequence: 
+0 - 33 - 38 - 22 - 23 - 39 - 42 - 14 - 29 - 37 - 46 - 0
+
+ROUTE 3:
+Cost: 60433.083324098334
+Delivery Load: 5279
+Pick-Up Load: 0
+Customers in Route: 9
+Vertex Sequence: 
+0 - 35 - 27 - 17 - 28 - 36 - 30 - 45 - 21 - 31 - 0
+
+ROUTE 4:
+Cost: 58951.04045391971
+Delivery Load: 5192
+Pick-Up Load: 0
+Customers in Route: 10
+Vertex Sequence: 
+0 - 48 - 40 - 26 - 51 - 55 - 52 - 25 - 41 - 56 - 54 - 0
+
+ROUTE 5:
+Cost: 6681.59322317664
+Delivery Load: 0
+Pick-Up Load: 548
+Customers in Route: 1
+Vertex Sequence: 
+0 - 8 - 0
+

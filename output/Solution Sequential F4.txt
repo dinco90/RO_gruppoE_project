@@ -1,0 +1,46 @@
+Text File with Solution Of Problem: F4.txt
+Algorithm: Sequential
+Execution time: 8 ms.
+
+
+PROBLEM DETAILS:
+Customers: 60
+Max Load: 5500
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 306207.60656209046
+Routes Of the Solution: 4
+
+ROUTE 0:
+Cost: 40517.71082415266
+Delivery Load: 4615
+Pick-Up Load: 299
+Customers in Route: 9
+Vertex Sequence: 
+0 - 47 - 34 - 57 - 41 - 55 - 37 - 46 - 31 - 9 - 0
+
+ROUTE 1:
+Cost: 92336.31717157485
+Delivery Load: 5400
+Pick-Up Load: 5379
+Customers in Route: 20
+Vertex Sequence: 
+0 - 56 - 40 - 36 - 52 - 39 - 35 - 44 - 54 - 43 - 58 - 33 - 11 - 16 - 26 - 22 - 17 - 28 - 10 - 2 - 1 - 0
+
+ROUTE 2:
+Cost: 111122.91935836215
+Delivery Load: 5395
+Pick-Up Load: 5366
+Customers in Route: 21
+Vertex Sequence: 
+0 - 59 - 60 - 32 - 50 - 49 - 38 - 45 - 53 - 51 - 48 - 42 - 18 - 21 - 24 - 30 - 4 - 12 - 25 - 15 - 19 - 23 - 0
+
+ROUTE 3:
+Cost: 62230.65920800084
+Delivery Load: 0
+Pick-Up Load: 5366
+Customers in Route: 10
+Vertex Sequence: 
+0 - 6 - 13 - 5 - 8 - 27 - 7 - 14 - 3 - 20 - 29 - 0
+

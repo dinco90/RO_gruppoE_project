@@ -1,0 +1,110 @@
+Text File with Solution Of Problem: D2.txt
+Algorithm: Parallel
+Execution time: 3 ms.
+
+
+PROBLEM DETAILS:
+Customers: 38
+Max Load: 1700
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 368927.20280161256
+Routes Of the Solution: 12
+
+ROUTE 0:
+Cost: 29389.137402530854
+Delivery Load: 1649
+Pick-Up Load: 527
+Customers in Route: 4
+Vertex Sequence: 
+0 - 11 - 9 - 16 - 2 - 0
+
+ROUTE 1:
+Cost: 26147.31549278381
+Delivery Load: 1295
+Pick-Up Load: 362
+Customers in Route: 3
+Vertex Sequence: 
+0 - 15 - 18 - 7 - 0
+
+ROUTE 2:
+Cost: 28901.358391185408
+Delivery Load: 1448
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 21 - 28 - 10 - 0
+
+ROUTE 3:
+Cost: 40908.76159861275
+Delivery Load: 1242
+Pick-Up Load: 428
+Customers in Route: 3
+Vertex Sequence: 
+0 - 24 - 13 - 5 - 0
+
+ROUTE 4:
+Cost: 40521.474689133975
+Delivery Load: 1272
+Pick-Up Load: 235
+Customers in Route: 4
+Vertex Sequence: 
+0 - 20 - 17 - 27 - 1 - 0
+
+ROUTE 5:
+Cost: 23727.10944154345
+Delivery Load: 1565
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 30 - 14 - 37 - 0
+
+ROUTE 6:
+Cost: 25470.138433882737
+Delivery Load: 1490
+Pick-Up Load: 732
+Customers in Route: 3
+Vertex Sequence: 
+0 - 23 - 31 - 4 - 0
+
+ROUTE 7:
+Cost: 35291.304803862105
+Delivery Load: 1385
+Pick-Up Load: 801
+Customers in Route: 4
+Vertex Sequence: 
+0 - 12 - 26 - 32 - 6 - 0
+
+ROUTE 8:
+Cost: 24127.278605207008
+Delivery Load: 1518
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 33 - 38 - 25 - 0
+
+ROUTE 9:
+Cost: 39170.0197588279
+Delivery Load: 1217
+Pick-Up Load: 435
+Customers in Route: 3
+Vertex Sequence: 
+0 - 34 - 29 - 3 - 0
+
+ROUTE 10:
+Cost: 24871.28313199828
+Delivery Load: 1124
+Pick-Up Load: 0
+Customers in Route: 2
+Vertex Sequence: 
+0 - 35 - 19 - 0
+
+ROUTE 11:
+Cost: 30402.021052044365
+Delivery Load: 1092
+Pick-Up Load: 688
+Customers in Route: 3
+Vertex Sequence: 
+0 - 22 - 36 - 8 - 0
+

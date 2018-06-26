@@ -1,0 +1,142 @@
+Text File with Solution Of Problem: L3.txt
+Algorithm: Parallel
+Execution time: 32 ms.
+
+
+PROBLEM DETAILS:
+Customers: 150
+Max Load: 5000
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 731054.5120721861
+Routes Of the Solution: 16
+
+ROUTE 0:
+Cost: 36561.99668168306
+Delivery Load: 2024
+Pick-Up Load: 1973
+Customers in Route: 8
+Vertex Sequence: 
+0 - 139 - 131 - 132 - 76 - 38 - 47 - 21 - 44 - 0
+
+ROUTE 1:
+Cost: 57827.531068732664
+Delivery Load: 2725
+Pick-Up Load: 3406
+Customers in Route: 13
+Vertex Sequence: 
+0 - 84 - 94 - 95 - 96 - 124 - 99 - 105 - 58 - 42 - 12 - 70 - 54 - 33 - 0
+
+ROUTE 2:
+Cost: 62448.07811268166
+Delivery Load: 2621
+Pick-Up Load: 4094
+Customers in Route: 13
+Vertex Sequence: 
+0 - 85 - 79 - 102 - 86 - 146 - 72 - 6 - 57 - 66 - 7 - 18 - 52 - 26 - 0
+
+ROUTE 3:
+Cost: 28458.40759497171
+Delivery Load: 2555
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence: 
+0 - 111 - 126 - 134 - 120 - 128 - 0
+
+ROUTE 4:
+Cost: 42707.858041716885
+Delivery Load: 1725
+Pick-Up Load: 2639
+Customers in Route: 10
+Vertex Sequence: 
+0 - 115 - 119 - 117 - 81 - 25 - 15 - 35 - 32 - 59 - 19 - 0
+
+ROUTE 5:
+Cost: 54941.79959810441
+Delivery Load: 2900
+Pick-Up Load: 3576
+Customers in Route: 12
+Vertex Sequence: 
+0 - 118 - 90 - 98 - 77 - 140 - 122 - 23 - 51 - 43 - 24 - 56 - 11 - 0
+
+ROUTE 6:
+Cost: 49127.414516628916
+Delivery Load: 2660
+Pick-Up Load: 2457
+Customers in Route: 10
+Vertex Sequence: 
+0 - 101 - 92 - 100 - 125 - 16 - 63 - 13 - 31 - 49 - 4 - 0
+
+ROUTE 7:
+Cost: 44118.32844373287
+Delivery Load: 2275
+Pick-Up Load: 2991
+Customers in Route: 11
+Vertex Sequence: 
+0 - 127 - 145 - 112 - 108 - 29 - 5 - 37 - 8 - 69 - 48 - 62 - 0
+
+ROUTE 8:
+Cost: 73981.04048506878
+Delivery Load: 2549
+Pick-Up Load: 2323
+Customers in Route: 12
+Vertex Sequence: 
+0 - 129 - 103 - 89 - 93 - 87 - 144 - 142 - 71 - 50 - 46 - 14 - 39 - 0
+
+ROUTE 9:
+Cost: 62147.88260332975
+Delivery Load: 2777
+Pick-Up Load: 3379
+Customers in Route: 13
+Vertex Sequence: 
+0 - 133 - 123 - 91 - 82 - 130 - 114 - 36 - 60 - 10 - 1 - 17 - 22 - 34 - 0
+
+ROUTE 10:
+Cost: 49413.13946174096
+Delivery Load: 1337
+Pick-Up Load: 694
+Customers in Route: 6
+Vertex Sequence: 
+0 - 147 - 116 - 106 - 135 - 73 - 28 - 0
+
+ROUTE 11:
+Cost: 44569.67454650393
+Delivery Load: 1288
+Pick-Up Load: 3455
+Customers in Route: 10
+Vertex Sequence: 
+0 - 143 - 80 - 136 - 64 - 9 - 20 - 30 - 75 - 40 - 55 - 0
+
+ROUTE 12:
+Cost: 20078.253024111786
+Delivery Load: 2143
+Pick-Up Load: 0
+Customers in Route: 4
+Vertex Sequence: 
+0 - 138 - 110 - 78 - 141 - 0
+
+ROUTE 13:
+Cost: 39810.32104738112
+Delivery Load: 3014
+Pick-Up Load: 1351
+Customers in Route: 9
+Vertex Sequence: 
+0 - 148 - 97 - 83 - 113 - 107 - 121 - 74 - 53 - 67 - 0
+
+ROUTE 14:
+Cost: 17091.170784234262
+Delivery Load: 646
+Pick-Up Load: 1065
+Customers in Route: 5
+Vertex Sequence: 
+0 - 149 - 109 - 3 - 61 - 45 - 0
+
+ROUTE 15:
+Cost: 47771.61606156338
+Delivery Load: 1854
+Pick-Up Load: 2298
+Customers in Route: 9
+Vertex Sequence: 
+0 - 104 - 88 - 137 - 150 - 27 - 41 - 65 - 68 - 2 - 0
+

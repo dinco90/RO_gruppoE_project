@@ -1,0 +1,110 @@
+Text File with Solution Of Problem: G2.txt
+Algorithm: Parallel
+Execution time: 7 ms.
+
+
+PROBLEM DETAILS:
+Customers: 57
+Max Load: 4300
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 404855.1356632383
+Routes Of the Solution: 12
+
+ROUTE 0:
+Cost: 29350.623512077138
+Delivery Load: 2364
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence: 
+0 - 14 - 42 - 39 - 23 - 46 - 0
+
+ROUTE 1:
+Cost: 44891.86038545532
+Delivery Load: 3256
+Pick-Up Load: 991
+Customers in Route: 8
+Vertex Sequence: 
+0 - 43 - 53 - 34 - 15 - 44 - 20 - 8 - 3 - 0
+
+ROUTE 2:
+Cost: 38876.29085353414
+Delivery Load: 1206
+Pick-Up Load: 0
+Customers in Route: 4
+Vertex Sequence: 
+0 - 24 - 45 - 21 - 54 - 0
+
+ROUTE 3:
+Cost: 37786.149473595215
+Delivery Load: 1987
+Pick-Up Load: 1153
+Customers in Route: 6
+Vertex Sequence: 
+0 - 51 - 30 - 36 - 26 - 9 - 7 - 0
+
+ROUTE 4:
+Cost: 33154.22409483347
+Delivery Load: 1492
+Pick-Up Load: 860
+Customers in Route: 4
+Vertex Sequence: 
+0 - 35 - 27 - 6 - 4 - 0
+
+ROUTE 5:
+Cost: 16034.832950253647
+Delivery Load: 949
+Pick-Up Load: 0
+Customers in Route: 2
+Vertex Sequence: 
+0 - 37 - 29 - 0
+
+ROUTE 6:
+Cost: 43619.102604738
+Delivery Load: 1781
+Pick-Up Load: 673
+Customers in Route: 5
+Vertex Sequence: 
+0 - 40 - 28 - 17 - 10 - 5 - 0
+
+ROUTE 7:
+Cost: 35084.345187754625
+Delivery Load: 2396
+Pick-Up Load: 921
+Customers in Route: 6
+Vertex Sequence: 
+0 - 33 - 38 - 22 - 48 - 12 - 1 - 0
+
+ROUTE 8:
+Cost: 22409.281836353202
+Delivery Load: 1952
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 52 - 18 - 25 - 0
+
+ROUTE 9:
+Cost: 32758.417831130064
+Delivery Load: 1773
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 55 - 31 - 16 - 0
+
+ROUTE 10:
+Cost: 16421.551567934835
+Delivery Load: 1378
+Pick-Up Load: 0
+Customers in Route: 3
+Vertex Sequence: 
+0 - 56 - 41 - 19 - 0
+
+ROUTE 11:
+Cost: 54468.45536557866
+Delivery Load: 3299
+Pick-Up Load: 1005
+Customers in Route: 8
+Vertex Sequence: 
+0 - 57 - 32 - 50 - 49 - 47 - 13 - 11 - 2 - 0
+

@@ -1,0 +1,54 @@
+Text File with Solution Of Problem: D4.txt
+Algorithm: Sequential
+Execution time: 4 ms.
+
+
+PROBLEM DETAILS:
+Customers: 38
+Max Load: 4075
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 244131.85341347774
+Routes Of the Solution: 5
+
+ROUTE 0:
+Cost: 30192.63776485958
+Delivery Load: 3815
+Pick-Up Load: 0
+Customers in Route: 7
+Vertex Sequence: 
+0 - 9 - 11 - 30 - 14 - 21 - 37 - 15 - 0
+
+ROUTE 1:
+Cost: 61334.756734337505
+Delivery Load: 675
+Pick-Up Load: 3681
+Customers in Route: 8
+Vertex Sequence: 
+0 - 18 - 7 - 4 - 5 - 8 - 6 - 3 - 1 - 0
+
+ROUTE 2:
+Cost: 42269.360618999715
+Delivery Load: 3820
+Pick-Up Load: 527
+Customers in Route: 8
+Vertex Sequence: 
+0 - 19 - 35 - 38 - 25 - 10 - 28 - 16 - 2 - 0
+
+ROUTE 3:
+Cost: 47991.13552790731
+Delivery Load: 3940
+Pick-Up Load: 0
+Customers in Route: 7
+Vertex Sequence: 
+0 - 31 - 23 - 13 - 24 - 32 - 26 - 20 - 0
+
+ROUTE 4:
+Cost: 62343.96276737362
+Delivery Load: 4047
+Pick-Up Load: 0
+Customers in Route: 8
+Vertex Sequence: 
+0 - 33 - 34 - 29 - 36 - 22 - 17 - 27 - 12 - 0
+
