@@ -1,11 +1,12 @@
 Text File with Solution Of Problem: I1.txt
 Algorithm: Sequential
+Execution time: 17 ms.
 
 
 PROBLEM DETAILS:
 Customers: 90
 Max Load: 3000
-Max Cost: 99999999999999
+Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
 Total Cost: 525193.1321960286

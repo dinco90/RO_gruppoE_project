@@ -1,11 +1,12 @@
 Text File with Solution Of Problem: N6.txt
 Algorithm: Sequential
+Execution time: 66 ms.
 
 
 PROBLEM DETAILS:
 Customers: 150
 Max Load: 8500
-Max Cost: 99999999999999
+Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
 Total Cost: 510048.2995679048

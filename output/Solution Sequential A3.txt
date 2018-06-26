@@ -1,11 +1,12 @@
 Text File with Solution Of Problem: A3.txt
 Algorithm: Sequential
+Execution time: 4 ms.
 
 
 PROBLEM DETAILS:
 Customers: 25
 Max Load: 4050
-Max Cost: 99999999999999
+Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
 Total Cost: 223688.75351689383
