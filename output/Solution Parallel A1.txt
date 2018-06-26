@@ -6,7 +6,7 @@ Execution time: 2 ms.
 PROBLEM DETAILS:
 Customers: 25
 Max Load: 1550
-Max Cost: 99999999999999
+Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
 Total Cost: 247473.63973655988

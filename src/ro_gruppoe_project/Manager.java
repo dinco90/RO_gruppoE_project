@@ -26,6 +26,7 @@ public class Manager {
     private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   // insieme delle routes Linehaul
     private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   // insieme delle routes Backhaul
     private ArrayList<Route> routes = new ArrayList<Route>();    // copia delle routes
+    private double totalCost = 0;
 
     long startTime;
     long endTime;
@@ -137,12 +138,7 @@ public class Manager {
     public void writeFile(String algorithm) {
         int deliveryLoad = 0;
         int pickupLoad = 0;
-        double totalCost = 0;
         String routeString = "";
-
-        for (Route route : routesLinehaul) {
-            totalCost += route.getCost();
-        }
 
         try {
             new File("output").mkdirs();
@@ -155,7 +151,7 @@ public class Manager {
             writer.write("\r\nPROBLEM DETAILS:\r\n");
             writer.write("Customers: " + customers.length + "\r\n");
             writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
-            writer.write("Max Cost: " + "99999999999999" + "\r\n");
+            writer.write("Max Cost: " + "99999999999999???" + "\r\n");
             // stampa dettagli soluzione
             writer.write("\r\nSOLUTION DETAILS:\r\n");
             writer.write("Total Cost: " + totalCost + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
@@ -378,6 +374,7 @@ public class Manager {
      */
     public void calculateCost() {
         double cost = 0;
+        totalCost = 0;
 
         for (Route route : routesLinehaul) {
             ArrayList<Integer> listCustomer = route.getRoute();
@@ -396,6 +393,7 @@ public class Manager {
             }
 
             route.setCost(cost);
+            totalCost += cost;            
             cost = 0;
         }
     }
