@@ -1,0 +1,102 @@
+Text File with Solution Of Problem: I4.txt
+Algorithm: Parallel
+Execution time: 17 ms.
+
+
+PROBLEM DETAILS:
+Customers: 90
+Max Load: 5700
+Max Cost: 99999999999999???
+
+SOLUTION DETAILS:
+Total Cost: 488145.19024543953
+Routes Of the Solution: 11
+
+ROUTE 0:
+Cost: 46082.77540010362
+Delivery Load: 2369
+Pick-Up Load: 2970
+Customers in Route: 10
+Vertex Sequence: 
+0 - 47 - 65 - 68 - 60 - 64 - 38 - 42 - 26 - 8 - 5 - 0
+
+ROUTE 1:
+Cost: 43404.91781904362
+Delivery Load: 2927
+Pick-Up Load: 920
+Customers in Route: 8
+Vertex Sequence: 
+0 - 82 - 57 - 63 - 59 - 73 - 48 - 30 - 1 - 0
+
+ROUTE 2:
+Cost: 41084.76728770033
+Delivery Load: 2793
+Pick-Up Load: 1474
+Customers in Route: 9
+Vertex Sequence: 
+0 - 54 - 88 - 66 - 69 - 58 - 74 - 75 - 28 - 23 - 0
+
+ROUTE 3:
+Cost: 65629.51536128539
+Delivery Load: 1930
+Pick-Up Load: 3162
+Customers in Route: 10
+Vertex Sequence: 
+0 - 56 - 72 - 49 - 55 - 14 - 41 - 15 - 10 - 39 - 4 - 0
+
+ROUTE 4:
+Cost: 27797.288379501246
+Delivery Load: 955
+Pick-Up Load: 1009
+Customers in Route: 4
+Vertex Sequence: 
+0 - 52 - 61 - 32 - 24 - 0
+
+ROUTE 5:
+Cost: 57285.5182927042
+Delivery Load: 2564
+Pick-Up Load: 4072
+Customers in Route: 11
+Vertex Sequence: 
+0 - 84 - 77 - 83 - 53 - 67 - 25 - 12 - 44 - 13 - 22 - 31 - 0
+
+ROUTE 6:
+Cost: 48825.54467116874
+Delivery Load: 1238
+Pick-Up Load: 3637
+Customers in Route: 9
+Vertex Sequence: 
+0 - 78 - 50 - 79 - 18 - 35 - 3 - 33 - 9 - 7 - 0
+
+ROUTE 7:
+Cost: 40177.49279694761
+Delivery Load: 2616
+Pick-Up Load: 1903
+Customers in Route: 8
+Vertex Sequence: 
+0 - 80 - 46 - 86 - 76 - 90 - 36 - 20 - 45 - 0
+
+ROUTE 8:
+Cost: 55139.23299039282
+Delivery Load: 2311
+Pick-Up Load: 3238
+Customers in Route: 10
+Vertex Sequence: 
+0 - 81 - 70 - 62 - 71 - 11 - 6 - 19 - 29 - 2 - 34 - 0
+
+ROUTE 9:
+Cost: 34972.5617001989
+Delivery Load: 1724
+Pick-Up Load: 1250
+Customers in Route: 7
+Vertex Sequence: 
+0 - 85 - 89 - 87 - 51 - 17 - 40 - 16 - 0
+
+ROUTE 10:
+Cost: 27745.575546393047
+Delivery Load: 0
+Pick-Up Load: 1981
+Customers in Route: 4
+Vertex Sequence: 
+0 - 27 - 43 - 37 - 21 - 0
+

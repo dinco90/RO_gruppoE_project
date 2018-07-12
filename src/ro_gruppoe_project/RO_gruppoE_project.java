@@ -16,7 +16,7 @@ public class RO_gruppoE_project {
     public static void main(String[] args) {
 
         Manager manager = new Manager();
-        
+
         long executionTime = 0;
 
         // selezione e lettura del file

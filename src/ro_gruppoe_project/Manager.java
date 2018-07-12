@@ -394,14 +394,14 @@ public class Manager {
             }
 
             route.setCost(cost);
-            totalCost += cost;            
+            totalCost += cost;
             cost = 0;
         }
     }
 
     /**
-     * Riordina i savings in ordine decrescente per i first e last delle routesSequenziale
- linehaul e backhaul
+     * Riordina i savings in ordine decrescente per i first e last delle
+     * routesSequenziale linehaul e backhaul
      */
     public void setSortedSavings() {
         int i;  //riga
@@ -434,11 +434,11 @@ public class Manager {
     }
 
     /**
-     * Unione delle routesSequenziale linehaul e backhaul
+     * Unione delle routes linehaul e backhaul
      */
-    public void unionRoutesSequenziale() {
-        int count = 0;    //contatore per le route backhaul unite a quelle linehaul
-        int k = 0;
+    public void unionRoutes() {
+        boolean routesUnited = false;   // flag per sapere se tutte le routes sono state unite
+        int count = 0;                  //contatore per le route backhaul unite a quelle linehaul
 
         //variabili d'appoggio per le condizioni
         int routeI;
@@ -450,8 +450,8 @@ public class Manager {
 
         routesLinehaul.addAll(routesBackhaul);
 
-        while (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
-
+        // finché tutte le routes non sono unite
+        while (!routesUnited) {
             // scorre la tabella dei savings
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
                 routeI = findRoute(occurrence.i, true);
@@ -470,7 +470,7 @@ public class Manager {
                         (!iIsUnion)
                         && // condizione 3: i e j sono first o last
                         ((iFirst || iLast) && (jFirst || jLast))) {
-                    //si possono unire le due route
+                    // si possono unire le due route
 
                     if (iFirst && jLast) {
                         // si effettua il reverse della route di i
@@ -489,7 +489,7 @@ public class Manager {
                             }
                         }
                     }
-                    //unisci j ad i ed elimina  poi j
+                    // unisci j ad i ed elimina  poi j
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
                     routesLinehaul.remove(routeJ);
 
@@ -497,7 +497,11 @@ public class Manager {
                     routesLinehaul.get(routeI).setUnion();
 
                     count++;    //nuova route backhaul unita
-                    break;  //uscita forzata quando si riesce ad unire due route
+
+                    // se tutte le route sono unite
+                    if (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
+                        routesUnited = true;
+                    }
                 }
             }
         }
@@ -505,12 +509,14 @@ public class Manager {
 
     /**
      * Copia le route sequenziali e svuota routeLinehaul e routeBackhaul
+     *
+     * @param sequenziale Indica se si fa la copia dei risultati dell'algoritmo
+     * sequenziale o parallelo
      */
     public void copyRoutes(boolean sequenziale) {
         if (sequenziale) {
             routesSequenziale.addAll(routesLinehaul);
-        }
-        else {
+        } else {
             routesParallelo.addAll(routesLinehaul);
         }
 
@@ -520,11 +526,13 @@ public class Manager {
 
     /**
      * Esegue l'algoritmo Clarke & Wright in modo sequenziale
+     *
+     * @return Il tempo di esecuzione
      */
     public long algoritmoClarkeWrightSequenziale() {
         // startTime time
         startTime = System.currentTimeMillis();
-        
+
         ArrayList<Integer> usedCustomers = new ArrayList<>();    //lista di customer inseriti nelle route
         int currentFirst = 0; //primo customer della route che si sta popolando
         int currentLast = 0;  //ultimo customer della route che si sta popolando
@@ -763,8 +771,8 @@ public class Manager {
 
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
-        unionRoutesSequenziale();
-        
+        unionRoutes();
+
         // endTime time
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;
@@ -774,11 +782,12 @@ public class Manager {
     /**
      * Esegue l'algoritmo Clarke & Wright in modo parallelo
      *
+     * @return Il tempo di esecuzione
      */
     public long algoritmoClarkeWrightParallelo() {
         // startTime time
         startTime = System.currentTimeMillis();
-        
+
         // lista delle routesSequenziale utilizzate almeno una volta
         ArrayList<Route> usedRoutes = new ArrayList<>();
         // lista delle ultime route usate (per tenere conto di quali routesSequenziale non utilizzare e rendere l'algoritmo parallelo)
@@ -949,8 +958,8 @@ public class Manager {
 
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
-        unionRoutesSequenziale();
-        
+        unionRoutes();
+
         // endTime time
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;
@@ -964,7 +973,7 @@ public class Manager {
      */
     public void algoritmoClarkeWrightParalleloERROR() {
         int k = 0;  // indice per scorrimento sortedSavingsLinehaul
-        boolean currentSavingFlag = false;   // flag per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
+        boolean currentSavingFlag = false;   // routesUnited per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
         ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
 
         // se i savings correnti i o j sono primo o ultimo nella route corrente
@@ -1083,7 +1092,7 @@ public class Manager {
 
         // BACKHAUL PARALLELO ERROR
         k = 0;  // indice per scorrimento sortedSavingsLinehaul
-        currentSavingFlag = false;   // flag per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
+        currentSavingFlag = false;   // routesUnited per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
         usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
 
         // se i savings correnti i o j sono primo o ultimo nella route corrente
