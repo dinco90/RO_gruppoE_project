@@ -42,8 +42,8 @@ public class RO_gruppoE_project {
         System.out.println("\nFile 'Solution Sequential " + manager.getNameFile() + "' written.");
         System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
-        //copia delle routes prima di chiamare l'algoritmo parallelo
-        manager.copyRoutes();
+        //copia delle routes nell'apposito ArrayList
+        manager.copyRoutes(true);
 
         // PARALLELO
         // inizializzazione routes
@@ -58,8 +58,8 @@ public class RO_gruppoE_project {
         System.out.println("\nFile 'Solution Parallel " + manager.getNameFile() + "' written.");
         System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
-        //copia delle routes prima di chiamare l'algoritmo parallelo
-        manager.copyRoutes();
+        //copia delle routes nell'apposito ArrayList
+        manager.copyRoutes(false);
 
         // PARALLEL ERROR
 //        manager.algoritmoClarkeWrightParalleloERROR();

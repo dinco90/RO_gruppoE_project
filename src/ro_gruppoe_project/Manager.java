@@ -23,9 +23,10 @@ public class Manager {
     private ArrayList<SavingOccurrence> sortedSavingsLinehaul = new ArrayList<SavingOccurrence>();  // savings linehaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsBackhaul = new ArrayList<SavingOccurrence>();  // savings backhaul ordinati
     private ArrayList<SavingOccurrence> sortedSavingsUnion = new ArrayList<SavingOccurrence>();  // savings ordinati per l'unione di linehaul e backhaul
-    private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   // insieme delle routes Linehaul
-    private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   // insieme delle routes Backhaul
-    private ArrayList<Route> routes = new ArrayList<Route>();    // copia delle routes
+    private ArrayList<Route> routesLinehaul = new ArrayList<Route>();   // insieme delle routesSequenziale Linehaul
+    private ArrayList<Route> routesBackhaul = new ArrayList<Route>();   // insieme delle routesSequenziale Backhaul
+    private ArrayList<Route> routesSequenziale = new ArrayList<Route>();    // copia delle routesSequenziale finale
+    private ArrayList<Route> routesParallelo = new ArrayList<Route>();    // copia delle routesParallelo finale
     private double totalCost = 0;
 
     long startTime;
@@ -326,7 +327,7 @@ public class Manager {
     }
 
     /**
-     * Inizializza le routes linehaul iniziali
+     * Inizializza le routesSequenziale linehaul iniziali
      */
     public void initializeRoutesLinehaul() {
         for (Integer delivery : deliveries) {
@@ -335,7 +336,7 @@ public class Manager {
     }
 
     /**
-     * Inizializza le routes backhaul iniziali
+     * Inizializza le routesSequenziale backhaul iniziali
      */
     public void initializeRoutesBackhaul() {
         for (Integer pickup : pickups) {
@@ -399,8 +400,8 @@ public class Manager {
     }
 
     /**
-     * Riordina i savings in ordine decrescente per i first e last delle routes
-     * linehaul e backhaul
+     * Riordina i savings in ordine decrescente per i first e last delle routesSequenziale
+ linehaul e backhaul
      */
     public void setSortedSavings() {
         int i;  //riga
@@ -433,10 +434,10 @@ public class Manager {
     }
 
     /**
-     * Unione delle routes linehaul e backhaul
+     * Unione delle routesSequenziale linehaul e backhaul
      */
     public void unionRoutesSequenziale() {
-        int count = 0;    //contatore per le routebackhaul unite a quelle linehaul
+        int count = 0;    //contatore per le route backhaul unite a quelle linehaul
         int k = 0;
 
         //variabili d'appoggio per le condizioni
@@ -505,8 +506,13 @@ public class Manager {
     /**
      * Copia le route sequenziali e svuota routeLinehaul e routeBackhaul
      */
-    public void copyRoutes() {
-        routes.addAll(routesLinehaul);
+    public void copyRoutes(boolean sequenziale) {
+        if (sequenziale) {
+            routesSequenziale.addAll(routesLinehaul);
+        }
+        else {
+            routesParallelo.addAll(routesLinehaul);
+        }
 
         routesLinehaul.clear();
         routesBackhaul.clear();
@@ -773,13 +779,13 @@ public class Manager {
         // startTime time
         startTime = System.currentTimeMillis();
         
-        // lista delle routes utilizzate almeno una volta
+        // lista delle routesSequenziale utilizzate almeno una volta
         ArrayList<Route> usedRoutes = new ArrayList<>();
-        // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+        // lista delle ultime route usate (per tenere conto di quali routesSequenziale non utilizzare e rendere l'algoritmo parallelo)
         ArrayList<Route> usedRoutesTurn = new ArrayList<>();
         // contatore dei savings utilizzati
         int counterSavings = 0;
-        // routes dei savings correnti
+        // routesSequenziale dei savings correnti
         int routeI = 0;
         int routeJ = 0;
         // se i savings correnti i o j sono primo o ultimo nella route corrente
@@ -789,10 +795,10 @@ public class Manager {
         boolean jLast = false;
         // se la richiesta è minore della capacità massima
         boolean ijCapacity = false;
-        // se le routes sono state utilizzate nel turno corrente
+        // se le routesSequenziale sono state utilizzate nel turno corrente
         boolean condI = false;
         boolean condJ = false;
-        // se le routes sono state utilizzate almeno una volta
+        // se le routesSequenziale sono state utilizzate almeno una volta
         boolean condUsedI = false;
         boolean condUsedJ = false;
         // indice
@@ -800,7 +806,7 @@ public class Manager {
 
         // LINEHAUL PARALLELO
         while ((k < sortedSavingsLinehaul.size()) && (routesLinehaul.size() > depot.numberOfVehicles())) {
-            // routes dei savings correnti
+            // routesSequenziale dei savings correnti
             routeI = findRoute(sortedSavingsLinehaul.get(k).i, true);
             routeJ = findRoute(sortedSavingsLinehaul.get(k).j, true);
             // se i savings correnti i o j sono primo o ultimo nella route corrente            
@@ -810,10 +816,10 @@ public class Manager {
             jLast = routesLinehaul.get(routeJ).lastCustomer() == sortedSavingsLinehaul.get(k).j;
             // se la richiesta è minore della capacità massima
             ijCapacity = depot.getMaxCapacity() >= (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
-            // se le routes sono state utilizzate nel turno corrente
+            // se le routesSequenziale sono state utilizzate nel turno corrente
             condI = usedRoutesTurn.contains(routesLinehaul.get(routeI));
             condJ = usedRoutesTurn.contains(routesLinehaul.get(routeJ));
-            // se le routes sono state utilizzate almeno una volta
+            // se le routesSequenziale sono state utilizzate almeno una volta
             condUsedI = usedRoutes.contains(routesLinehaul.get(routeI));
             condUsedJ = usedRoutes.contains(routesLinehaul.get(routeJ));
 
@@ -848,7 +854,7 @@ public class Manager {
             }
             k++;
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto: 
+            // se il numero dei saving usati corrisponde a quello del numero delle routesSequenziale richiesto: 
             // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
@@ -858,13 +864,13 @@ public class Manager {
         }
 
         // BACKHAUL PARALLELO
-        // lista delle routes utilizzate almeno una volta
+        // lista delle routesSequenziale utilizzate almeno una volta
         usedRoutes = new ArrayList<>();
-        // lista delle ultime route usate (per tenere conto di quali routes non utilizzare e rendere l'algoritmo parallelo)
+        // lista delle ultime route usate (per tenere conto di quali routesSequenziale non utilizzare e rendere l'algoritmo parallelo)
         usedRoutesTurn = new ArrayList<>();
         // contatore dei savings utilizzati
         counterSavings = 0;
-        // routes dei savings correnti
+        // routesSequenziale dei savings correnti
         routeI = 0;
         routeJ = 0;
         // se i savings correnti i o j sono primo o ultimo nella route corrente
@@ -874,17 +880,17 @@ public class Manager {
         jLast = false;
         // se la richiesta è minore della capacità massima
         ijCapacity = false;
-        // se le routes sono state utilizzate nel turno corrente
+        // se le routesSequenziale sono state utilizzate nel turno corrente
         condI = false;
         condJ = false;
-        // se le routes sono state utilizzate almeno una volta
+        // se le routesSequenziale sono state utilizzate almeno una volta
         condUsedI = false;
         condUsedJ = false;
         // indice
         k = 0;
 
         while ((k < sortedSavingsBackhaul.size()) && (routesBackhaul.size() > depot.numberOfVehicles())) {
-            // routes dei savings correnti
+            // routesSequenziale dei savings correnti
             routeI = findRoute(sortedSavingsBackhaul.get(k).i, false);
             routeJ = findRoute(sortedSavingsBackhaul.get(k).j, false);
             // se i savings correnti i o j sono primo o ultimo nella route corrente            
@@ -894,10 +900,10 @@ public class Manager {
             jLast = routesBackhaul.get(routeJ).lastCustomer() == sortedSavingsBackhaul.get(k).j;
             // se la richiesta è minore della capacità massima
             ijCapacity = depot.getMaxCapacity() >= (routesBackhaul.get(routeI).getPickup() + routesBackhaul.get(routeJ).getPickup());
-            // se le routes sono state utilizzate nel turno corrente
+            // se le routesSequenziale sono state utilizzate nel turno corrente
             condI = usedRoutesTurn.contains(routesBackhaul.get(routeI));
             condJ = usedRoutesTurn.contains(routesBackhaul.get(routeJ));
-            // se le routes sono state utilizzate almeno una volta
+            // se le routesSequenziale sono state utilizzate almeno una volta
             condUsedI = usedRoutes.contains(routesBackhaul.get(routeI));
             condUsedJ = usedRoutes.contains(routesBackhaul.get(routeJ));
 
@@ -932,7 +938,7 @@ public class Manager {
             }
             k++;
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routes richiesto: 
+            // se il numero dei saving usati corrisponde a quello del numero delle routesSequenziale richiesto: 
             // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
@@ -958,7 +964,7 @@ public class Manager {
      */
     public void algoritmoClarkeWrightParalleloERROR() {
         int k = 0;  // indice per scorrimento sortedSavingsLinehaul
-        boolean currentSavingFlag = false;   // flag per uscire da ciclo dato che le routes vanno popolate in parallelo
+        boolean currentSavingFlag = false;   // flag per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
         ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
 
         // se i savings correnti i o j sono primo o ultimo nella route corrente
@@ -973,7 +979,7 @@ public class Manager {
             initializeRoutesLinehaul();
         } else {
             routesLinehaul.clear();
-            // crea un numero di routes pari al numero di veicoli
+            // crea un numero di routesSequenziale pari al numero di veicoli
             for (int i = 0; i < depot.numberOfVehicles(); i++) {
                 routesLinehaul.add(new Route());
             }
@@ -1077,7 +1083,7 @@ public class Manager {
 
         // BACKHAUL PARALLELO ERROR
         k = 0;  // indice per scorrimento sortedSavingsLinehaul
-        currentSavingFlag = false;   // flag per uscire da ciclo dato che le routes vanno popolate in parallelo
+        currentSavingFlag = false;   // flag per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
         usedCustomers = new ArrayList<>();    // lista dei customer già utilizzati
 
         // se i savings correnti i o j sono primo o ultimo nella route corrente
@@ -1091,7 +1097,7 @@ public class Manager {
             initializeRoutesBackhaul();
         } else {
             routesBackhaul.clear();
-            // crea un numero di routes pari al numero di veicoli
+            // crea un numero di routesSequenziale pari al numero di veicoli
             for (int i = 0; i < depot.numberOfVehicles(); i++) {
                 routesBackhaul.add(new Route());
             }
