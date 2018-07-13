@@ -489,12 +489,14 @@ public class Manager {
                             }
                         }
                     }
-                    // unisci j ad i ed elimina  poi j
+                    // unisci j ad i
                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
-                    routesLinehaul.remove(routeJ);
 
                     // segna la route come completa perché contiene linehaul e backhaul
                     routesLinehaul.get(routeI).setUnion();
+
+                    //elimina  poi j
+                    routesLinehaul.remove(routeJ);
 
                     count++;    //nuova route backhaul unita
 
