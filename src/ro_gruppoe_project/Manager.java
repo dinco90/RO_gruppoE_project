@@ -448,10 +448,13 @@ public class Manager {
         boolean jFirst;
         boolean jLast;
 
+
         routesLinehaul.addAll(routesBackhaul);
 
+        int size=routesLinehaul.size();
+
         // finché tutte le routes non sono unite
-        while (routesLinehaul.size() > depot.numberOfVehicles()) {
+        while (size > depot.numberOfVehicles()) {
         //while (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
             // scorre la tabella dei savings
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
@@ -467,7 +470,7 @@ public class Manager {
                 // per fare il merge tra due route devono essere rispettate tre condizioni
                 // condizione 1: le route di i e j devono essere diverse ed la route i non deve essere stata unita in precedenza
                 if ((routeI != routeJ)
-                        && // coondizione 2: la routeIdeve contenere solo linehaul
+                        && // coondizione 2: la route deve contenere solo linehaul
                         (!iIsUnion)
                         && // condizione 3: i e j sono first o last
                         ((iFirst || iLast) && (jFirst || jLast))) {
@@ -501,12 +504,8 @@ public class Manager {
 
                     count++;    //nuova route backhaul unita
 
+                    size=routesLinehaul.size();
 
-
-                }
-                // se tutte le route sono unite
-                if (routesLinehaul.size() == depot.numberOfVehicles()) {
-                    break;
                 }
             }
         }
