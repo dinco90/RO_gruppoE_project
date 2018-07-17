@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: I3.txt
 Algorithm: Parallel
-Execution time: 14 ms.
+Execution time: 10 ms.
 
 
 PROBLEM DETAILS:

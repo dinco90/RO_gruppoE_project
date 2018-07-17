@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: I4.txt
 Algorithm: Sequential
-Execution time: 16 ms.
+Execution time: 11 ms.
 
 
 PROBLEM DETAILS:
@@ -9,8 +9,8 @@ Max Load: 5700
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 400584.04355159804
-Routes Of the Solution: 6
+Total Cost: 398787.5693690857
+Routes Of the Solution: 5
 
 ROUTE 0:
 Cost: 91548.24292578825
@@ -37,22 +37,14 @@ Vertex Sequence:
 0 - 83 - 89 - 72 - 56 - 62 - 70 - 90 - 76 - 86 - 73 - 59 - 63 - 57 - 33 - 9 - 7 - 30 - 36 - 20 - 2 - 29 - 15 - 10 - 0
 
 ROUTE 3:
-Cost: 32866.7204994168
+Cost: 51681.48232778922
 Delivery Load: 4551
-Pick-Up Load: 0
-Customers in Route: 8
+Pick-Up Load: 3293
+Customers in Route: 14
 Vertex Sequence: 
-0 - 81 - 46 - 48 - 80 - 82 - 50 - 54 - 78 - 0
+0 - 78 - 54 - 50 - 82 - 80 - 48 - 46 - 81 - 11 - 14 - 4 - 45 - 18 - 27 - 0
 
 ROUTE 4:
-Cost: 20611.23601088478
-Delivery Load: 0
-Pick-Up Load: 3293
-Customers in Route: 6
-Vertex Sequence: 
-0 - 11 - 14 - 4 - 45 - 18 - 27 - 0
-
-ROUTE 5:
 Cost: 35677.515911053706
 Delivery Load: 0
 Pick-Up Load: 5609
