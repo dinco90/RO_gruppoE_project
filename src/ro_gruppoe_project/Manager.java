@@ -451,7 +451,8 @@ public class Manager {
         routesLinehaul.addAll(routesBackhaul);
 
         // finché tutte le routes non sono unite
-        while (!routesUnited) {
+        while (routesLinehaul.size() > depot.numberOfVehicles()) {
+        //while (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
             // scorre la tabella dei savings
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
                 routeI = findRoute(occurrence.i, true);
@@ -500,10 +501,12 @@ public class Manager {
 
                     count++;    //nuova route backhaul unita
 
-                    // se tutte le route sono unite
-                    if (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
-                        routesUnited = true;
-                    }
+
+
+                }
+                // se tutte le route sono unite
+                if (routesLinehaul.size() == depot.numberOfVehicles()) {
+                    break;
                 }
             }
         }
@@ -555,8 +558,10 @@ public class Manager {
         boolean cond5 = false;
         boolean cond6 = false;
 
+
         // LINEHAUL SEQUENZIALE
-        while (usedCustomers.size() < deliveries.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
+        while (routesLinehaul.size() > depot.numberOfVehicles()) {
+        //while (usedCustomers.size() < deliveries.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
             //si identificano i primi first e last della route da creare
             for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
@@ -648,6 +653,11 @@ public class Manager {
                             usedCustomers.add(occurrence.i);
                         }
                         k = 0;    //riparte dal saving maggiore
+
+
+                        if (routesLinehaul.size()==depot.numberOfVehicles()){
+                            break;
+                        }
                     }
                 }
             }
@@ -674,7 +684,7 @@ public class Manager {
         cond5 = false;
         cond6 = false;
 
-        while (usedCustomers.size() < pickups.size() && routesBackhaul.size() > depot.numberOfVehicles()) {
+        while (routesBackhaul.size() > depot.numberOfVehicles()) {
             //si identificano i primi first e last  della route da creare
             for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
@@ -766,6 +776,12 @@ public class Manager {
                             usedCustomers.add(occurrence.i);
                         }
                         k = 0;    //riparte dal saving maggiore
+
+
+
+                        if (routesBackhaul.size()==depot.numberOfVehicles()){
+                            break;
+                        }
                     }
                 }
             }
