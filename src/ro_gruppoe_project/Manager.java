@@ -831,7 +831,7 @@ public class Manager {
         int k = 0;
 
         // LINEHAUL PARALLELO
-        while ((k < sortedSavingsLinehaul.size()) && (routesLinehaul.size() > depot.numberOfVehicles())) {
+        while (routesLinehaul.size() > depot.numberOfVehicles()) {
             // routesSequenziale dei savings correnti
             routeI = findRoute(sortedSavingsLinehaul.get(k).i, true);
             routeJ = findRoute(sortedSavingsLinehaul.get(k).j, true);
@@ -878,13 +878,21 @@ public class Manager {
                     routesLinehaul.remove(routeJ);
                 }
             }
+            else {
+                System.out.println("saving:\ni: " + sortedSavingsLinehaul.get(k).i + " j: "+ sortedSavingsLinehaul.get(k).j);
+                System.out.println("routesLinehaul.size(): " + routesLinehaul.size());
+            }
             k++;
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routesSequenziale richiesto: 
+            // se soo stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
             // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
                 counterSavings = 0;
+                k = 0;
+            }
+            // se si è giunti alla fine dei saving si riparte dal primo
+            if (k == sortedSavingsLinehaul.size()) {
                 k = 0;
             }
         }
@@ -964,7 +972,7 @@ public class Manager {
             }
             k++;
 
-            // se il numero dei saving usati corrisponde a quello del numero delle routesSequenziale richiesto: 
+            // se soo stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
             // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
