@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: I4.txt
 Algorithm: Sequential
-Execution time: 25 ms.
+Execution time: 55 ms.
 
 
 PROBLEM DETAILS:

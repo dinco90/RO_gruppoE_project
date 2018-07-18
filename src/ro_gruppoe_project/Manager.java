@@ -878,10 +878,10 @@ public class Manager {
                     routesLinehaul.remove(routeJ);
                 }
             }
-            else {
-                System.out.println("saving:\ni: " + sortedSavingsLinehaul.get(k).i + " j: "+ sortedSavingsLinehaul.get(k).j);
-                System.out.println("routesLinehaul.size(): " + routesLinehaul.size());
-            }
+//            else {
+//                System.out.println("saving:\ni: " + sortedSavingsLinehaul.get(k).i + " j: "+ sortedSavingsLinehaul.get(k).j);
+//                System.out.println("routesLinehaul.size(): " + routesLinehaul.size());
+//            }
             k++;
 
             // se soo stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
