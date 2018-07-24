@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: G4.txt
 Algorithm: Sequential
-Execution time: 10 ms.
+Execution time: 8 ms.
 
 
 PROBLEM DETAILS:
@@ -9,54 +9,54 @@ Max Load: 5300
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 325183.42848547176
+Total Cost: 324262.1507788299
 Routes Of the Solution: 6
 
 ROUTE 0:
-Cost: 31193.519419327673
-Delivery Load: 2906
-Pick-Up Load: 0
+Cost: 42302.792434296935
+Delivery Load: 2339
+Pick-Up Load: 446
 Customers in Route: 6
 Vertex Sequence: 
-0 - 19 - 16 - 53 - 32 - 57 - 43 - 0
+0 - 19 - 16 - 53 - 32 - 57 - 2 - 0
 
 ROUTE 1:
-Cost: 121932.5725830858
+Cost: 68419.41364833995
 Delivery Load: 5257
-Pick-Up Load: 5055
-Customers in Route: 21
+Pick-Up Load: 559
+Customers in Route: 11
 Vertex Sequence: 
-0 - 24 - 18 - 34 - 13 - 15 - 47 - 49 - 50 - 44 - 20 - 11 - 2 - 3 - 12 - 1 - 7 - 4 - 5 - 10 - 6 - 9 - 0
+0 - 24 - 18 - 34 - 13 - 15 - 47 - 49 - 50 - 44 - 20 - 11 - 0
 
 ROUTE 2:
-Cost: 45991.619481863556
+Cost: 51786.43816831415
 Delivery Load: 5199
-Pick-Up Load: 0
-Customers in Route: 10
+Pick-Up Load: 443
+Customers in Route: 11
 Vertex Sequence: 
-0 - 33 - 38 - 22 - 23 - 39 - 42 - 14 - 29 - 37 - 46 - 0
+0 - 46 - 37 - 29 - 14 - 42 - 39 - 23 - 22 - 38 - 33 - 3 - 0
 
 ROUTE 3:
-Cost: 60433.083324098334
+Cost: 60473.200038220275
 Delivery Load: 5279
-Pick-Up Load: 0
-Customers in Route: 9
-Vertex Sequence: 
-0 - 35 - 27 - 17 - 28 - 36 - 30 - 45 - 21 - 31 - 0
-
-ROUTE 4:
-Cost: 58951.04045391971
-Delivery Load: 5192
-Pick-Up Load: 0
+Pick-Up Load: 782
 Customers in Route: 10
 Vertex Sequence: 
-0 - 48 - 40 - 26 - 51 - 55 - 52 - 25 - 41 - 56 - 54 - 0
+0 - 31 - 21 - 45 - 30 - 36 - 28 - 17 - 27 - 35 - 9 - 0
+
+ROUTE 4:
+Cost: 8052.561141377517
+Delivery Load: 567
+Pick-Up Load: 548
+Customers in Route: 2
+Vertex Sequence: 
+0 - 43 - 8 - 0
 
 ROUTE 5:
-Cost: 6681.59322317664
-Delivery Load: 0
-Pick-Up Load: 548
-Customers in Route: 1
+Cost: 93227.74534828107
+Delivery Load: 5192
+Pick-Up Load: 2825
+Customers in Route: 17
 Vertex Sequence: 
-0 - 8 - 0
+0 - 54 - 56 - 41 - 25 - 52 - 55 - 51 - 26 - 40 - 48 - 12 - 1 - 7 - 4 - 5 - 10 - 6 - 0
 

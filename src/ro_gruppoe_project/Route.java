@@ -16,9 +16,9 @@ public class Route {
     private ArrayList<Integer> route = new ArrayList<Integer>();    // route: indice dei customer
     private double cost;    // costo del tragitto
 
-    private boolean union=false;
+    private boolean union=false;    // booleano che indica se una route linehaul è gia stata utita ad una backhaul
     
-    boolean base = false;
+    boolean base = false;   //indica che se la route è di base (fissata)
 
     /**
      * Costruttore
@@ -120,6 +120,7 @@ public class Route {
 
         deliveryLoad += routeToMerge.getDelivery();
         pickupLoad += routeToMerge.getPickup();
+        base= this.base || routeToMerge.base;
     }
 
     /**

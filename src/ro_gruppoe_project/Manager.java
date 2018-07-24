@@ -833,10 +833,10 @@ public class Manager {
         // se le routesSequenziale sono state utilizzate nel turno corrente
         boolean condI = false;
         boolean condJ = false;
-        // se le routesSequenziale sono state utilizzate almeno una volta
+        // se le routesParallele sono state utilizzate almeno una volta
         boolean condUsedI = false;
         boolean condUsedJ = false;
-        
+        // se le routesParallele sono routes base (ossia le prime che vanno a formare una route perché richiedono più spazio
         boolean condBaseI = false;
         boolean condBaseJ = false;
         // indice
@@ -852,7 +852,8 @@ public class Manager {
                 index = customers.indexOf(customersSorted.get(indexCustomers));
                 r = findRoute(index, true);
                 routesLinehaul.get(r).base = true;
-                
+                usedRoutes.add(routesLinehaul.get(r));
+
                 indexVehicles++;
             }
             
@@ -935,9 +936,10 @@ public class Manager {
             // se si è giunti alla fine dei saving si riparte dal primo
             if (k == sortedSavingsLinehaul.size()) {
                 k = 0;
+                System.out.println("Loop");
             }
         }
-
+/**
         // BACKHAUL PARALLELO
         // lista delle routesSequenziale utilizzate almeno una volta
         usedRoutes = new ArrayList<>();
@@ -1025,7 +1027,7 @@ public class Manager {
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
         unionRoutes();
-
+**/
         // endTime time
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;
