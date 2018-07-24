@@ -838,6 +838,23 @@ public class Manager {
         boolean condUsedJ = false;
         // indice
         int k = 0;
+        
+        // indici di supporto/appoggio
+        int indexVehicles=0, indexCustomers=0;
+        int r, index;
+        
+        // fix delle prime N route di base dando priorità ai customer che richiedono una capacità maggiore
+        while(indexVehicles<depot.numberOfVehicles() && indexCustomers<customersSorted.size()){
+            if (customersSorted.get(indexCustomers).getDemand() > 0){
+                index = customers.indexOf(customersSorted.get(indexCustomers));
+                r = findRoute(index, true);
+                routesLinehaul.get(r).base = true;
+                
+                indexVehicles++;
+            }
+            
+            indexCustomers++;
+        }
 
         // LINEHAUL PARALLELO
         while (routesLinehaul.size() > depot.numberOfVehicles()) {

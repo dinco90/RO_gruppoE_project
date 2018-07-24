@@ -17,6 +17,8 @@ public class Route {
     private double cost;    // costo del tragitto
 
     private boolean union=false;
+    
+    boolean base = false;
 
     /**
      * Costruttore
