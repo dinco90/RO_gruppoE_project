@@ -3,7 +3,7 @@ package ro_gruppoe_project;
 /**
  * Clienti
  */
-public class Customer {
+public class Customer implements Comparable<Customer>{
 
     private int x;  //coordinata x
     private int y;  //coordinata y
@@ -95,5 +95,18 @@ public class Customer {
      */
     public int getSupply() {
         return supply;
+    }
+    
+    public int compareTo(Customer customer){
+        //descending order
+        int ris = (customer.getDemand() + customer.getSupply()) - (this.getDemand() + this.getSupply());
+        
+        if (ris > 0) {
+            return 1;
+        } else if (ris < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

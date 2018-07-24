@@ -49,6 +49,8 @@ public class RO_gruppoE_project {
         // inizializzazione routes
         manager.initializeRoutesLinehaul();
         manager.initializeRoutesBackhaul();
+        // ordinamento in base alla capacità
+        manager.sortCustomer();
         // chiamata alla funzione parallelo
         executionTime = manager.algoritmoClarkeWrightParallelo();
         //calcolo dei costi per l'algoritmo parallelo

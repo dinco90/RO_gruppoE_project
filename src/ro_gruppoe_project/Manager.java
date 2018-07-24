@@ -15,7 +15,8 @@ public class Manager {
     private String nameFile;
     private String pathFile;
     private Depot depot;    // deposito
-    private Customer[] customers;   // vettore di customers
+    private ArrayList<Customer> customers = new ArrayList<Customer>();   // vettore di customers
+    private ArrayList<Customer> customersSorted = new ArrayList<Customer>();   // vettore di customers ordinati per capacità
     private ArrayList<Integer> deliveries = new ArrayList<Integer>();   // lista di indici dei customer linehaul
     private ArrayList<Integer> pickups = new ArrayList<Integer>();  // lista di indici dei customer backhaul
     private double[][] tableDistances; // tabella delle distanze
@@ -71,7 +72,7 @@ public class Manager {
                 switch (lineCounter) {
                     case 1: // numero customer
                         // crea l'array della lunghezza del numero di customer
-                        customers = new Customer[Integer.parseInt(sCurrentLine)];
+                        //customers = new Customer[Integer.parseInt(sCurrentLine)];
                         System.out.println("numero customer: " + sCurrentLine);
                         break;
                     case 2: // ??? default
@@ -110,7 +111,8 @@ public class Manager {
                         }
 
                         // aggiunge il customer all'array
-                        customers[lineCounter - 5] = new Customer(xC, yC, delivery, pickup);
+                        customers.add(new Customer(xC, yC, delivery, pickup));
+                        //customers[lineCounter - 5] = new Customer(xC, yC, delivery, pickup);
                         break;
                 }
 
@@ -150,7 +152,7 @@ public class Manager {
             writer.write("Execution time: " + executionTime + " ms.\r\n\r\n");
             // stampa dettagli problema
             writer.write("\r\nPROBLEM DETAILS:\r\n");
-            writer.write("Customers: " + customers.length + "\r\n");
+            writer.write("Customers: " + customers.size() + "\r\n");
             writer.write("Max Load: " + depot.getMaxCapacity() + "\r\n");
             writer.write("Max Cost: " + "99999999999999???" + "\r\n");
             // stampa dettagli soluzione
@@ -169,12 +171,12 @@ public class Manager {
                 for (Integer vertex : route.getRoute()) {
                     // calcola la somma di delivery di tutta la route
                     if (deliveries.contains(vertex)) {
-                        deliveryLoad += customers[vertex].getDemand();
+                        deliveryLoad += customers.get(vertex).getDemand();
                     }
                     //// BACKHAUL NON ANCORA IMPLEMENTATO
                     // calcola la somma di pick-up di tutta la route
                     if (pickups.contains(vertex)) {
-                        pickupLoad += customers[vertex].getSupply();
+                        pickupLoad += customers.get(vertex).getSupply();
                     }
                     //// BACKHAUL NON ANCORA IMPLEMENTATO
                     // salva i vertici in una stringa da stampare alla fine
@@ -237,21 +239,21 @@ public class Manager {
      */
     public void createTableDistance() {
         // customers.length+1 perché serve anche la distanza con il deposito
-        tableDistances = new double[customers.length + 1][customers.length + 1];
+        tableDistances = new double[customers.size() + 1][customers.size() + 1];
 
         double d;
 
         // customer.length+1 perché serve anche la distanza con il deposito
-        for (int i = 0; i < customers.length + 1; i++) {
+        for (int i = 0; i < customers.size() + 1; i++) {
             // j=i+1 per creare la matrice simmetrica
             // customer.length+1 perché serve anche la distanza con il deposito
-            for (int j = i + 1; j < customers.length + 1; j++) {
+            for (int j = i + 1; j < customers.size() + 1; j++) {
                 if (i == 0) {
                     //distanza tra deposito e customer
-                    d = calculateDistance(depot, customers[j - 1]);
+                    d = calculateDistance(depot, customers.get(j - 1));
                 } else {
                     //distanza tra due customers
-                    d = calculateDistance(customers[i - 1], customers[j - 1]);
+                    d = calculateDistance(customers.get(i - 1), customers.get(j - 1));
                 }
 
                 tableDistances[i][j] = d;
@@ -278,13 +280,13 @@ public class Manager {
      */
     public void createTableSavings() {
         //creazione della tabella dei savings
-        tableSavings = new double[customers.length][customers.length];
+        tableSavings = new double[customers.size()][customers.size()];
 
         double s;
 
         //si popola la tabella dei saving
-        for (int i = 0; i < customers.length; i++) {
-            for (int j = i + 1; j < customers.length; j++) {
+        for (int i = 0; i < customers.size(); i++) {
+            for (int j = i + 1; j < customers.size(); j++) {
                 s = calculateSaving(i + 1, j + 1);
                 tableSavings[i][j] = s;
                 tableSavings[j][i] = s;
@@ -331,7 +333,7 @@ public class Manager {
      */
     public void initializeRoutesLinehaul() {
         for (Integer delivery : deliveries) {
-            routesLinehaul.add(new Route(delivery, customers[delivery].getDemand(), 0));
+            routesLinehaul.add(new Route(delivery, customers.get(delivery).getDemand(), 0));
         }
     }
 
@@ -340,7 +342,7 @@ public class Manager {
      */
     public void initializeRoutesBackhaul() {
         for (Integer pickup : pickups) {
-            routesBackhaul.add(new Route(pickup, 0, customers[pickup].getSupply()));
+            routesBackhaul.add(new Route(pickup, 0, customers.get(pickup).getSupply()));
         }
     }
 
@@ -526,6 +528,13 @@ public class Manager {
 
         routesLinehaul.clear();
         routesBackhaul.clear();
+    }
+    
+    public void sortCustomer(){
+        customersSorted.addAll(customers);
+        
+        Collections.sort(customersSorted);
+        Collections.reverse(customersSorted);
     }
 
     /**
@@ -996,6 +1005,7 @@ public class Manager {
      *
      * ERROR (vedi file A2.txt)
      */
+    /*
     public void algoritmoClarkeWrightParalleloERROR() {
         int k = 0;  // indice per scorrimento sortedSavingsLinehaul
         boolean currentSavingFlag = false;   // routesUnited per uscire da ciclo dato che le routesSequenziale vanno popolate in parallelo
@@ -1247,4 +1257,5 @@ public class Manager {
         // MERGE TRA LINEHAUL E BACKHAUL
         // non completo perché ERROR (vedi file A2.txt)
     }
+*/
 }
