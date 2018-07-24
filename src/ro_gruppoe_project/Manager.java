@@ -836,6 +836,9 @@ public class Manager {
         // se le routesSequenziale sono state utilizzate almeno una volta
         boolean condUsedI = false;
         boolean condUsedJ = false;
+        
+        boolean condBaseI = false;
+        boolean condBaseJ = false;
         // indice
         int k = 0;
         
@@ -868,15 +871,27 @@ public class Manager {
             jLast = routesLinehaul.get(routeJ).lastCustomer() == sortedSavingsLinehaul.get(k).j;
             // se la richiesta è minore della capacità massima
             ijCapacity = depot.getMaxCapacity() >= (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
-            // se le routesSequenziale sono state utilizzate nel turno corrente
+            // se le routesParallelo sono state utilizzate nel turno corrente
             condI = usedRoutesTurn.contains(routesLinehaul.get(routeI));
             condJ = usedRoutesTurn.contains(routesLinehaul.get(routeJ));
-            // se le routesSequenziale sono state utilizzate almeno una volta
+            // se le routesParallelo sono state utilizzate almeno una volta
             condUsedI = usedRoutes.contains(routesLinehaul.get(routeI));
             condUsedJ = usedRoutes.contains(routesLinehaul.get(routeJ));
-
+            // se la route è di base
+            condBaseI = routesLinehaul.get(routeI).base;
+            condBaseJ = routesLinehaul.get(routeJ).base;
+            
+            
+            
+            /**
+             * nuova condizione: una delle route deve essere di base e l'altra no
+             * ragionare sul fatto se servono condUsedI e condUsedJ
+            **/
+            
+            
+            
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ)) {
+            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI!=condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
