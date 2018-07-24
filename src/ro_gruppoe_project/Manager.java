@@ -926,7 +926,7 @@ public class Manager {
 //            }
             k++;
 
-            // se soo stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
+            // se sono stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
             // azzera l'ArrayList, azzera il contatore e riparte dal primo saving
             if (counterSavings == depot.numberOfVehicles()) {
                 usedRoutesTurn.clear();
@@ -939,7 +939,7 @@ public class Manager {
                 System.out.println("Loop");
             }
         }
-/**
+
         // BACKHAUL PARALLELO
         // lista delle routesSequenziale utilizzate almeno una volta
         usedRoutes = new ArrayList<>();
@@ -963,10 +963,31 @@ public class Manager {
         // se le routesSequenziale sono state utilizzate almeno una volta
         condUsedI = false;
         condUsedJ = false;
+        // se le routesParallele sono routes base (ossia le prime che vanno a formare una route perché richiedono più spazio
+        condBaseI = false;
+        condBaseJ = false;
         // indice
         k = 0;
 
-        while ((k < sortedSavingsBackhaul.size()) && (routesBackhaul.size() > depot.numberOfVehicles())) {
+        // indici di supporto/appoggio
+        indexVehicles=0;
+        indexCustomers=0;
+
+        // fix delle prime N route di base dando priorità ai customer che richiedono una capacità maggiore
+        while(indexVehicles<depot.numberOfVehicles() && indexCustomers<customersSorted.size()){
+            if (customersSorted.get(indexCustomers).getSupply() > 0){
+                index = customers.indexOf(customersSorted.get(indexCustomers));
+                r = findRoute(index, false);
+                routesBackhaul.get(r).base = true;
+                usedRoutes.add(routesBackhaul.get(r));
+
+                indexVehicles++;
+            }
+
+            indexCustomers++;
+        }
+
+        while (routesBackhaul.size() > depot.numberOfVehicles()) {
             // routesSequenziale dei savings correnti
             routeI = findRoute(sortedSavingsBackhaul.get(k).i, false);
             routeJ = findRoute(sortedSavingsBackhaul.get(k).j, false);
@@ -983,9 +1004,12 @@ public class Manager {
             // se le routesSequenziale sono state utilizzate almeno una volta
             condUsedI = usedRoutes.contains(routesBackhaul.get(routeI));
             condUsedJ = usedRoutes.contains(routesBackhaul.get(routeJ));
+            // se la route è di base
+            condBaseI = routesBackhaul.get(routeI).base;
+            condBaseJ = routesBackhaul.get(routeJ).base;
 
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ)) {
+            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI!=condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
@@ -1027,7 +1051,7 @@ public class Manager {
         setSortedSavings();
         //UNIONE LINEHAUL E BACKHAUL
         unionRoutes();
-**/
+
         // endTime time
         endTime = System.currentTimeMillis();
         executionTime = endTime - startTime;
