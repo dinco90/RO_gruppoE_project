@@ -936,7 +936,8 @@ public class Manager {
             // se si è giunti alla fine dei saving si riparte dal primo
             if (k == sortedSavingsLinehaul.size()) {
                 k = 0;
-                System.out.println("Loop");
+                usedRoutesTurn.clear();
+                counterSavings=0;
             }
         }
 
@@ -1045,6 +1046,13 @@ public class Manager {
                 usedRoutesTurn.clear();
                 counterSavings = 0;
                 k = 0;
+            }
+
+            // se si è giunti alla fine dei saving si riparte dal primo
+            if (k == sortedSavingsBackhaul.size()) {
+                k = 0;
+                usedRoutesTurn.clear();
+                counterSavings=0;
             }
         }
 
