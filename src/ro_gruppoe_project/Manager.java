@@ -406,24 +406,30 @@ public class Manager {
      * routesSequenziale linehaul e backhaul
      */
     public void setSortedSavings() {
-        int i;  //riga
-        int j;  //colonna
+        int lineFirst;
+        int lineLast;
+
+        int backFirst;
+        int backLast;
 
         for (Route routeL : routesLinehaul) {
+            lineFirst = routeL.firstCustomer();
+
             for (Route routeB : routesBackhaul) {
-                i = routeL.firstCustomer();
-                j = routeB.firstCustomer();
-                sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                backFirst = routeB.firstCustomer();
+                sortedSavingsUnion.add(new SavingOccurrence(lineFirst, backFirst, tableSavings[lineFirst][backFirst]));
                 if (routeL.getRoute().size() > 1) {
-                    i = routeL.lastCustomer();
-                    sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                    lineLast = routeL.lastCustomer();
+                    sortedSavingsUnion.add(new SavingOccurrence(lineLast, backFirst, tableSavings[lineFirst][backFirst]));
+
+                    backLast = routeB.lastCustomer();
 
                     if (routeB.getRoute().size() > 1) {
-                        j = routeL.lastCustomer();
-                        sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                        sortedSavingsUnion.add(new SavingOccurrence(lineFirst, backLast, tableSavings[lineFirst][backLast]));
+                    }
 
-                        i = routeL.firstCustomer();
-                        sortedSavingsUnion.add(new SavingOccurrence(i, j, tableSavings[i][j]));
+                    if (routeL.getRoute().size() > 1 && routeB.getRoute().size() > 1){
+                        sortedSavingsUnion.add(new SavingOccurrence(lineLast, backLast, tableSavings[lineLast][backLast]));
                     }
                 }
             }
@@ -462,6 +468,9 @@ public class Manager {
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
                 routeI = findRoute(occurrence.i, true);
                 routeJ = findRoute(occurrence.j, true);
+                if (routeI==7 && routeJ==8){
+                    System.out.println("Trovato");
+                }
                 iFirst = routesLinehaul.get(routeI).firstCustomer() == occurrence.i;
                 iLast = routesLinehaul.get(routeI).lastCustomer() == occurrence.i;
                 jFirst = routesLinehaul.get(routeJ).firstCustomer() == occurrence.j;
