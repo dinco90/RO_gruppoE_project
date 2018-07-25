@@ -197,6 +197,13 @@ public class Manager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if (routesLinehaul.size()==depot.numberOfVehicles()){
+            System.out.println("\n   CORRETTO " + algorithm);
+        }
+        else {
+            System.out.println("\n   ERRATO" + algorithm);
+        }
     }
 
     /**
@@ -468,9 +475,6 @@ public class Manager {
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
                 routeI = findRoute(occurrence.i, true);
                 routeJ = findRoute(occurrence.j, true);
-                if (routeI==7 && routeJ==8){
-                    System.out.println("Trovato");
-                }
                 iFirst = routesLinehaul.get(routeI).firstCustomer() == occurrence.i;
                 iLast = routesLinehaul.get(routeI).lastCustomer() == occurrence.i;
                 jFirst = routesLinehaul.get(routeJ).firstCustomer() == occurrence.j;
@@ -543,7 +547,6 @@ public class Manager {
         customersSorted.addAll(customers);
         
         Collections.sort(customersSorted);
-        Collections.reverse(customersSorted);
     }
 
     /**
