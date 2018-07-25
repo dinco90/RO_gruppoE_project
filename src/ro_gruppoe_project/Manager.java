@@ -613,7 +613,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6)) {
+                        && (cond5 != cond6) && routesLinehaul.size()>depot.numberOfVehicles()) {
 
                     routeI = findRoute(occurrence.i, true);
                     routeJ = findRoute(occurrence.j, true);
@@ -736,7 +736,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6)) {
+                        && (cond5 != cond6) && routesBackhaul.size()>depot.numberOfVehicles()) {
 
                     routeI = findRoute(occurrence.i, false);
                     routeJ = findRoute(occurrence.j, false);
