@@ -74,7 +74,6 @@ public class Manager {
                         System.out.println("numero customer: " + sCurrentLine);
                         break;
                     case 2: // ??? default
-                        System.out.println("default: " + sCurrentLine);
                         break;
                     case 3: // numero furgoni
                         numeroVeicoli = Integer.parseInt(sCurrentLine);
