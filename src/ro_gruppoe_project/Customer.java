@@ -3,12 +3,12 @@ package ro_gruppoe_project;
 /**
  * Clienti
  */
-public class Customer implements Comparable<Customer>{
+public class Customer implements Comparable<Customer> {
 
-    private int x;  //coordinata x
-    private int y;  //coordinata y
-    private int demand; //domanda - delivery
-    private int supply; //offerta - pickup
+    private int x;  // coordinata x
+    private int y;  // coordinata y
+    private int demand; // domanda - delivery
+    private int supply; // offerta - pickup
 
     /**
      * Costruttore
@@ -96,11 +96,16 @@ public class Customer implements Comparable<Customer>{
     public int getSupply() {
         return supply;
     }
-    
-    public int compareTo(Customer customer){
-        //descending order
+
+    @Override
+    /**
+     * Comparazione tra customer per ordinamento decrescente in base alla
+     * capacità del furgone necessaria
+     */
+    public int compareTo(Customer customer) {
+        // descending order
         int ris = (customer.getDemand() + customer.getSupply()) - (this.getDemand() + this.getSupply());
-        
+
         if (ris > 0) {
             return 1;
         } else if (ris < 0) {

@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 public class Manager {
 
@@ -30,6 +29,7 @@ public class Manager {
     private ArrayList<Route> routesParallelo = new ArrayList<Route>();    // copia delle routesParallelo finale
     private double totalCost = 0;
 
+    // tempo di esecuzione
     long startTime;
     long endTime;
     long executionTime;
@@ -71,8 +71,6 @@ public class Manager {
                 // switch: in base al numero di riga salva il valore
                 switch (lineCounter) {
                     case 1: // numero customer
-                        // crea l'array della lunghezza del numero di customer
-                        //customers = new Customer[Integer.parseInt(sCurrentLine)];
                         System.out.println("numero customer: " + sCurrentLine);
                         break;
                     case 2: // ??? default
@@ -112,7 +110,6 @@ public class Manager {
 
                         // aggiunge il customer all'array
                         customers.add(new Customer(xC, yC, delivery, pickup));
-                        //customers[lineCounter - 5] = new Customer(xC, yC, delivery, pickup);
                         break;
                 }
 
@@ -132,11 +129,12 @@ public class Manager {
             }
 
         }
-        System.out.println("numero righe: " + lineCounter);
     }
 
     /**
      * Scrive il file dei risultati nella cartella "output"
+     *
+     * @param algorithm Algoritmo sequenziale o parallelo
      */
     public void writeFile(String algorithm) {
         int deliveryLoad = 0;
@@ -157,10 +155,10 @@ public class Manager {
             writer.write("Max Cost: " + "99999999999999???" + "\r\n");
             // stampa dettagli soluzione
             writer.write("\r\nSOLUTION DETAILS:\r\n");
-            writer.write("Total Cost: " + totalCost + "\r\n");  // cosa è il total cost? dalla soluzione: somma di tutti i costi delle singole route != total cost
+            writer.write("Total Cost: " + totalCost + "\r\n");
             writer.write("Routes Of the Solution: " + routesLinehaul.size() + "\r\n\r\n");
 
-            // stampa di tutte le route
+            // scrittura di tutte le route
             for (Route route : routesLinehaul) {
                 writer.write("ROUTE " + routesLinehaul.indexOf(route) + ":\r\n");
                 writer.write("Cost: " + route.getCost() + "\r\n");
@@ -169,16 +167,14 @@ public class Manager {
                 routeString = "0 - ";
                 // per ogni vertice della route
                 for (Integer vertex : route.getRoute()) {
-                    // calcola la somma di delivery di tutta la route
+                    // Linehaul: calcola la somma di delivery di tutta la route
                     if (deliveries.contains(vertex)) {
                         deliveryLoad += customers.get(vertex).getDemand();
                     }
-                    //// BACKHAUL NON ANCORA IMPLEMENTATO
-                    // calcola la somma di pick-up di tutta la route
+                    // Backhaul: calcola la somma di pick-up di tutta la route
                     if (pickups.contains(vertex)) {
                         pickupLoad += customers.get(vertex).getSupply();
                     }
-                    //// BACKHAUL NON ANCORA IMPLEMENTATO
                     // salva i vertici in una stringa da stampare alla fine
                     routeString += Integer.toString(vertex + 1) + " - ";
                 }
@@ -190,19 +186,11 @@ public class Manager {
                 writer.write("Vertex Sequence: " + "\r\n" + routeString);
 
                 writer.write("\r\n\r\n");
-                // metodo in Route che restituisce una stringa con tutti i customer
             }
 
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        if (routesLinehaul.size()==depot.numberOfVehicles()){
-            System.out.println("\n   CORRETTO " + algorithm);
-        }
-        else {
-            System.out.println("\n   ERRATO" + algorithm);
         }
     }
 
@@ -256,10 +244,10 @@ public class Manager {
             // customer.length+1 perché serve anche la distanza con il deposito
             for (int j = i + 1; j < customers.size() + 1; j++) {
                 if (i == 0) {
-                    //distanza tra deposito e customer
+                    // distanza tra deposito e customer
                     d = calculateDistance(depot, customers.get(j - 1));
                 } else {
-                    //distanza tra due customers
+                    // distanza tra due customers
                     d = calculateDistance(customers.get(i - 1), customers.get(j - 1));
                 }
 
@@ -286,12 +274,12 @@ public class Manager {
      * Crea la tabella dei savings
      */
     public void createTableSavings() {
-        //creazione della tabella dei savings
+        // creazione della tabella dei savings
         tableSavings = new double[customers.size()][customers.size()];
 
         double s;
 
-        //si popola la tabella dei saving
+        // si popola la tabella dei saving
         for (int i = 0; i < customers.size(); i++) {
             for (int j = i + 1; j < customers.size(); j++) {
                 s = calculateSaving(i + 1, j + 1);
@@ -305,14 +293,14 @@ public class Manager {
      * Riordina i savings linehaul in ordine decrescente
      */
     public void setSortedSavingsLinehaul() {
-        //estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
+        // estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
         for (int i = 0; i < deliveries.size(); i++) {
             for (int j = i + 1; j < deliveries.size(); j++) {
                 sortedSavingsLinehaul.add(new SavingOccurrence(deliveries.get(i), deliveries.get(j), tableSavings[deliveries.get(i)][deliveries.get(j)]));
             }
         }
 
-        //riorndina i savings in ordine decrescente
+        // riordina i savings in ordine decrescente
         Collections.sort(sortedSavingsLinehaul, (so1, so2) -> Double.compare(so1.s, so2.s));
 
         Collections.reverse(sortedSavingsLinehaul);
@@ -322,14 +310,14 @@ public class Manager {
      * Riordina i savings backhaul in ordine decrescente
      */
     public void setSortedSavingsBackhaul() {
-        //estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
+        // estrazione delle occorrenze dei savings dalla tabella con le relative righe e colonne di riferimento
         for (int i = 0; i < pickups.size(); i++) {
             for (int j = i + 1; j < pickups.size(); j++) {
                 sortedSavingsBackhaul.add(new SavingOccurrence(pickups.get(i), pickups.get(j), tableSavings[pickups.get(i)][pickups.get(j)]));
             }
         }
 
-        //riorndina i savings in ordine decrescente
+        // riordina i savings in ordine decrescente
         Collections.sort(sortedSavingsBackhaul, (so1, so2) -> Double.compare(so1.s, so2.s));
 
         Collections.reverse(sortedSavingsBackhaul);
@@ -390,15 +378,15 @@ public class Manager {
             ArrayList<Integer> listCustomer = route.getRoute();
 
             if (listCustomer.size() > 1) {
-                //route composta da più customer
+                // route composta da più customer
                 for (int i = 0; i < listCustomer.size() - 1; i++) {
-                    //somma tutti i costi tra i customer
+                    // somma tutti i costi tra i customer
                     cost += tableDistances[listCustomer.get(i) + 1][listCustomer.get(i + 1) + 1];
                 }
-                //somma i costi tra i first e i last con il depot
+                // somma i costi tra i first e i last con il depot
                 cost += tableDistances[0][listCustomer.get(0) + 1] + tableDistances[0][listCustomer.get(listCustomer.size() - 1) + 1];
             } else {
-                //route composta da un solo customer
+                // route composta da un solo customer
                 cost += tableDistances[0][listCustomer.get(0) + 1] * 2;
             }
 
@@ -435,14 +423,14 @@ public class Manager {
                         sortedSavingsUnion.add(new SavingOccurrence(lineFirst, backLast, tableSavings[lineFirst][backLast]));
                     }
 
-                    if (routeL.getRoute().size() > 1 && routeB.getRoute().size() > 1){
+                    if (routeL.getRoute().size() > 1 && routeB.getRoute().size() > 1) {
                         sortedSavingsUnion.add(new SavingOccurrence(lineLast, backLast, tableSavings[lineLast][backLast]));
                     }
                 }
             }
         }
 
-        //riorndina i savings in ordine decrescente
+        // riorndina i savings in ordine decrescente
         Collections.sort(sortedSavingsUnion, (so1, so2) -> Double.compare(so1.s, so2.s));
 
         Collections.reverse(sortedSavingsUnion);
@@ -452,10 +440,7 @@ public class Manager {
      * Unione delle routes linehaul e backhaul
      */
     public void unionRoutes() {
-        boolean routesUnited = false;   // flag per sapere se tutte le routes sono state unite
-        int count = 0;                  //contatore per le route backhaul unite a quelle linehaul
-
-        //variabili d'appoggio per le condizioni
+        // variabili d'appoggio per le condizioni
         int routeI;
         int routeJ;
         boolean iFirst;
@@ -463,14 +448,12 @@ public class Manager {
         boolean jFirst;
         boolean jLast;
 
-
         routesLinehaul.addAll(routesBackhaul);
 
-        int size=routesLinehaul.size();
+        int size = routesLinehaul.size();
 
         // finché tutte le routes non sono unite
         while (size > depot.numberOfVehicles()) {
-        //while (count < routesBackhaul.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
             // scorre la tabella dei savings
             for (SavingOccurrence occurrence : sortedSavingsUnion) {
                 routeI = findRoute(occurrence.i, true);
@@ -514,13 +497,10 @@ public class Manager {
                     // segna la route come completa perché contiene linehaul e backhaul
                     routesLinehaul.get(routeI).setUnion();
 
-                    //elimina  poi j
+                    // elimina  poi j
                     routesLinehaul.remove(routeJ);
 
-                    count++;    //nuova route backhaul unita
-
-                    size=routesLinehaul.size();
-
+                    size = routesLinehaul.size();
                 }
             }
         }
@@ -542,10 +522,10 @@ public class Manager {
         routesLinehaul.clear();
         routesBackhaul.clear();
     }
-    
-    public void sortCustomer(){
+
+    public void sortCustomer() {
         customersSorted.addAll(customers);
-        
+
         Collections.sort(customersSorted);
     }
 
@@ -558,12 +538,12 @@ public class Manager {
         // startTime time
         startTime = System.currentTimeMillis();
 
-        ArrayList<Integer> usedCustomers = new ArrayList<>();    //lista di customer inseriti nelle route
-        int currentFirst = 0; //primo customer della route che si sta popolando
-        int currentLast = 0;  //ultimo customer della route che si sta popolando
+        ArrayList<Integer> usedCustomers = new ArrayList<>();    // lista di customer inseriti nelle route
+        int currentFirst = 0; // primo customer della route che si sta popolando
+        int currentLast = 0;  // ultimo customer della route che si sta popolando
         int k = 0;
 
-        //variabili d'appoggio per le condizioni
+        // variabili d'appoggio per le condizioni
         int routeI = 0;
         int routeJ = 0;
         boolean iFirst = false;
@@ -578,11 +558,9 @@ public class Manager {
         boolean cond5 = false;
         boolean cond6 = false;
 
-
         // LINEHAUL SEQUENZIALE
         while (routesLinehaul.size() > depot.numberOfVehicles()) {
-        //while (usedCustomers.size() < deliveries.size() && routesLinehaul.size() > depot.numberOfVehicles()) {
-            //si identificano i primi first e last della route da creare
+            // si identificano i primi first e last della route da creare
             for (SavingOccurrence occurrence : sortedSavingsLinehaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
                     routeI = findRoute(occurrence.i, true);
@@ -597,7 +575,7 @@ public class Manager {
                     currentFirst = occurrence.i;
                     currentLast = occurrence.j;
 
-                    break;  //uscita forzata perché viene identificata la prima coppia che non è stata ancora inserita nelle route
+                    break;  // uscita forzata perché viene identificata la prima coppia che non è stata ancora inserita nelle route
                 }
             }
 
@@ -613,7 +591,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6) && routesLinehaul.size()>depot.numberOfVehicles()) {
+                        && (cond5 != cond6) && routesLinehaul.size() > depot.numberOfVehicles()) {
 
                     routeI = findRoute(occurrence.i, true);
                     routeJ = findRoute(occurrence.j, true);
@@ -629,11 +607,11 @@ public class Manager {
                             (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery() <= depot.getMaxCapacity())
                             && // condizione 3: i e j sono first o last
                             ((iFirst || iLast) && (jFirst || jLast))) {
-                        //si possono unire le due route
+                        // si possono unire le due route
                         if (iLast && jFirst) {
-                            //i è last, j è first
+                            // i è last, j è first
 
-                            //unisci j ad i ed elimina  poi j
+                            // unisci j ad i ed elimina  poi j
                             routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
 
                             currentFirst = routesLinehaul.get(routeI).firstCustomer();
@@ -642,9 +620,9 @@ public class Manager {
                             routesLinehaul.remove(routeJ);
                         } else {
                             if (jLast && iFirst) {
-                                //j è last, i è first
+                                // j è last, i è first
 
-                                //unisci i ad j ed elimina  poi i
+                                // unisci i ad j ed elimina  poi i
                                 routesLinehaul.get(routeJ).merge(routesLinehaul.get(routeI));
 
                                 currentFirst = routesLinehaul.get(routeJ).firstCustomer();
@@ -656,7 +634,7 @@ public class Manager {
                                     // si effettua il reverse di una delle due route
                                     routesLinehaul.get(routeJ).reverse();
 
-                                    //unisci j invertito ad i ed elimina  poi j
+                                    // unisci j invertito ad i ed elimina  poi j
                                     routesLinehaul.get(routeI).merge(routesLinehaul.get(routeJ));
 
                                     currentFirst = routesLinehaul.get(routeI).firstCustomer();
@@ -666,16 +644,15 @@ public class Manager {
                                 }
                             }
                         }
-                        //si aggiunge il nuovo customer alla lista di quelli già presenti nelle route
+                        // si aggiunge il nuovo customer alla lista di quelli già presenti nelle route
                         if (usedCustomers.contains(occurrence.i)) {
                             usedCustomers.add(occurrence.j);
                         } else {
                             usedCustomers.add(occurrence.i);
                         }
-                        k = 0;    //riparte dal saving maggiore
+                        k = 0;    // riparte dal saving maggiore
 
-
-                        if (routesLinehaul.size()==depot.numberOfVehicles()){
+                        if (routesLinehaul.size() == depot.numberOfVehicles()) {
                             break;
                         }
                     }
@@ -685,11 +662,11 @@ public class Manager {
 
         // BACKHAUL SEQUENZIALE
         usedCustomers.clear();
-        currentFirst = 0; //primo customer della route che si sta popolando
-        currentLast = 0;  //ultimo customer della route che si sta popolando
+        currentFirst = 0; // primo customer della route che si sta popolando
+        currentLast = 0;  // ultimo customer della route che si sta popolando
         k = 0;
 
-        //variabili d'appoggio per le condizioni
+        // variabili d'appoggio per le condizioni
         routeI = 0;
         routeJ = 0;
         iFirst = false;
@@ -705,7 +682,7 @@ public class Manager {
         cond6 = false;
 
         while (routesBackhaul.size() > depot.numberOfVehicles()) {
-            //si identificano i primi first e last  della route da creare
+            // si identificano i primi first e last  della route da creare
             for (SavingOccurrence occurrence : sortedSavingsBackhaul) {
                 if (!usedCustomers.contains(occurrence.i) && !usedCustomers.contains(occurrence.j)) {
                     routeI = findRoute(occurrence.i, false);
@@ -720,7 +697,7 @@ public class Manager {
                     currentFirst = occurrence.i;
                     currentLast = occurrence.j;
 
-                    break;  //uscita forzata perché viene identificata la prima coppia che non è stata ancora inserita nelle route
+                    break;  // uscita forzata perché viene identificata la prima coppia che non è stata ancora inserita nelle route
                 }
             }
 
@@ -736,7 +713,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6) && routesBackhaul.size()>depot.numberOfVehicles()) {
+                        && (cond5 != cond6) && routesBackhaul.size() > depot.numberOfVehicles()) {
 
                     routeI = findRoute(occurrence.i, false);
                     routeJ = findRoute(occurrence.j, false);
@@ -752,11 +729,11 @@ public class Manager {
                             (routesBackhaul.get(routeI).getPickup() + routesBackhaul.get(routeJ).getPickup() <= depot.getMaxCapacity())
                             && // condizione 3: i e j sono first o last
                             ((iFirst || iLast) && (jFirst || jLast))) {
-                        //si possono unire le due route
+                        // si possono unire le due route
                         if (iLast && jFirst) {
-                            //i è last, j è first
+                            // i è last, j è first
 
-                            //unisci j ad i ed elimina  poi j
+                            // unisci j ad i ed elimina  poi j
                             routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
 
                             currentFirst = routesBackhaul.get(routeI).firstCustomer();
@@ -765,9 +742,9 @@ public class Manager {
                             routesBackhaul.remove(routeJ);
                         } else {
                             if (jLast && iFirst) {
-                                //j è last, i è first
+                                // j è last, i è first
 
-                                //unisci i ad j ed elimina  poi i
+                                // unisci i ad j ed elimina  poi i
                                 routesBackhaul.get(routeJ).merge(routesBackhaul.get(routeI));
 
                                 currentFirst = routesBackhaul.get(routeJ).firstCustomer();
@@ -779,7 +756,7 @@ public class Manager {
                                     // si effettua il reverse di una delle due route
                                     routesBackhaul.get(routeJ).reverse();
 
-                                    //unisci j invertito ad i ed elimina  poi j
+                                    // unisci j invertito ad i ed elimina  poi j
                                     routesBackhaul.get(routeI).merge(routesBackhaul.get(routeJ));
 
                                     currentFirst = routesBackhaul.get(routeI).firstCustomer();
@@ -789,17 +766,15 @@ public class Manager {
                                 }
                             }
                         }
-                        //si aggiunge il nuovo customer alla lista di quelli già presenti nelle route
+                        // si aggiunge il nuovo customer alla lista di quelli già presenti nelle route
                         if (usedCustomers.contains(occurrence.i)) {
                             usedCustomers.add(occurrence.j);
                         } else {
                             usedCustomers.add(occurrence.i);
                         }
-                        k = 0;    //riparte dal saving maggiore
+                        k = 0;    // riparte dal saving maggiore
 
-
-
-                        if (routesBackhaul.size()==depot.numberOfVehicles()){
+                        if (routesBackhaul.size() == depot.numberOfVehicles()) {
                             break;
                         }
                     }
@@ -808,7 +783,7 @@ public class Manager {
         }
 
         setSortedSavings();
-        //UNIONE LINEHAUL E BACKHAUL
+        // UNIONE LINEHAUL E BACKHAUL
         unionRoutes();
 
         // endTime time
@@ -853,14 +828,14 @@ public class Manager {
         boolean condBaseJ = false;
         // indice
         int k = 0;
-        
+
         // indici di supporto/appoggio
-        int indexVehicles=0, indexCustomers=0;
+        int indexVehicles = 0, indexCustomers = 0;
         int r, index;
-        
+
         // fix delle prime N route di base dando priorità ai customer che richiedono una capacità maggiore
-        while(indexVehicles<depot.numberOfVehicles() && indexCustomers<customersSorted.size()){
-            if (customersSorted.get(indexCustomers).getDemand() > 0){
+        while (indexVehicles < depot.numberOfVehicles() && indexCustomers < customersSorted.size()) {
+            if (customersSorted.get(indexCustomers).getDemand() > 0) {
                 index = customers.indexOf(customersSorted.get(indexCustomers));
                 r = findRoute(index, true);
                 routesLinehaul.get(r).base = true;
@@ -868,7 +843,6 @@ public class Manager {
 
                 indexVehicles++;
             }
-            
             indexCustomers++;
         }
 
@@ -893,18 +867,9 @@ public class Manager {
             // se la route è di base
             condBaseI = routesLinehaul.get(routeI).base;
             condBaseJ = routesLinehaul.get(routeJ).base;
-            
-            
-            
-            /**
-             * nuova condizione: una delle route deve essere di base e l'altra no
-             * ragionare sul fatto se servono condUsedI e condUsedJ
-            **/
-            
-            
-            
+
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI!=condBaseJ)) {
+            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI != condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
@@ -932,10 +897,6 @@ public class Manager {
                     routesLinehaul.remove(routeJ);
                 }
             }
-//            else {
-//                System.out.println("saving:\ni: " + sortedSavingsLinehaul.get(k).i + " j: "+ sortedSavingsLinehaul.get(k).j);
-//                System.out.println("routesLinehaul.size(): " + routesLinehaul.size());
-//            }
             k++;
 
             // se sono stati modificati il numero di routes pari al numero di veicoli (rende il parallelo)
@@ -947,9 +908,9 @@ public class Manager {
             }
             // se si è giunti alla fine dei saving si riparte dal primo
             if (k == sortedSavingsLinehaul.size()) {
-                k = 0;
                 usedRoutesTurn.clear();
-                counterSavings=0;
+                counterSavings = 0;
+                k = 0;
             }
         }
 
@@ -983,12 +944,12 @@ public class Manager {
         k = 0;
 
         // indici di supporto/appoggio
-        indexVehicles=0;
-        indexCustomers=0;
+        indexVehicles = 0;
+        indexCustomers = 0;
 
         // fix delle prime N route di base dando priorità ai customer che richiedono una capacità maggiore
-        while(indexVehicles<depot.numberOfVehicles() && indexCustomers<customersSorted.size()){
-            if (customersSorted.get(indexCustomers).getSupply() > 0){
+        while (indexVehicles < depot.numberOfVehicles() && indexCustomers < customersSorted.size()) {
+            if (customersSorted.get(indexCustomers).getSupply() > 0) {
                 index = customers.indexOf(customersSorted.get(indexCustomers));
                 r = findRoute(index, false);
                 routesBackhaul.get(r).base = true;
@@ -996,7 +957,6 @@ public class Manager {
 
                 indexVehicles++;
             }
-
             indexCustomers++;
         }
 
@@ -1022,7 +982,7 @@ public class Manager {
             condBaseJ = routesBackhaul.get(routeJ).base;
 
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI!=condBaseJ)) {
+            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (!condUsedI || !condUsedJ) && (condBaseI != condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
@@ -1062,14 +1022,14 @@ public class Manager {
 
             // se si è giunti alla fine dei saving si riparte dal primo
             if (k == sortedSavingsBackhaul.size()) {
-                k = 0;
                 usedRoutesTurn.clear();
-                counterSavings=0;
+                counterSavings = 0;
+                k = 0;
             }
         }
 
         setSortedSavings();
-        //UNIONE LINEHAUL E BACKHAUL
+        // UNIONE LINEHAUL E BACKHAUL
         unionRoutes();
 
         // endTime time
@@ -1335,5 +1295,5 @@ public class Manager {
         // MERGE TRA LINEHAUL E BACKHAUL
         // non completo perché ERROR (vedi file A2.txt)
     }
-*/
+     */
 }

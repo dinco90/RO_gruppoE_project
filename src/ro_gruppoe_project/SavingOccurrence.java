@@ -1,16 +1,14 @@
 package ro_gruppoe_project;
 
-import java.util.Collections;
-
 /**
  * Occorrenza dei savings
  */
 public class SavingOccurrence implements Comparable<SavingOccurrence> {
 
-    int i;  //riga
-    int j;  //colonna
-    double s;   //saving
-    boolean c;    //checked: true se il saving è stato utilizzato
+    int i;  // riga
+    int j;  // colonna
+    double s;   // saving
+    boolean c;    // checked: true se il saving è stato utilizzato
 
     /**
      * Costruttore
@@ -31,7 +29,7 @@ public class SavingOccurrence implements Comparable<SavingOccurrence> {
      * Comparazione tra savings per ordinamento decrescente
      */
     public int compareTo(SavingOccurrence so) {
-        //descending order
+        // descending order
         double ris = so.s - this.s;
 
         if (ris > 0) {
@@ -41,9 +39,5 @@ public class SavingOccurrence implements Comparable<SavingOccurrence> {
         } else {
             return 0;
         }
-    }
-
-    public void checked(){
-        this.c=true;
     }
 }

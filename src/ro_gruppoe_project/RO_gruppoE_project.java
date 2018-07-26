@@ -1,4 +1,6 @@
 /*
+ * Dennis Incollu   65055
+ * Claudia Porcu    65056
  * Progetto: 
  * Ricerca Operativa
  * Corso di Informatica
@@ -7,10 +9,6 @@
  */
 package ro_gruppoe_project;
 
-/**
- *
- * @author Dennis, Claudia
- */
 public class RO_gruppoE_project {
 
     public static void main(String[] args) {
@@ -35,14 +33,14 @@ public class RO_gruppoE_project {
         manager.initializeRoutesBackhaul();
         // chiamata alla funzione sequenziale
         executionTime = manager.algoritmoClarkeWrightSequenziale();
-        //calcolo dei costi per l'algoritmo sequenziale
+        // calcolo dei costi per l'algoritmo sequenziale
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Sequential");
         System.out.println("\nFile 'Solution Sequential " + manager.getNameFile() + "' written.");
         System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
-        //copia delle routes nell'apposito ArrayList
+        // copia delle routes nell'apposito ArrayList
         manager.copyRoutes(true);
 
         // PARALLELO
@@ -53,21 +51,21 @@ public class RO_gruppoE_project {
         manager.sortCustomer();
         // chiamata alla funzione parallelo
         executionTime = manager.algoritmoClarkeWrightParallelo();
-        //calcolo dei costi per l'algoritmo parallelo
+        // calcolo dei costi per l'algoritmo parallelo
         manager.calculateCost();
         // salvataggio risultati su file
         manager.writeFile("Parallel");
         System.out.println("\nFile 'Solution Parallel " + manager.getNameFile() + "' written.");
         System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
 
-        //copia delle routes nell'apposito ArrayList
+        // copia delle routes nell'apposito ArrayList
         manager.copyRoutes(false);
 
         // PARALLEL ERROR
 //        manager.algoritmoClarkeWrightParalleloERROR();
-//        //calcolo dei costi per l'algoritmo parallelo
+//        // calcolo dei costi per l'algoritmo parallelo
 //        manager.calculateCost();
-//        //salvataggio risultati su file
+//        // salvataggio risultati su file
 //        manager.writeFile("Parallel Error");
 //        System.out.println("\nFile 'Solution Parallel Error " + manager.getNameFile() + "' written.\n");
     }

@@ -5,9 +5,9 @@ package ro_gruppoe_project;
  */
 public class Depot {
 
-    private int x;  //coordinata x
-    private int y;  //coordinata y
-    private int vehicles; //numero dei veicoli
+    private int x;  // coordinata x
+    private int y;  // coordinata y
+    private int vehicles; // numero dei veicoli
     private int maxCapacity; // capacità massima del veicolo
 
     /**
@@ -69,7 +69,7 @@ public class Depot {
     public int numberOfVehicles() {
         return vehicles;
     }
-    
+
     /**
      * Restituisce la capacità massima del veicolo
      *
