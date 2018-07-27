@@ -397,7 +397,7 @@ public class Manager {
 
     /**
      * Riordina i savings in ordine decrescente per i first e last delle
-     * routesSequenziale linehaul e backhaul
+     * routes linehaul e backhaul
      */
     public void setSortedSavings() {
         int lineFirst;
@@ -506,7 +506,7 @@ public class Manager {
     }
 
     /**
-     * Copia le route sequenziali e svuota routeLinehaul e routeBackhaul
+     * Copia le routes finali e svuota routeLinehaul e routeBackhaul
      *
      * @param sequenziale Indica se si fa la copia dei risultati dell'algoritmo
      * sequenziale o parallelo
@@ -522,6 +522,9 @@ public class Manager {
         routesBackhaul.clear();
     }
 
+    /**
+     * Ordina i customer in base alla richiesta di spazio nel furgone in ordine decrescente
+     */
     public void sortCustomer() {
         customersSorted.addAll(customers);
 
@@ -579,7 +582,7 @@ public class Manager {
             }
 
             // scorre la tabella dei savings
-            for (k = 0; k < sortedSavingsLinehaul.size(); k++) {
+            for (k = 0; k < sortedSavingsLinehaul.size() && routesLinehaul.size() > depot.numberOfVehicles(); k++) {
                 SavingOccurrence occurrence = sortedSavingsLinehaul.get(k);
                 cond1 = occurrence.i == currentFirst;
                 cond2 = occurrence.i == currentLast;
@@ -590,7 +593,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6) && routesLinehaul.size() > depot.numberOfVehicles()) {
+                        && (cond5 != cond6)) {
 
                     routeI = findRoute(occurrence.i, true);
                     routeJ = findRoute(occurrence.j, true);
@@ -701,7 +704,7 @@ public class Manager {
             }
 
             // scorre la tabella dei savings
-            for (k = 0; k < sortedSavingsBackhaul.size(); k++) {
+            for (k = 0; k < sortedSavingsBackhaul.size() && routesBackhaul.size() > depot.numberOfVehicles(); k++) {
                 SavingOccurrence occurrence = sortedSavingsBackhaul.get(k);
                 cond1 = occurrence.i == currentFirst;
                 cond2 = occurrence.i == currentLast;
@@ -712,7 +715,7 @@ public class Manager {
 
                 if ((((cond1) != (cond2))
                         != ((cond3) != (cond4)))
-                        && (cond5 != cond6) && routesBackhaul.size() > depot.numberOfVehicles()) {
+                        && (cond5 != cond6) ) {
 
                     routeI = findRoute(occurrence.i, false);
                     routeJ = findRoute(occurrence.j, false);
