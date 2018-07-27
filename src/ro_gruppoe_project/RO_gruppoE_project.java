@@ -38,7 +38,7 @@ public class RO_gruppoE_project {
         // salvataggio risultati su file
         manager.writeFile("Sequential");
         System.out.println("\nFile 'Solution Sequential " + manager.getNameFile() + "' written.");
-        System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
+        System.out.println("Sequential algorithm executed in " + executionTime + " ms.");
 
         // copia delle routes nell'apposito ArrayList
         manager.copyRoutes(true);
@@ -56,7 +56,7 @@ public class RO_gruppoE_project {
         // salvataggio risultati su file
         manager.writeFile("Parallel");
         System.out.println("\nFile 'Solution Parallel " + manager.getNameFile() + "' written.");
-        System.out.println("Algoritmo sequenziale eseguito in " + executionTime + " ms.");
+        System.out.println("Parallel algorithm executed in " + executionTime + " ms.");
 
         // copia delle routes nell'apposito ArrayList
         manager.copyRoutes(false);

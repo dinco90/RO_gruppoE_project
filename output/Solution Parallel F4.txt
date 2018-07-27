@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: F4.txt
 Algorithm: Parallel
-Execution time: 5 ms.
+Execution time: 12 ms.
 
 
 PROBLEM DETAILS:

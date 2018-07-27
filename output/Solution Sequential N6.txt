@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: N6.txt
 Algorithm: Sequential
-Execution time: 62 ms.
+Execution time: 128 ms.
 
 
 PROBLEM DETAILS:
