@@ -60,13 +60,5 @@ public class RO_gruppoE_project {
 
         // copia delle routes nell'apposito ArrayList
         manager.copyRoutes(false);
-
-        // PARALLEL ERROR
-//        manager.algoritmoClarkeWrightParalleloERROR();
-//        // calcolo dei costi per l'algoritmo parallelo
-//        manager.calculateCost();
-//        // salvataggio risultati su file
-//        manager.writeFile("Parallel Error");
-//        System.out.println("\nFile 'Solution Parallel Error " + manager.getNameFile() + "' written.\n");
     }
 }
