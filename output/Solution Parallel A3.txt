@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: A3.txt
 Algorithm: Parallel
-Execution time: 2 ms.
+Execution time: 1 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,38 @@ Max Load: 4050
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 197338.79341646394
-Routes Of the Solution: 5
+Total Cost: 200772.48634518625
+Routes Of the Solution: 4
 
 ROUTE 0:
-Cost: 49303.379992503156
-Delivery Load: 1947
-Pick-Up Load: 1239
-Customers in Route: 6
+Cost: 39629.18827610583
+Delivery Load: 2738
+Pick-Up Load: 752
+Customers in Route: 7
 Vertex Sequence: 
-0 - 11 - 12 - 10 - 14 - 4 - 3 - 0
+0 - 11 - 15 - 13 - 25 - 8 - 2 - 5 - 0
 
 ROUTE 1:
-Cost: 34128.19732266157
-Delivery Load: 2294
-Pick-Up Load: 558
-Customers in Route: 5
+Cost: 52645.68328400064
+Delivery Load: 2330
+Pick-Up Load: 388
+Customers in Route: 6
 Vertex Sequence: 
-0 - 15 - 25 - 13 - 8 - 2 - 0
+0 - 16 - 21 - 14 - 10 - 12 - 4 - 0
 
 ROUTE 2:
-Cost: 29645.120001538646
-Delivery Load: 1518
-Pick-Up Load: 0
-Customers in Route: 3
+Cost: 65548.36890119003
+Delivery Load: 2297
+Pick-Up Load: 851
+Customers in Route: 6
 Vertex Sequence: 
-0 - 21 - 16 - 18 - 0
+0 - 18 - 7 - 6 - 19 - 23 - 3 - 0
 
 ROUTE 3:
-Cost: 35817.09597289622
+Cost: 42949.24588388977
 Delivery Load: 2684
 Pick-Up Load: 549
 Customers in Route: 6
 Vertex Sequence: 
-0 - 17 - 9 - 24 - 20 - 22 - 1 - 0
-
-ROUTE 4:
-Cost: 48445.00012686437
-Delivery Load: 1606
-Pick-Up Load: 194
-Customers in Route: 5
-Vertex Sequence: 
-0 - 7 - 6 - 19 - 23 - 5 - 0
+0 - 22 - 20 - 24 - 9 - 17 - 1 - 0
 

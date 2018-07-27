@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: H5.txt
 Algorithm: Parallel
-Execution time: 9 ms.
+Execution time: 12 ms.
 
 
 PROBLEM DETAILS:
@@ -9,62 +9,38 @@ Max Load: 7100
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 346257.1826669981
-Routes Of the Solution: 7
+Total Cost: 378944.3519766566
+Routes Of the Solution: 4
 
 ROUTE 0:
-Cost: 54177.27370090636
-Delivery Load: 3951
-Pick-Up Load: 1483
-Customers in Route: 12
+Cost: 74949.29166036115
+Delivery Load: 4714
+Pick-Up Load: 2978
+Customers in Route: 17
 Vertex Sequence: 
-0 - 57 - 24 - 27 - 67 - 34 - 50 - 56 - 25 - 39 - 19 - 8 - 15 - 0
+0 - 33 - 55 - 37 - 59 - 47 - 52 - 36 - 46 - 38 - 62 - 39 - 1 - 22 - 12 - 9 - 7 - 18 - 0
 
 ROUTE 1:
-Cost: 38261.4763042959
-Delivery Load: 2017
-Pick-Up Load: 1621
-Customers in Route: 9
+Cost: 99313.158149064
+Delivery Load: 5356
+Pick-Up Load: 2943
+Customers in Route: 17
 Vertex Sequence: 
-0 - 40 - 52 - 36 - 46 - 38 - 9 - 7 - 14 - 18 - 0
+0 - 40 - 48 - 31 - 65 - 53 - 68 - 43 - 29 - 30 - 54 - 42 - 10 - 5 - 17 - 20 - 4 - 13 - 0
 
 ROUTE 2:
-Cost: 31422.088847110124
-Delivery Load: 3600
-Pick-Up Load: 0
-Customers in Route: 8
+Cost: 103967.30177869994
+Delivery Load: 5632
+Pick-Up Load: 2995
+Customers in Route: 18
 Vertex Sequence: 
-0 - 48 - 55 - 37 - 59 - 47 - 65 - 31 - 33 - 0
+0 - 57 - 64 - 35 - 41 - 32 - 45 - 66 - 63 - 60 - 49 - 28 - 51 - 16 - 3 - 19 - 8 - 14 - 15 - 0
 
 ROUTE 3:
-Cost: 87952.10450045876
-Delivery Load: 4394
-Pick-Up Load: 2213
-Customers in Route: 14
+Cost: 100714.60038853146
+Delivery Load: 5499
+Pick-Up Load: 2565
+Customers in Route: 16
 Vertex Sequence: 
-0 - 51 - 49 - 53 - 68 - 43 - 29 - 63 - 60 - 28 - 20 - 2 - 6 - 4 - 13 - 0
-
-ROUTE 4:
-Cost: 37195.42489491456
-Delivery Load: 1995
-Pick-Up Load: 1260
-Customers in Route: 7
-Vertex Sequence: 
-0 - 61 - 45 - 30 - 42 - 21 - 5 - 10 - 0
-
-ROUTE 5:
-Cost: 42340.21339112847
-Delivery Load: 2186
-Pick-Up Load: 2869
-Customers in Route: 9
-Vertex Sequence: 
-0 - 44 - 26 - 58 - 62 - 12 - 22 - 3 - 16 - 1 - 0
-
-ROUTE 6:
-Cost: 54908.60102818397
-Delivery Load: 3058
-Pick-Up Load: 2035
-Customers in Route: 9
-Vertex Sequence: 
-0 - 64 - 35 - 54 - 41 - 32 - 66 - 23 - 11 - 17 - 0
+0 - 61 - 24 - 27 - 67 - 25 - 56 - 34 - 50 - 26 - 58 - 44 - 21 - 23 - 11 - 2 - 6 - 0
 

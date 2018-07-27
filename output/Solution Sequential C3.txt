@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: C3.txt
 Algorithm: Sequential
-Execution time: 4 ms.
+Execution time: 1 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,46 @@ Max Load: 4150
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 265312.9081144799
+Total Cost: 272644.2913012925
 Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 13704.476932739899
+Cost: 20356.680128325577
 Delivery Load: 631
-Pick-Up Load: 0
-Customers in Route: 1
+Pick-Up Load: 523
+Customers in Route: 2
 Vertex Sequence: 
-0 - 22 - 0
+0 - 22 - 10 - 0
 
 ROUTE 1:
-Cost: 4435.732183078685
+Cost: 13608.02445587252
 Delivery Load: 678
-Pick-Up Load: 0
-Customers in Route: 1
+Pick-Up Load: 614
+Customers in Route: 2
 Vertex Sequence: 
-0 - 26 - 0
+0 - 26 - 15 - 0
 
 ROUTE 2:
-Cost: 98851.8452411837
+Cost: 93040.16922264172
 Delivery Load: 4046
-Pick-Up Load: 3999
-Customers in Route: 15
+Pick-Up Load: 3883
+Customers in Route: 16
 Vertex Sequence: 
-0 - 27 - 37 - 31 - 40 - 23 - 35 - 30 - 25 - 8 - 3 - 19 - 17 - 5 - 16 - 14 - 0
+0 - 25 - 30 - 35 - 23 - 40 - 31 - 37 - 27 - 6 - 20 - 9 - 2 - 18 - 13 - 12 - 7 - 0
 
 ROUTE 3:
-Cost: 103934.97027629513
+Cost: 109488.72179996104
 Delivery Load: 3940
-Pick-Up Load: 3883
-Customers in Route: 17
+Pick-Up Load: 3999
+Customers in Route: 16
 Vertex Sequence: 
-0 - 28 - 38 - 33 - 29 - 24 - 36 - 32 - 34 - 21 - 7 - 12 - 13 - 18 - 2 - 9 - 20 - 6 - 0
+0 - 21 - 34 - 32 - 36 - 24 - 29 - 33 - 38 - 28 - 14 - 16 - 5 - 17 - 19 - 3 - 8 - 0
 
 ROUTE 4:
-Cost: 44385.88348118251
+Cost: 36150.69569449161
 Delivery Load: 698
-Pick-Up Load: 2424
-Customers in Route: 6
+Pick-Up Load: 1287
+Customers in Route: 4
 Vertex Sequence: 
-0 - 39 - 1 - 11 - 4 - 10 - 15 - 0
+0 - 39 - 1 - 11 - 4 - 0
 

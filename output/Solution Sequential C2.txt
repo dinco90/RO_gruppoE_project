@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: C2.txt
 Algorithm: Sequential
-Execution time: 3 ms.
+Execution time: 2 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,46 @@ Max Load: 2600
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 278477.77249965194
+Total Cost: 277778.1416382388
 Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 80288.93645953317
-Delivery Load: 2524
-Pick-Up Load: 2568
-Customers in Route: 10
+Cost: 70668.91243903419
+Delivery Load: 1846
+Pick-Up Load: 2452
+Customers in Route: 7
 Vertex Sequence: 
-0 - 26 - 36 - 21 - 22 - 7 - 12 - 13 - 18 - 2 - 9 - 0
+0 - 22 - 21 - 36 - 6 - 20 - 10 - 15 - 0
 
 ROUTE 1:
-Cost: 55821.81076631578
-Delivery Load: 2574
-Pick-Up Load: 2452
-Customers in Route: 9
+Cost: 34065.81036659856
+Delivery Load: 678
+Pick-Up Load: 2334
+Customers in Route: 5
 Vertex Sequence: 
-0 - 23 - 40 - 31 - 37 - 27 - 6 - 20 - 10 - 15 - 0
+0 - 26 - 14 - 16 - 11 - 1 - 0
 
 ROUTE 2:
-Cost: 53648.958875151
-Delivery Load: 2315
-Pick-Up Load: 2334
-Customers in Route: 9
-Vertex Sequence: 
-0 - 28 - 38 - 39 - 33 - 29 - 14 - 16 - 11 - 1 - 0
-
-ROUTE 3:
-Cost: 71320.19227564489
-Delivery Load: 2580
-Pick-Up Load: 2498
+Cost: 67505.80832015448
+Delivery Load: 2574
+Pick-Up Load: 2568
 Customers in Route: 11
 Vertex Sequence: 
-0 - 35 - 30 - 25 - 34 - 32 - 24 - 8 - 3 - 19 - 17 - 5 - 0
+0 - 27 - 37 - 31 - 40 - 23 - 9 - 2 - 18 - 13 - 12 - 7 - 0
+
+ROUTE 3:
+Cost: 56878.73068033597
+Delivery Load: 2315
+Pick-Up Load: 2498
+Customers in Route: 10
+Vertex Sequence: 
+0 - 28 - 38 - 39 - 33 - 29 - 5 - 17 - 19 - 3 - 8 - 0
 
 ROUTE 4:
-Cost: 17397.8741230071
-Delivery Load: 0
+Cost: 48658.87983211559
+Delivery Load: 2580
 Pick-Up Load: 454
-Customers in Route: 1
+Customers in Route: 7
 Vertex Sequence: 
-0 - 4 - 0
+0 - 35 - 30 - 25 - 34 - 32 - 24 - 4 - 0
 

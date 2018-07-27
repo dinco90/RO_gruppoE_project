@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: G2.txt
 Algorithm: Sequential
-Execution time: 9 ms.
+Execution time: 7 ms.
 
 
 PROBLEM DETAILS:
@@ -9,54 +9,54 @@ Max Load: 4300
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 315015.9463270197
+Total Cost: 333955.87555824604
 Routes Of the Solution: 6
 
 ROUTE 0:
-Cost: 44311.550324286756
+Cost: 45245.621356463496
 Delivery Load: 4189
-Pick-Up Load: 0
-Customers in Route: 8
-Vertex Sequence: 
-0 - 16 - 51 - 26 - 40 - 33 - 38 - 22 - 48 - 0
-
-ROUTE 1:
-Cost: 25099.41873132719
-Delivery Load: 2626
-Pick-Up Load: 0
-Customers in Route: 6
-Vertex Sequence: 
-0 - 19 - 41 - 56 - 43 - 57 - 46 - 0
-
-ROUTE 2:
-Cost: 44731.587719785646
-Delivery Load: 4189
-Pick-Up Load: 548
-Customers in Route: 8
-Vertex Sequence: 
-0 - 23 - 39 - 42 - 50 - 44 - 47 - 15 - 8 - 0
-
-ROUTE 3:
-Cost: 56190.99689353455
-Delivery Load: 4299
 Pick-Up Load: 782
 Customers in Route: 9
 Vertex Sequence: 
-0 - 24 - 45 - 30 - 36 - 28 - 17 - 27 - 35 - 9 - 0
+0 - 16 - 51 - 26 - 40 - 33 - 38 - 22 - 48 - 9 - 0
+
+ROUTE 1:
+Cost: 35822.364834405875
+Delivery Load: 2626
+Pick-Up Load: 443
+Customers in Route: 7
+Vertex Sequence: 
+0 - 19 - 41 - 56 - 43 - 57 - 46 - 3 - 0
+
+ROUTE 2:
+Cost: 54318.96310559205
+Delivery Load: 4189
+Pick-Up Load: 446
+Customers in Route: 8
+Vertex Sequence: 
+0 - 23 - 39 - 42 - 50 - 44 - 47 - 15 - 2 - 0
+
+ROUTE 3:
+Cost: 87203.13252663237
+Delivery Load: 4299
+Pick-Up Load: 2825
+Customers in Route: 15
+Vertex Sequence: 
+0 - 24 - 45 - 30 - 36 - 28 - 17 - 27 - 35 - 6 - 10 - 5 - 4 - 7 - 1 - 12 - 0
 
 ROUTE 4:
-Cost: 110936.13850685884
+Cost: 76379.07862888218
 Delivery Load: 4279
-Pick-Up Load: 4273
-Customers in Route: 17
+Pick-Up Load: 559
+Customers in Route: 8
 Vertex Sequence: 
-0 - 21 - 55 - 31 - 52 - 18 - 34 - 49 - 11 - 2 - 3 - 12 - 1 - 7 - 4 - 5 - 10 - 6 - 0
+0 - 49 - 34 - 18 - 52 - 31 - 55 - 21 - 11 - 0
 
 ROUTE 5:
-Cost: 33746.254151226734
+Cost: 34986.71510627004
 Delivery Load: 4251
-Pick-Up Load: 0
-Customers in Route: 9
+Pick-Up Load: 548
+Customers in Route: 10
 Vertex Sequence: 
-0 - 54 - 25 - 53 - 13 - 20 - 32 - 14 - 29 - 37 - 0
+0 - 54 - 25 - 53 - 13 - 20 - 32 - 14 - 29 - 37 - 8 - 0
 

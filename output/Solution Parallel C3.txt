@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: C3.txt
 Algorithm: Parallel
-Execution time: 3 ms.
+Execution time: 2 ms.
 
 
 PROBLEM DETAILS:
@@ -9,54 +9,46 @@ Max Load: 4150
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 282179.9994516448
-Routes Of the Solution: 6
+Total Cost: 368795.5849566743
+Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 53569.855049684455
-Delivery Load: 1720
-Pick-Up Load: 1662
-Customers in Route: 7
-Vertex Sequence: 
-0 - 21 - 34 - 25 - 32 - 4 - 17 - 5 - 0
-
-ROUTE 1:
-Cost: 64830.053240617905
-Delivery Load: 1996
-Pick-Up Load: 1593
+Cost: 69582.0946590939
+Delivery Load: 1422
+Pick-Up Load: 1870
 Customers in Route: 8
 Vertex Sequence: 
-0 - 31 - 40 - 23 - 22 - 7 - 18 - 13 - 12 - 0
+0 - 24 - 39 - 38 - 28 - 1 - 14 - 4 - 7 - 0
+
+ROUTE 1:
+Cost: 79256.34961283806
+Delivery Load: 2223
+Pick-Up Load: 2107
+Customers in Route: 8
+Vertex Sequence: 
+0 - 22 - 31 - 33 - 29 - 5 - 17 - 19 - 10 - 0
 
 ROUTE 2:
-Cost: 40590.90938456418
-Delivery Load: 2720
-Pick-Up Load: 1137
-Customers in Route: 6
+Cost: 50948.909858681545
+Delivery Load: 1941
+Pick-Up Load: 1819
+Customers in Route: 8
 Vertex Sequence: 
-0 - 26 - 33 - 37 - 27 - 15 - 10 - 0
+0 - 32 - 34 - 25 - 30 - 12 - 18 - 13 - 15 - 0
 
 ROUTE 3:
-Cost: 45554.47312364509
-Delivery Load: 1228
-Pick-Up Load: 1290
-Customers in Route: 6
+Cost: 97300.49517740158
+Delivery Load: 2481
+Pick-Up Load: 2220
+Customers in Route: 8
 Vertex Sequence: 
-0 - 29 - 36 - 24 - 19 - 3 - 8 - 0
+0 - 36 - 26 - 37 - 27 - 8 - 3 - 16 - 11 - 0
 
 ROUTE 4:
-Cost: 43671.648152417016
-Delivery Load: 1194
+Cost: 71707.73564865923
+Delivery Load: 1926
 Pick-Up Load: 2290
-Customers in Route: 6
+Customers in Route: 8
 Vertex Sequence: 
-0 - 30 - 35 - 2 - 20 - 9 - 6 - 0
-
-ROUTE 5:
-Cost: 33963.060500716165
-Delivery Load: 1135
-Pick-Up Load: 2334
-Customers in Route: 7
-Vertex Sequence: 
-0 - 28 - 38 - 39 - 1 - 11 - 16 - 14 - 0
+0 - 40 - 23 - 35 - 21 - 2 - 20 - 9 - 6 - 0
 

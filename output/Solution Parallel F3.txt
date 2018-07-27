@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: F3.txt
 Algorithm: Parallel
-Execution time: 8 ms.
+Execution time: 4 ms.
 
 
 PROBLEM DETAILS:
@@ -9,70 +9,46 @@ Max Load: 4400
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 357735.0403272599
-Routes Of the Solution: 8
+Total Cost: 367863.4292064198
+Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 20052.592781166688
-Delivery Load: 2194
-Pick-Up Load: 1765
-Customers in Route: 5
+Cost: 69626.66563646955
+Delivery Load: 2842
+Pick-Up Load: 3424
+Customers in Route: 12
 Vertex Sequence: 
-0 - 31 - 58 - 44 - 16 - 11 - 0
+0 - 31 - 58 - 33 - 35 - 39 - 56 - 25 - 15 - 19 - 17 - 9 - 6 - 0
 
 ROUTE 1:
-Cost: 39475.25473399347
-Delivery Load: 2480
-Pick-Up Load: 1579
-Customers in Route: 7
+Cost: 54373.51325732861
+Delivery Load: 3528
+Pick-Up Load: 3293
+Customers in Route: 12
 Vertex Sequence: 
-0 - 37 - 60 - 32 - 59 - 14 - 13 - 6 - 0
+0 - 37 - 46 - 59 - 32 - 54 - 43 - 13 - 11 - 22 - 28 - 23 - 10 - 0
 
 ROUTE 2:
-Cost: 37353.198483134955
-Delivery Load: 954
-Pick-Up Load: 1571
-Customers in Route: 6
+Cost: 62814.89453050323
+Delivery Load: 3148
+Pick-Up Load: 3749
+Customers in Route: 12
 Vertex Sequence: 
-0 - 33 - 35 - 39 - 28 - 23 - 10 - 0
+0 - 47 - 41 - 42 - 48 - 51 - 38 - 1 - 20 - 24 - 21 - 18 - 3 - 0
 
 ROUTE 3:
-Cost: 73497.87510241687
-Delivery Load: 2627
-Pick-Up Load: 3146
-Customers in Route: 11
+Cost: 107176.29580466147
+Delivery Load: 3168
+Pick-Up Load: 2983
+Customers in Route: 12
 Vertex Sequence: 
-0 - 46 - 49 - 50 - 54 - 43 - 9 - 22 - 17 - 19 - 15 - 25 - 0
+0 - 53 - 45 - 60 - 49 - 50 - 44 - 7 - 27 - 8 - 5 - 26 - 16 - 0
 
 ROUTE 4:
-Cost: 34614.24060977614
-Delivery Load: 2519
-Pick-Up Load: 2147
-Customers in Route: 7
+Cost: 73872.05997745693
+Delivery Load: 2724
+Pick-Up Load: 2961
+Customers in Route: 12
 Vertex Sequence: 
-0 - 47 - 34 - 57 - 41 - 20 - 30 - 29 - 0
-
-ROUTE 5:
-Cost: 61469.37845004334
-Delivery Load: 791
-Pick-Up Load: 2186
-Customers in Route: 7
-Vertex Sequence: 
-0 - 53 - 45 - 7 - 27 - 8 - 5 - 26 - 0
-
-ROUTE 6:
-Cost: 50084.431194255085
-Delivery Load: 2176
-Pick-Up Load: 2808
-Customers in Route: 10
-Vertex Sequence: 
-0 - 55 - 42 - 48 - 51 - 38 - 3 - 18 - 24 - 21 - 1 - 0
-
-ROUTE 7:
-Cost: 41188.068972473375
-Delivery Load: 1669
-Pick-Up Load: 1208
-Customers in Route: 7
-Vertex Sequence: 
-0 - 56 - 40 - 52 - 36 - 12 - 4 - 2 - 0
+0 - 55 - 57 - 34 - 36 - 52 - 40 - 2 - 29 - 12 - 4 - 30 - 14 - 0
 

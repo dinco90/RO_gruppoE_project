@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: N5.txt
 Algorithm: Parallel
-Execution time: 35 ms.
+Execution time: 26 ms.
 
 
 PROBLEM DETAILS:
@@ -9,110 +9,62 @@ Max Load: 8500
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 579851.8867042178
-Routes Of the Solution: 13
+Total Cost: 607866.4863933946
+Routes Of the Solution: 7
 
 ROUTE 0:
-Cost: 42172.51706300788
-Delivery Load: 4561
-Pick-Up Load: 2983
-Customers in Route: 13
+Cost: 79376.95489228147
+Delivery Load: 7790
+Pick-Up Load: 3194
+Customers in Route: 21
 Vertex Sequence: 
-0 - 51 - 73 - 65 - 95 - 69 - 134 - 103 - 74 - 27 - 39 - 28 - 17 - 44 - 0
+0 - 57 - 81 - 135 - 80 - 109 - 108 - 115 - 94 - 101 - 54 - 59 - 83 - 72 - 51 - 33 - 43 - 48 - 50 - 20 - 47 - 24 - 0
 
 ROUTE 1:
-Cost: 65734.75016775241
-Delivery Load: 6677
-Pick-Up Load: 2936
-Customers in Route: 18
+Cost: 90625.71744751217
+Delivery Load: 7103
+Pick-Up Load: 2996
+Customers in Route: 22
 Vertex Sequence: 
-0 - 108 - 115 - 121 - 148 - 71 - 112 - 94 - 101 - 109 - 54 - 55 - 41 - 46 - 40 - 21 - 9 - 37 - 18 - 0
+0 - 62 - 118 - 77 - 131 - 123 - 114 - 133 - 56 - 74 - 107 - 76 - 79 - 63 - 142 - 60 - 27 - 39 - 7 - 4 - 3 - 34 - 32 - 0
 
 ROUTE 2:
-Cost: 31809.578615237635
-Delivery Load: 2642
-Pick-Up Load: 0
-Customers in Route: 5
+Cost: 101955.4838641526
+Delivery Load: 8462
+Pick-Up Load: 3510
+Customers in Route: 20
 Vertex Sequence: 
-0 - 57 - 86 - 88 - 53 - 81 - 0
+0 - 96 - 102 - 61 - 121 - 148 - 71 - 138 - 52 - 141 - 125 - 110 - 84 - 132 - 15 - 8 - 11 - 2 - 28 - 17 - 12 - 0
 
 ROUTE 3:
-Cost: 33010.46624188828
-Delivery Load: 4349
-Pick-Up Load: 0
-Customers in Route: 8
+Cost: 84378.25806485543
+Delivery Load: 8306
+Pick-Up Load: 3537
+Customers in Route: 22
 Vertex Sequence: 
-0 - 59 - 118 - 77 - 61 - 131 - 102 - 96 - 83 - 0
+0 - 104 - 89 - 82 - 99 - 116 - 143 - 128 - 66 - 75 - 145 - 137 - 88 - 85 - 68 - 53 - 18 - 26 - 37 - 9 - 21 - 40 - 16 - 0
 
 ROUTE 4:
-Cost: 38273.14162384896
-Delivery Load: 1611
-Pick-Up Load: 2213
-Customers in Route: 9
+Cost: 70575.24776091293
+Delivery Load: 8238
+Pick-Up Load: 2975
+Customers in Route: 21
 Vertex Sequence: 
-0 - 56 - 92 - 133 - 72 - 6 - 2 - 42 - 31 - 38 - 0
+0 - 105 - 58 - 146 - 70 - 100 - 91 - 73 - 65 - 103 - 134 - 95 - 69 - 92 - 78 - 19 - 25 - 6 - 42 - 31 - 38 - 44 - 0
 
 ROUTE 5:
-Cost: 54888.50779069989
-Delivery Load: 4058
-Pick-Up Load: 1914
-Customers in Route: 12
+Cost: 90312.61673665029
+Delivery Load: 7835
+Pick-Up Load: 3245
+Customers in Route: 23
 Vertex Sequence: 
-0 - 84 - 143 - 136 - 97 - 130 - 93 - 149 - 117 - 120 - 10 - 22 - 5 - 0
+0 - 124 - 98 - 93 - 149 - 117 - 144 - 64 - 150 - 113 - 120 - 126 - 147 - 129 - 119 - 87 - 23 - 30 - 14 - 1 - 45 - 29 - 46 - 41 - 0
 
 ROUTE 6:
-Cost: 32109.992484389022
-Delivery Load: 4180
-Pick-Up Load: 1042
-Customers in Route: 10
+Cost: 90642.20762702974
+Delivery Load: 6366
+Pick-Up Load: 3382
+Customers in Route: 21
 Vertex Sequence: 
-0 - 135 - 111 - 80 - 138 - 90 - 68 - 85 - 45 - 29 - 16 - 0
-
-ROUTE 7:
-Cost: 57230.11726350231
-Delivery Load: 5181
-Pick-Up Load: 2668
-Customers in Route: 17
-Vertex Sequence: 
-0 - 87 - 119 - 142 - 63 - 79 - 70 - 100 - 91 - 76 - 107 - 60 - 12 - 4 - 7 - 48 - 43 - 33 - 0
-
-ROUTE 8:
-Cost: 59787.30101394603
-Delivery Load: 5849
-Pick-Up Load: 2753
-Customers in Route: 18
-Vertex Sequence: 
-0 - 104 - 89 - 82 - 129 - 58 - 146 - 99 - 147 - 150 - 113 - 140 - 32 - 34 - 35 - 49 - 36 - 13 - 3 - 0
-
-ROUTE 9:
-Cost: 53620.64235762737
-Delivery Load: 2844
-Pick-Up Load: 2920
-Customers in Route: 10
-Vertex Sequence: 
-0 - 62 - 78 - 114 - 123 - 19 - 25 - 11 - 8 - 15 - 26 - 0
-
-ROUTE 10:
-Cost: 26193.29503482619
-Delivery Load: 4889
-Pick-Up Load: 0
-Customers in Route: 10
-Vertex Sequence: 
-0 - 124 - 128 - 98 - 75 - 67 - 66 - 127 - 110 - 132 - 105 - 0
-
-ROUTE 11:
-Cost: 42368.10623145569
-Delivery Load: 4630
-Pick-Up Load: 2066
-Customers in Route: 11
-Vertex Sequence: 
-0 - 125 - 141 - 145 - 122 - 106 - 137 - 52 - 23 - 30 - 14 - 1 - 0
-
-ROUTE 12:
-Cost: 42653.47081603609
-Delivery Load: 2629
-Pick-Up Load: 1344
-Customers in Route: 9
-Vertex Sequence: 
-0 - 139 - 126 - 144 - 64 - 116 - 50 - 20 - 47 - 24 - 0
+0 - 139 - 140 - 127 - 136 - 97 - 130 - 67 - 122 - 106 - 86 - 90 - 112 - 111 - 55 - 13 - 36 - 49 - 35 - 5 - 22 - 10 - 0
 

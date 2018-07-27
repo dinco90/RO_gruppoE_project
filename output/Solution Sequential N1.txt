@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: N1.txt
 Algorithm: Sequential
-Execution time: 73 ms.
+Execution time: 101 ms.
 
 
 PROBLEM DETAILS:
@@ -9,94 +9,94 @@ Max Load: 5700
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 566103.3652088846
+Total Cost: 604448.1026379125
 Routes Of the Solution: 11
 
 ROUTE 0:
-Cost: 85608.42242701162
+Cost: 71622.83597157836
 Delivery Load: 5685
-Pick-Up Load: 5604
-Customers in Route: 23
+Pick-Up Load: 2862
+Customers in Route: 17
 Vertex Sequence: 
-0 - 56 - 74 - 107 - 76 - 142 - 70 - 129 - 82 - 116 - 126 - 140 - 32 - 12 - 27 - 38 - 6 - 25 - 15 - 18 - 26 - 46 - 23 - 41 - 0
+0 - 56 - 74 - 107 - 76 - 142 - 70 - 129 - 82 - 116 - 126 - 140 - 27 - 38 - 6 - 25 - 15 - 18 - 0
 
 ROUTE 1:
-Cost: 48897.21324104541
+Cost: 82362.36712633376
 Delivery Load: 5690
-Pick-Up Load: 0
-Customers in Route: 13
+Pick-Up Load: 5614
+Customers in Route: 25
 Vertex Sequence: 
-0 - 58 - 146 - 99 - 147 - 150 - 64 - 144 - 117 - 149 - 113 - 120 - 97 - 130 - 0
+0 - 130 - 97 - 120 - 113 - 149 - 117 - 144 - 64 - 150 - 147 - 99 - 146 - 58 - 50 - 4 - 7 - 48 - 43 - 33 - 39 - 28 - 17 - 42 - 31 - 2 - 0
 
 ROUTE 2:
-Cost: 34030.85003980683
+Cost: 38357.679189805574
 Delivery Load: 5673
-Pick-Up Load: 0
-Customers in Route: 10
+Pick-Up Load: 451
+Customers in Route: 11
 Vertex Sequence: 
-0 - 60 - 89 - 139 - 84 - 110 - 127 - 124 - 132 - 125 - 57 - 0
+0 - 60 - 89 - 139 - 84 - 110 - 127 - 124 - 132 - 125 - 57 - 44 - 0
 
 ROUTE 3:
-Cost: 83510.25286805216
+Cost: 49881.77264703476
 Delivery Load: 5694
-Pick-Up Load: 5614
-Customers in Route: 24
+Pick-Up Load: 307
+Customers in Route: 13
 Vertex Sequence: 
-0 - 63 - 79 - 100 - 91 - 73 - 65 - 103 - 134 - 69 - 95 - 92 - 133 - 2 - 31 - 42 - 17 - 28 - 39 - 33 - 43 - 48 - 7 - 4 - 50 - 0
+0 - 63 - 79 - 100 - 91 - 73 - 65 - 103 - 134 - 69 - 95 - 92 - 133 - 12 - 0
 
 ROUTE 4:
-Cost: 90492.30657006786
+Cost: 51558.53277510394
 Delivery Load: 5633
-Pick-Up Load: 5626
-Customers in Route: 23
+Pick-Up Load: 738
+Customers in Route: 11
 Vertex Sequence: 
-0 - 81 - 80 - 138 - 109 - 108 - 59 - 96 - 102 - 78 - 72 - 19 - 24 - 3 - 47 - 13 - 20 - 36 - 49 - 35 - 5 - 22 - 34 - 10 - 0
+0 - 81 - 80 - 138 - 109 - 108 - 59 - 96 - 102 - 78 - 72 - 26 - 0
 
 ROUTE 5:
-Cost: 26025.987161101955
+Cost: 83985.22644184413
 Delivery Load: 5361
-Pick-Up Load: 0
-Customers in Route: 8
+Pick-Up Load: 5626
+Customers in Route: 21
 Vertex Sequence: 
-0 - 83 - 55 - 54 - 135 - 111 - 52 - 141 - 105 - 0
+0 - 83 - 55 - 54 - 135 - 111 - 52 - 141 - 105 - 19 - 24 - 3 - 47 - 13 - 20 - 36 - 49 - 35 - 5 - 22 - 34 - 10 - 0
 
 ROUTE 6:
-Cost: 15988.70138560843
-Delivery Load: 3597
-Pick-Up Load: 0
-Customers in Route: 5
+Cost: 6309.693677604629
+Delivery Load: 498
+Pick-Up Load: 434
+Customers in Route: 2
 Vertex Sequence: 
-0 - 87 - 104 - 119 - 51 - 62 - 0
+0 - 87 - 41 - 0
 
 ROUTE 7:
-Cost: 86989.79773887323
+Cost: 26278.69869229701
+Delivery Load: 3099
+Pick-Up Load: 352
+Customers in Route: 5
+Vertex Sequence: 
+0 - 104 - 119 - 51 - 62 - 32 - 0
+
+ROUTE 8:
+Cost: 95059.85825924628
 Delivery Load: 5672
 Pick-Up Load: 5544
 Customers in Route: 22
 Vertex Sequence: 
-0 - 101 - 94 - 115 - 121 - 118 - 77 - 61 - 131 - 123 - 114 - 11 - 8 - 37 - 9 - 21 - 40 - 29 - 45 - 16 - 1 - 14 - 30 - 0
-
-ROUTE 8:
-Cost: 45569.927907970676
-Delivery Load: 5525
-Pick-Up Load: 0
-Customers in Route: 12
-Vertex Sequence: 
-0 - 137 - 106 - 122 - 145 - 67 - 75 - 93 - 98 - 66 - 128 - 136 - 143 - 0
+0 - 114 - 123 - 131 - 61 - 77 - 118 - 121 - 115 - 94 - 101 - 11 - 8 - 37 - 9 - 21 - 40 - 29 - 45 - 16 - 1 - 14 - 30 - 0
 
 ROUTE 9:
-Cost: 44577.635252079235
-Delivery Load: 5570
-Pick-Up Load: 0
-Customers in Route: 9
+Cost: 52703.1546492109
+Delivery Load: 5525
+Pick-Up Load: 577
+Customers in Route: 13
 Vertex Sequence: 
-0 - 148 - 71 - 112 - 90 - 68 - 85 - 53 - 88 - 86 - 0
+0 - 137 - 106 - 122 - 145 - 67 - 75 - 93 - 98 - 66 - 128 - 136 - 143 - 23 - 0
 
 ROUTE 10:
-Cost: 4412.270617267259
-Delivery Load: 0
-Pick-Up Load: 451
-Customers in Route: 1
+Cost: 46328.28320785311
+Delivery Load: 5570
+Pick-Up Load: 334
+Customers in Route: 10
 Vertex Sequence: 
-0 - 44 - 0
+0 - 148 - 71 - 112 - 90 - 68 - 85 - 53 - 88 - 86 - 46 - 0
 

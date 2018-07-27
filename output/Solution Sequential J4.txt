@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: J4.txt
 Algorithm: Sequential
-Execution time: 28 ms.
+Execution time: 33 ms.
 
 
 PROBLEM DETAILS:
@@ -9,62 +9,62 @@ Max Load: 6600
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 408312.4519450222
+Total Cost: 442125.77145213133
 Routes Of the Solution: 7
 
 ROUTE 0:
-Cost: 55231.65097548781
+Cost: 121183.1279087242
 Delivery Load: 6572
-Pick-Up Load: 571
-Customers in Route: 14
+Pick-Up Load: 6176
+Customers in Route: 26
 Vertex Sequence: 
-0 - 43 - 25 - 61 - 38 - 64 - 72 - 34 - 42 - 45 - 76 - 20 - 29 - 89 - 13 - 0
+0 - 43 - 25 - 61 - 38 - 64 - 72 - 34 - 42 - 45 - 76 - 20 - 29 - 89 - 8 - 10 - 11 - 7 - 15 - 1 - 12 - 5 - 6 - 3 - 2 - 19 - 16 - 0
 
 ROUTE 1:
-Cost: 53859.65194121442
+Cost: 48556.00800032564
 Delivery Load: 6553
-Pick-Up Load: 481
+Pick-Up Load: 529
 Customers in Route: 11
 Vertex Sequence: 
-0 - 50 - 80 - 23 - 49 - 21 - 75 - 91 - 94 - 79 - 53 - 9 - 0
+0 - 50 - 80 - 23 - 49 - 21 - 75 - 91 - 94 - 79 - 53 - 4 - 0
 
 ROUTE 2:
-Cost: 46602.012217619995
+Cost: 55442.85654142057
 Delivery Load: 6501
-Pick-Up Load: 723
+Pick-Up Load: 571
 Customers in Route: 11
 Vertex Sequence: 
-0 - 74 - 93 - 85 - 51 - 58 - 88 - 73 - 41 - 47 - 52 - 17 - 0
+0 - 52 - 47 - 41 - 73 - 88 - 58 - 51 - 85 - 93 - 74 - 13 - 0
 
 ROUTE 3:
-Cost: 55650.705859450376
+Cost: 61839.0360615045
 Delivery Load: 6579
 Pick-Up Load: 623
 Customers in Route: 12
 Vertex Sequence: 
-0 - 46 - 90 - 40 - 81 - 59 - 37 - 86 - 54 - 22 - 57 - 55 - 14 - 0
+0 - 55 - 57 - 22 - 54 - 86 - 37 - 59 - 81 - 40 - 90 - 46 - 14 - 0
 
 ROUTE 4:
-Cost: 11210.282111612443
+Cost: 33549.43788977476
 Delivery Load: 1618
-Pick-Up Load: 0
-Customers in Route: 4
+Pick-Up Load: 423
+Customers in Route: 5
 Vertex Sequence: 
-0 - 56 - 31 - 24 - 26 - 0
+0 - 56 - 31 - 24 - 26 - 18 - 0
 
 ROUTE 5:
-Cost: 59063.57778516795
+Cost: 70213.13729757859
 Delivery Load: 6471
-Pick-Up Load: 529
+Pick-Up Load: 481
 Customers in Route: 16
 Vertex Sequence: 
-0 - 60 - 69 - 39 - 32 - 48 - 27 - 68 - 33 - 82 - 62 - 44 - 36 - 35 - 67 - 66 - 4 - 0
+0 - 60 - 69 - 39 - 32 - 48 - 27 - 68 - 33 - 82 - 62 - 44 - 36 - 35 - 67 - 66 - 9 - 0
 
 ROUTE 6:
-Cost: 126694.57105446924
+Cost: 51342.16775280305
 Delivery Load: 6495
-Pick-Up Load: 6599
-Customers in Route: 26
+Pick-Up Load: 723
+Customers in Route: 13
 Vertex Sequence: 
-0 - 65 - 71 - 83 - 92 - 30 - 87 - 84 - 63 - 70 - 77 - 78 - 28 - 16 - 19 - 2 - 3 - 6 - 5 - 12 - 1 - 15 - 7 - 11 - 10 - 8 - 18 - 0
+0 - 65 - 71 - 83 - 92 - 30 - 87 - 84 - 63 - 70 - 77 - 78 - 28 - 17 - 0
 

@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: K2.txt
 Algorithm: Sequential
-Execution time: 33 ms.
+Execution time: 44 ms.
 
 
 PROBLEM DETAILS:
@@ -9,70 +9,70 @@ Max Load: 5200
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 524039.98896285717
+Total Cost: 559980.0971676533
 Routes Of the Solution: 8
 
 ROUTE 0:
-Cost: 41788.61333092065
+Cost: 61995.642134791604
 Delivery Load: 5162
-Pick-Up Load: 0
-Customers in Route: 9
+Pick-Up Load: 1203
+Customers in Route: 11
 Vertex Sequence: 
-0 - 43 - 74 - 99 - 93 - 62 - 45 - 48 - 64 - 88 - 0
+0 - 43 - 74 - 99 - 93 - 62 - 45 - 48 - 64 - 88 - 1 - 15 - 0
 
 ROUTE 1:
-Cost: 78207.09960416674
+Cost: 94988.49482483961
 Delivery Load: 5044
-Pick-Up Load: 4870
-Customers in Route: 16
+Pick-Up Load: 5032
+Customers in Route: 21
 Vertex Sequence: 
-0 - 107 - 101 - 40 - 51 - 52 - 109 - 83 - 47 - 34 - 16 - 38 - 19 - 28 - 35 - 2 - 30 - 0
+0 - 47 - 83 - 109 - 52 - 51 - 40 - 101 - 107 - 17 - 9 - 4 - 22 - 24 - 27 - 18 - 8 - 25 - 20 - 13 - 26 - 36 - 0
 
 ROUTE 2:
-Cost: 83047.99750197346
+Cost: 74406.44979516442
 Delivery Load: 5182
-Pick-Up Load: 3569
-Customers in Route: 17
+Pick-Up Load: 470
+Customers in Route: 12
 Vertex Sequence: 
-0 - 50 - 66 - 97 - 56 - 89 - 79 - 95 - 39 - 106 - 68 - 65 - 32 - 1 - 15 - 33 - 23 - 14 - 0
+0 - 65 - 68 - 106 - 39 - 95 - 79 - 89 - 56 - 97 - 66 - 50 - 32 - 0
 
 ROUTE 3:
-Cost: 15822.66823266201
+Cost: 23091.50174947802
 Delivery Load: 2222
-Pick-Up Load: 0
-Customers in Route: 5
+Pick-Up Load: 442
+Customers in Route: 6
 Vertex Sequence: 
-0 - 77 - 42 - 41 - 73 - 87 - 0
+0 - 77 - 42 - 41 - 73 - 87 - 33 - 0
 
 ROUTE 4:
-Cost: 108008.0091118382
+Cost: 122440.2096178991
 Delivery Load: 5169
 Pick-Up Load: 5092
 Customers in Route: 22
 Vertex Sequence: 
-0 - 111 - 112 - 72 - 67 - 57 - 102 - 100 - 58 - 80 - 71 - 78 - 21 - 12 - 29 - 5 - 3 - 37 - 10 - 11 - 31 - 7 - 6 - 0
+0 - 78 - 71 - 80 - 58 - 100 - 102 - 57 - 67 - 72 - 112 - 111 - 21 - 12 - 29 - 5 - 3 - 37 - 10 - 11 - 31 - 7 - 6 - 0
 
 ROUTE 5:
-Cost: 42215.2785734606
+Cost: 56359.82066391062
 Delivery Load: 5028
-Pick-Up Load: 0
-Customers in Route: 10
+Pick-Up Load: 732
+Customers in Route: 11
 Vertex Sequence: 
-0 - 91 - 96 - 75 - 44 - 85 - 46 - 70 - 60 - 49 - 82 - 0
+0 - 91 - 96 - 75 - 44 - 85 - 46 - 70 - 60 - 49 - 82 - 23 - 0
 
 ROUTE 6:
-Cost: 38799.62878575444
+Cost: 42537.526276759774
 Delivery Load: 5188
-Pick-Up Load: 0
-Customers in Route: 10
+Pick-Up Load: 722
+Customers in Route: 11
 Vertex Sequence: 
-0 - 105 - 54 - 86 - 53 - 61 - 90 - 92 - 103 - 113 - 108 - 0
+0 - 105 - 54 - 86 - 53 - 61 - 90 - 92 - 103 - 113 - 108 - 14 - 0
 
 ROUTE 7:
-Cost: 116150.69382208108
+Cost: 84160.45210481001
 Delivery Load: 5196
-Pick-Up Load: 5032
-Customers in Route: 24
+Pick-Up Load: 4870
+Customers in Route: 19
 Vertex Sequence: 
-0 - 110 - 94 - 81 - 76 - 69 - 63 - 55 - 59 - 84 - 104 - 98 - 36 - 26 - 13 - 20 - 25 - 8 - 18 - 27 - 24 - 22 - 4 - 9 - 17 - 0
+0 - 98 - 104 - 84 - 59 - 55 - 63 - 69 - 76 - 81 - 94 - 110 - 30 - 2 - 35 - 28 - 19 - 38 - 16 - 34 - 0
 

@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: G5.txt
 Algorithm: Sequential
-Execution time: 7 ms.
+Execution time: 8 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,46 @@ Max Load: 6400
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 307011.01436024345
+Total Cost: 298579.56877296674
 Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 64656.09230794826
+Cost: 65896.55326299157
 Delivery Load: 6368
-Pick-Up Load: 0
-Customers in Route: 12
+Pick-Up Load: 548
+Customers in Route: 13
 Vertex Sequence: 
-0 - 16 - 40 - 48 - 33 - 38 - 22 - 23 - 39 - 42 - 14 - 29 - 37 - 0
+0 - 16 - 40 - 48 - 33 - 38 - 22 - 23 - 39 - 42 - 14 - 29 - 37 - 8 - 0
 
 ROUTE 1:
-Cost: 52294.44306027499
+Cost: 65711.3178922352
 Delivery Load: 6396
-Pick-Up Load: 0
-Customers in Route: 11
-Vertex Sequence: 
-0 - 18 - 52 - 34 - 13 - 15 - 47 - 49 - 50 - 44 - 20 - 32 - 0
-
-ROUTE 2:
-Cost: 64003.17063048198
-Delivery Load: 6234
-Pick-Up Load: 0
-Customers in Route: 11
-Vertex Sequence: 
-0 - 35 - 27 - 17 - 28 - 36 - 30 - 45 - 21 - 55 - 31 - 24 - 0
-
-ROUTE 3:
-Cost: 46018.84178360343
-Delivery Load: 4835
-Pick-Up Load: 0
-Customers in Route: 11
-Vertex Sequence: 
-0 - 46 - 26 - 51 - 41 - 25 - 56 - 54 - 53 - 57 - 43 - 19 - 0
-
-ROUTE 4:
-Cost: 80038.46657793483
-Delivery Load: 0
-Pick-Up Load: 5603
+Pick-Up Load: 559
 Customers in Route: 12
 Vertex Sequence: 
-0 - 8 - 11 - 2 - 3 - 12 - 1 - 7 - 4 - 5 - 10 - 6 - 9 - 0
+0 - 18 - 52 - 34 - 13 - 15 - 47 - 49 - 50 - 44 - 20 - 32 - 11 - 0
+
+ROUTE 2:
+Cost: 49441.44457143842
+Delivery Load: 4633
+Pick-Up Load: 782
+Customers in Route: 11
+Vertex Sequence: 
+0 - 26 - 51 - 41 - 25 - 56 - 54 - 53 - 57 - 43 - 19 - 9 - 0
+
+ROUTE 3:
+Cost: 96173.19400059925
+Delivery Load: 6234
+Pick-Up Load: 3268
+Customers in Route: 19
+Vertex Sequence: 
+0 - 24 - 31 - 55 - 21 - 45 - 30 - 36 - 28 - 17 - 27 - 35 - 6 - 10 - 5 - 4 - 7 - 1 - 12 - 3 - 0
+
+ROUTE 4:
+Cost: 21357.059045702255
+Delivery Load: 202
+Pick-Up Load: 446
+Customers in Route: 2
+Vertex Sequence: 
+0 - 46 - 2 - 0
 

@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: D4.txt
 Algorithm: Parallel
-Execution time: 3 ms.
+Execution time: 2 ms.
 
 
 PROBLEM DETAILS:
@@ -9,62 +9,46 @@ Max Load: 4075
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 258925.3137050581
-Routes Of the Solution: 7
+Total Cost: 339445.9986651072
+Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 32662.676658554232
-Delivery Load: 2071
+Cost: 53410.34106829412
+Delivery Load: 3060
 Pick-Up Load: 527
-Customers in Route: 5
+Customers in Route: 7
 Vertex Sequence: 
-0 - 11 - 9 - 16 - 28 - 2 - 0
+0 - 14 - 9 - 16 - 33 - 35 - 19 - 2 - 0
 
 ROUTE 1:
-Cost: 34612.45543382063
-Delivery Load: 2218
-Pick-Up Load: 0
-Customers in Route: 5
+Cost: 75502.85312365521
+Delivery Load: 3089
+Pick-Up Load: 1050
+Customers in Route: 8
 Vertex Sequence: 
-0 - 15 - 12 - 27 - 17 - 20 - 0
+0 - 21 - 17 - 20 - 29 - 34 - 18 - 7 - 8 - 0
 
 ROUTE 2:
-Cost: 65744.83260108752
-Delivery Load: 3134
-Pick-Up Load: 923
+Cost: 64091.24470355023
+Delivery Load: 3258
+Pick-Up Load: 435
 Customers in Route: 7
 Vertex Sequence: 
-0 - 18 - 29 - 34 - 13 - 24 - 8 - 1 - 0
+0 - 30 - 11 - 28 - 10 - 38 - 25 - 3 - 0
 
 ROUTE 3:
-Cost: 23905.15851479607
-Delivery Load: 2127
-Pick-Up Load: 0
-Customers in Route: 4
+Cost: 66195.80162532997
+Delivery Load: 3528
+Pick-Up Load: 1160
+Customers in Route: 8
 Vertex Sequence: 
-0 - 30 - 14 - 21 - 37 - 0
+0 - 31 - 23 - 36 - 22 - 12 - 15 - 5 - 4 - 0
 
 ROUTE 4:
-Cost: 31073.461495966847
-Delivery Load: 1490
-Pick-Up Load: 1160
-Customers in Route: 4
+Cost: 80245.75814427761
+Delivery Load: 3362
+Pick-Up Load: 1036
+Customers in Route: 8
 Vertex Sequence: 
-0 - 31 - 23 - 5 - 4 - 0
-
-ROUTE 5:
-Cost: 36704.983958041674
-Delivery Load: 3106
-Pick-Up Load: 362
-Customers in Route: 7
-Vertex Sequence: 
-0 - 33 - 10 - 25 - 38 - 35 - 19 - 7 - 0
-
-ROUTE 6:
-Cost: 34221.745042791146
-Delivery Load: 2151
-Pick-Up Load: 1236
-Customers in Route: 6
-Vertex Sequence: 
-0 - 36 - 22 - 32 - 26 - 6 - 3 - 0
+0 - 37 - 27 - 26 - 32 - 24 - 13 - 1 - 6 - 0
 

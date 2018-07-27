@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: H6.txt
 Algorithm: Sequential
-Execution time: 10 ms.
+Execution time: 16 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,46 @@ Max Load: 7100
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 349160.17461156985
+Total Cost: 346742.2469382561
 Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 51592.564116891444
-Delivery Load: 7039
-Pick-Up Load: 0
-Customers in Route: 13
+Cost: 18493.402314756768
+Delivery Load: 509
+Pick-Up Load: 468
+Customers in Route: 2
 Vertex Sequence: 
-0 - 33 - 44 - 40 - 48 - 31 - 51 - 28 - 49 - 60 - 63 - 35 - 64 - 61 - 0
+0 - 33 - 14 - 0
 
 ROUTE 1:
-Cost: 88999.49293745033
-Delivery Load: 7066
-Pick-Up Load: 0
-Customers in Route: 16
+Cost: 54051.70882617531
+Delivery Load: 5940
+Pick-Up Load: 411
+Customers in Route: 12
 Vertex Sequence: 
-0 - 46 - 36 - 59 - 47 - 65 - 53 - 68 - 43 - 29 - 32 - 41 - 30 - 45 - 54 - 66 - 42 - 0
+0 - 44 - 40 - 48 - 31 - 51 - 28 - 49 - 60 - 63 - 35 - 64 - 15 - 0
 
 ROUTE 2:
-Cost: 59839.22905440893
-Delivery Load: 7096
-Pick-Up Load: 0
-Customers in Route: 16
+Cost: 110813.89583124532
+Delivery Load: 7066
+Pick-Up Load: 3118
+Customers in Route: 21
 Vertex Sequence: 
-0 - 57 - 24 - 27 - 39 - 62 - 25 - 67 - 34 - 50 - 56 - 58 - 26 - 38 - 52 - 37 - 55 - 0
+0 - 46 - 36 - 59 - 47 - 65 - 53 - 68 - 43 - 29 - 32 - 41 - 30 - 45 - 54 - 66 - 42 - 10 - 5 - 23 - 11 - 17 - 0
 
 ROUTE 3:
-Cost: 52456.51327731363
-Delivery Load: 0
-Pick-Up Load: 4398
-Customers in Route: 8
+Cost: 149020.23744988855
+Delivery Load: 7096
+Pick-Up Load: 7083
+Customers in Route: 31
 Vertex Sequence: 
-0 - 15 - 18 - 14 - 17 - 11 - 23 - 5 - 10 - 0
+0 - 57 - 24 - 27 - 39 - 62 - 25 - 67 - 34 - 50 - 56 - 58 - 26 - 38 - 52 - 37 - 55 - 13 - 20 - 2 - 6 - 4 - 7 - 9 - 8 - 19 - 12 - 22 - 3 - 16 - 1 - 21 - 0
 
 ROUTE 4:
-Cost: 96272.37522550547
-Delivery Load: 0
-Pick-Up Load: 7083
-Customers in Route: 15
+Cost: 14363.002516190201
+Delivery Load: 590
+Pick-Up Load: 401
+Customers in Route: 2
 Vertex Sequence: 
-0 - 21 - 1 - 16 - 3 - 22 - 12 - 19 - 8 - 9 - 7 - 4 - 6 - 2 - 20 - 13 - 0
+0 - 61 - 18 - 0
 

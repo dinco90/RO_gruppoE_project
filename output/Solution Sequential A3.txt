@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: A3.txt
 Algorithm: Sequential
-Execution time: 4 ms.
+Execution time: 1 ms.
 
 
 PROBLEM DETAILS:
@@ -9,38 +9,38 @@ Max Load: 4050
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 223688.75351689383
+Total Cost: 215087.06277262155
 Routes Of the Solution: 4
 
 ROUTE 0:
-Cost: 22079.27708930964
-Delivery Load: 2120
-Pick-Up Load: 0
-Customers in Route: 3
+Cost: 43728.6288752627
+Delivery Load: 1446
+Pick-Up Load: 1239
+Customers in Route: 4
 Vertex Sequence: 
-0 - 11 - 15 - 17 - 0
+0 - 11 - 15 - 3 - 4 - 0
 
 ROUTE 1:
-Cost: 62793.51523744112
-Delivery Load: 3884
-Pick-Up Load: 0
-Customers in Route: 7
+Cost: 17800.709097252075
+Delivery Load: 674
+Pick-Up Load: 558
+Customers in Route: 2
 Vertex Sequence: 
-0 - 18 - 6 - 19 - 22 - 24 - 9 - 8 - 0
+0 - 17 - 2 - 0
 
 ROUTE 2:
-Cost: 85692.44022659474
-Delivery Load: 4045
-Pick-Up Load: 0
-Customers in Route: 10
+Cost: 65846.65307263477
+Delivery Load: 3884
+Pick-Up Load: 194
+Customers in Route: 8
 Vertex Sequence: 
-0 - 23 - 7 - 16 - 21 - 14 - 10 - 12 - 25 - 13 - 20 - 0
+0 - 18 - 6 - 19 - 22 - 24 - 9 - 8 - 5 - 0
 
 ROUTE 3:
-Cost: 53123.52096354832
-Delivery Load: 0
-Pick-Up Load: 2540
-Customers in Route: 5
+Cost: 87711.07172747201
+Delivery Load: 4045
+Pick-Up Load: 549
+Customers in Route: 11
 Vertex Sequence: 
-0 - 1 - 5 - 2 - 3 - 4 - 0
+0 - 23 - 7 - 16 - 21 - 14 - 10 - 12 - 25 - 13 - 20 - 1 - 0
 

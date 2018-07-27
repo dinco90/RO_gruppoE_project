@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: A2.txt
 Algorithm: Sequential
-Execution time: 4 ms.
+Execution time: 2 ms.
 
 
 PROBLEM DETAILS:
@@ -9,46 +9,46 @@ Max Load: 2550
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 221710.00673064386
+Total Cost: 265853.5947466553
 Routes Of the Solution: 5
 
 ROUTE 0:
-Cost: 41390.44804193123
+Cost: 51013.65590169979
 Delivery Load: 2445
 Pick-Up Load: 558
 Customers in Route: 6
 Vertex Sequence: 
-0 - 22 - 20 - 24 - 9 - 8 - 2 - 0
+0 - 8 - 9 - 24 - 20 - 22 - 2 - 0
 
 ROUTE 1:
-Cost: 22361.03269277514
+Cost: 42787.50421903649
 Delivery Load: 2120
-Pick-Up Load: 194
+Pick-Up Load: 851
 Customers in Route: 4
 Vertex Sequence: 
-0 - 11 - 15 - 17 - 5 - 0
+0 - 11 - 15 - 17 - 3 - 0
 
 ROUTE 2:
-Cost: 24181.335802820984
+Cost: 24569.21496603108
 Delivery Load: 691
-Pick-Up Load: 549
+Pick-Up Load: 194
 Customers in Route: 2
 Vertex Sequence: 
-0 - 18 - 1 - 0
+0 - 18 - 5 - 0
 
 ROUTE 3:
-Cost: 62674.24384954978
+Cost: 73075.12365661169
 Delivery Load: 2374
 Pick-Up Load: 388
 Customers in Route: 6
 Vertex Sequence: 
-0 - 19 - 6 - 7 - 16 - 21 - 4 - 0
+0 - 21 - 16 - 7 - 6 - 19 - 4 - 0
 
 ROUTE 4:
-Cost: 71102.94634356668
+Cost: 74408.0960032763
 Delivery Load: 2419
-Pick-Up Load: 851
+Pick-Up Load: 549
 Customers in Route: 7
 Vertex Sequence: 
-0 - 23 - 14 - 10 - 12 - 25 - 13 - 3 - 0
+0 - 23 - 14 - 10 - 12 - 25 - 13 - 1 - 0
 

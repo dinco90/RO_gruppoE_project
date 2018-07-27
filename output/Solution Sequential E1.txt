@@ -1,6 +1,6 @@
 Text File with Solution Of Problem: E1.txt
 Algorithm: Sequential
-Execution time: 9 ms.
+Execution time: 4 ms.
 
 
 PROBLEM DETAILS:
@@ -9,62 +9,62 @@ Max Load: 2650
 Max Cost: 99999999999999???
 
 SOLUTION DETAILS:
-Total Cost: 350098.39068586094
+Total Cost: 360876.0539723987
 Routes Of the Solution: 7
 
 ROUTE 0:
-Cost: 48614.638079678305
+Cost: 59681.25968776086
 Delivery Load: 2388
 Pick-Up Load: 592
 Customers in Route: 6
 Vertex Sequence: 
-0 - 45 - 35 - 30 - 39 - 24 - 15 - 0
+0 - 24 - 39 - 30 - 35 - 45 - 15 - 0
 
 ROUTE 1:
-Cost: 83394.45918806679
+Cost: 102148.88268615266
 Delivery Load: 2621
-Pick-Up Load: 318
-Customers in Route: 7
+Pick-Up Load: 2645
+Customers in Route: 11
 Vertex Sequence: 
-0 - 25 - 29 - 26 - 18 - 38 - 17 - 5 - 0
+0 - 25 - 29 - 26 - 18 - 38 - 17 - 11 - 10 - 8 - 2 - 13 - 0
 
 ROUTE 2:
-Cost: 50066.24956414242
+Cost: 53013.423209552384
 Delivery Load: 2618
 Pick-Up Load: 319
 Customers in Route: 6
 Vertex Sequence: 
-0 - 27 - 16 - 20 - 42 - 21 - 1 - 0
+0 - 27 - 16 - 20 - 42 - 21 - 4 - 0
 
 ROUTE 3:
-Cost: 69441.57398596831
+Cost: 71557.15957646532
 Delivery Load: 2520
-Pick-Up Load: 2645
+Pick-Up Load: 2524
 Customers in Route: 9
 Vertex Sequence: 
-0 - 31 - 41 - 19 - 36 - 13 - 2 - 8 - 10 - 11 - 0
+0 - 31 - 41 - 19 - 36 - 9 - 3 - 7 - 6 - 12 - 0
 
 ROUTE 4:
-Cost: 29681.21875342446
+Cost: 36830.39977332813
 Delivery Load: 2464
-Pick-Up Load: 319
+Pick-Up Load: 318
 Customers in Route: 5
 Vertex Sequence: 
-0 - 32 - 40 - 22 - 43 - 4 - 0
+0 - 32 - 40 - 22 - 43 - 5 - 0
 
 ROUTE 5:
-Cost: 24116.07896370255
+Cost: 27750.440851900028
 Delivery Load: 2260
-Pick-Up Load: 323
+Pick-Up Load: 319
 Customers in Route: 6
 Vertex Sequence: 
-0 - 28 - 37 - 23 - 33 - 34 - 14 - 0
+0 - 34 - 33 - 23 - 37 - 28 - 1 - 0
 
 ROUTE 6:
-Cost: 44784.17215087811
+Cost: 9894.48818723933
 Delivery Load: 783
-Pick-Up Load: 2524
-Customers in Route: 6
+Pick-Up Load: 323
+Customers in Route: 2
 Vertex Sequence: 
-0 - 44 - 9 - 3 - 7 - 6 - 12 - 0
+0 - 44 - 14 - 0
 
