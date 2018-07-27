@@ -817,8 +817,8 @@ public class Manager {
         // se la richiesta è minore della capacità massima
         boolean ijCapacity = false;
         // se le routesSequenziale sono state utilizzate nel turno corrente
-        boolean condI = false;
-        boolean condJ = false;
+        boolean condTurnI = false;
+        boolean condTurnJ = false;
         // se le routesParallele sono routes base (ossia le prime che vanno a formare una route perché richiedono più spazio
         boolean condBaseI = false;
         boolean condBaseJ = false;
@@ -855,14 +855,14 @@ public class Manager {
             // se la richiesta è minore della capacità massima
             ijCapacity = depot.getMaxCapacity() >= (routesLinehaul.get(routeI).getDelivery() + routesLinehaul.get(routeJ).getDelivery());
             // se le routesParallelo sono state utilizzate nel turno corrente
-            condI = usedRoutesTurn.contains(routesLinehaul.get(routeI));
-            condJ = usedRoutesTurn.contains(routesLinehaul.get(routeJ));
+            condTurnI = usedRoutesTurn.contains(routesLinehaul.get(routeI));
+            condTurnJ = usedRoutesTurn.contains(routesLinehaul.get(routeJ));
             // se la route è di base
             condBaseI = routesLinehaul.get(routeI).base;
             condBaseJ = routesLinehaul.get(routeJ).base;
 
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (condBaseI != condBaseJ)) {
+            if ((!(condTurnI || condTurnJ)) && (routeI != routeJ) && ijCapacity && (condBaseI != condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
@@ -925,8 +925,8 @@ public class Manager {
         // se la richiesta è minore della capacità massima
         ijCapacity = false;
         // se le routesSequenziale sono state utilizzate nel turno corrente
-        condI = false;
-        condJ = false;
+        condTurnI = false;
+        condTurnJ = false;
         // se le routesParallele sono routes base (ossia le prime che vanno a formare una route perché richiedono più spazio
         condBaseI = false;
         condBaseJ = false;
@@ -962,14 +962,14 @@ public class Manager {
             // se la richiesta è minore della capacità massima
             ijCapacity = depot.getMaxCapacity() >= (routesBackhaul.get(routeI).getPickup() + routesBackhaul.get(routeJ).getPickup());
             // se le routesSequenziale sono state utilizzate nel turno corrente
-            condI = usedRoutesTurn.contains(routesBackhaul.get(routeI));
-            condJ = usedRoutesTurn.contains(routesBackhaul.get(routeJ));
+            condTurnI = usedRoutesTurn.contains(routesBackhaul.get(routeI));
+            condTurnJ = usedRoutesTurn.contains(routesBackhaul.get(routeJ));
             // se la route è di base
             condBaseI = routesBackhaul.get(routeI).base;
             condBaseJ = routesBackhaul.get(routeJ).base;
 
             // salta saving corrente se non sono rispettate le condizioni
-            if ((!(condI || condJ)) && (routeI != routeJ) && ijCapacity && (condBaseI != condBaseJ)) {
+            if ((!(condTurnI || condTurnJ)) && (routeI != routeJ) && ijCapacity && (condBaseI != condBaseJ)) {
                 // iFirst - jLast: unisce i ad j ed elimina poi i
                 if (iFirst && jLast) {
                     counterSavings++;
